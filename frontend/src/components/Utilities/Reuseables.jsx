@@ -1,3 +1,5 @@
+import React from "react"
+
 const Reuseables = {
     logoIcon: function getLogoIcon(props) {
         return <img src={props.url} alt="RoomEase" />
@@ -6,3 +8,5 @@ const Reuseables = {
         return <img src={props.url} alt="RoomEase" />
     }
 }
+
+export default Reuseables
