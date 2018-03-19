@@ -10,6 +10,7 @@ function createUser(req, res, next) {
     });
     return;
   }
+
   const hash = authHelpers.createHash(req.body.password);
   console.log("hash", hash);
   console.log("req.body.username", req.body.username);
@@ -32,19 +33,21 @@ function createUser(req, res, next) {
       console.log(err);
       res.status(500).send("error creating user");
     });
-};
+}
 
 function loginUser(req, res, next) {
-    passport.authenticate("local", {});
-  }
+  passport.authenticate("local", {});
+}
 
 function logoutUser(req, res, next) {
-    req.logout();
-    res.status(200).send("log out success");
-  }
+  req.logout();
+  res.status(200).send("log out success");
+}
+
+
 
 module.exports = {
-    createUser,
-    logoutUser,
-    loginUser
+  createUser,
+  logoutUser,
+  loginUser
 };

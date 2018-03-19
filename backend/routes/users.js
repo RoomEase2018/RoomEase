@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+let db = require("../db/queries");
+const passport = require("../auth/local");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

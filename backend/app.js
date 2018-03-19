@@ -7,6 +7,11 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var apartment = require('./routes/apartment');
+var chores = require('./routes/chores');
+var bills = require('./routes/bills');
+var expenses = require('./routes/expenses');
+var notes = require('./routes/notes');
 
 var app = express();
 
