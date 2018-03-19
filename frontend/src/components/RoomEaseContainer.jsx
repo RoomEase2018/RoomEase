@@ -1,12 +1,15 @@
 import React, { Component } from "react"
-import DashboardContainer from "./Dashboard/DashboardContainer";
-import HomepageContainer from "./Homepage/HomepageContainer";
-import ProfileContainer from "./Profile/ProfileContainer";
+import { connect } from "react-redux" // ALLOWS THE USE OF REDUC TO GET THE STATE FROM THIS.PROPS
+import DashboardContainer from "./Dashboard/Containers/DashboardContainer"
+import HomepageContainer from "./Homepage/Containers/HomepageContainer"
+import ProfileContainer from "./Profile/Containers/ProfileContainer"
+import Reuseables from "./Utilities/Reuseables"
 
 class RoomEaseContainer extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="RoomEase">
+        <Reuseables.logoIcon url="https://i.imgur.com/DqjYaRi.png" />
         <h1>RoomEase Container</h1>
         <DashboardContainer />
         <HomepageContainer />
@@ -16,4 +19,4 @@ class RoomEaseContainer extends Component {
   }
 }
 
-export default RoomEaseContainer
+export default connect(state => state)(RoomEaseContainer)
