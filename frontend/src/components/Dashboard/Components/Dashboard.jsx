@@ -1,6 +1,6 @@
 import React from "react";
-import RoomHeader from "./Components/RoomHeader";
-import UserSnapshot from "./Components/UserSnapshot";
+import RoomHeader from "./RoomHeader";
+import UserSnapshot from "./UserSnapshot";
 
 const Dashboard = (props) => {
   const {bannerPic, roomName, user} = props.store
