@@ -7,6 +7,7 @@ class RoomEaseContainer extends Component {
   render() {
     return (
       <div className="App">
+        <Navbar />
         <h1>RoomEase Container</h1>
         <DashboardContainer />
         <HomepageContainer />
