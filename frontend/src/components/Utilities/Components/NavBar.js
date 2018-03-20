@@ -24,7 +24,7 @@ class NavBar extends React.Component {
 
     return (
       <div className="NavBar">
-        <img height="50px" width="50px" src={this.props.logoUrl} />
+        <img height="100px" width="100px" alt="logo icon" src={this.props.logoUrl} />
         <span> {this.props.logoName} </span>
         <form onSubmit={this.handleSubmit}>
           <label>

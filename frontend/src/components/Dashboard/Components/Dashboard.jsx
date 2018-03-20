@@ -2,17 +2,18 @@ import React from "react";
 import RoomHeader from "./RoomHeader";
 import UserSnapshot from "./UserSnapshot";
 
-const Dashboard = (props) => {
-  const {bannerPic, roomName, user} = props.store
+const Dashboard = ({ store, profile }) => {
+  const { bannerPic, roomName } = store;
+  const { username, pic, roomKarma, chore } = profile;
   return (
   <div>
     <h2>Dashboard</h2>
     <RoomHeader bannerPic={bannerPic} roomName={roomName}/>
-    {/* <UserSnapshot
-      userPic={this.props.store.user.pic}
-      userRoomKarma={this.props.store.user.roomKarma}
-      userChore={this.props.store.user.chore}
-    /> */}
+    <UserSnapshot
+      userPic={pic}
+      userRoomKarma={roomKarma}
+      userChore={chore}
+    />
 
   </div>
 )}
