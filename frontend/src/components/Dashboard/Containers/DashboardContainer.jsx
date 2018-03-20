@@ -4,10 +4,10 @@ import Dashboard from '../Components/Dashboard';
 
 class DashboardContainer extends Component {
     render() {
-        console.log(this.props);
         return (
             <Dashboard
-                store={this.props.Dashboard}    
+                store={this.props.Dashboard}
+                profile={this.props.Profile}    
             />
         );
     }
