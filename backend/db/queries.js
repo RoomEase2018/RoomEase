@@ -2,6 +2,7 @@ const db = require("./index");
 const authHelpers = require("../auth/helpers");
 const passport = require("../auth/local");
 
+//user queries
 function createUser(req, res, next) {
   console.log("createuser");
   if (req.body.password.length <= 6) {
@@ -44,7 +45,23 @@ function logoutUser(req, res, next) {
   res.status(200).send("log out success");
 }
 
-
+//apartment queries
+// function getApartmentById(req, res, next) {
+//   db
+//   .any("",
+//  { img_id: req.params.img_id } 
+// )
+//   .then(function(data) {
+//     res.status(200).json({
+//       status: "success",
+//       data: data,
+//       message: "Fetched info for single apartment"
+//     });
+//   })
+//   .catch(function(err) {
+//     return next(err);
+//   });
+// }
 
 module.exports = {
   createUser,
