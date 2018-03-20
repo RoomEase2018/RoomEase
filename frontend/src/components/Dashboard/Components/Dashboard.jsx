@@ -1,9 +1,20 @@
-import React from "react"
+import React from "react";
+import RoomHeader from "./RoomHeader";
+import UserSnapshot from "./UserSnapshot";
 
-const Dashboard = () => (
+const Dashboard = (props) => {
+  const {bannerPic, roomName, user} = props.store
+  return (
   <div>
     <h2>Dashboard</h2>
-  </div>
-)
+    <RoomHeader bannerPic={bannerPic} roomName={roomName}/>
+    {/* <UserSnapshot
+      userPic={this.props.store.user.pic}
+      userRoomKarma={this.props.store.user.roomKarma}
+      userChore={this.props.store.user.chore}
+    /> */}
 
-export default Dashboard
+  </div>
+)}
+
+export default Dashboard;
