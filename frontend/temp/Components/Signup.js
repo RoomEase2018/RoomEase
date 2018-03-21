@@ -11,6 +11,7 @@ class Signup extends React.Component {
       gender: ""
     };
   };
+  
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
