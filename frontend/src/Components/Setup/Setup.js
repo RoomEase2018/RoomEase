@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import CreateRoom from './Components/CreateRoom';
+import JoinRoom from './Components/JoinRoom';
 
 class Setup extends React.Component {
     constructor() {
@@ -13,7 +15,7 @@ class Setup extends React.Component {
         };
     };
 
-    handleInput = () => {
+    handleInput = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
