@@ -9,6 +9,7 @@ class RoomEaseContainer extends Component {
     return(
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route path="/setup" component={Setup} />
       </Switch>
     )
   }
