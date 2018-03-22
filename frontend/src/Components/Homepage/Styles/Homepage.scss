@@ -1,0 +1,47 @@
+.home {
+    display: grid;
+    grid-template-columns: auto 800px auto;
+    grid-template-rows: 70px auto;
+    grid-template-areas:
+        ". login_menu ."
+        ". signup_body .";
+    .login_menu {
+        grid-area: login_menu;
+        display: grid;
+        grid-template-columns: 240px auto 360px;
+        grid-template-areas: "logo . login_form";
+        .logo {
+            grid-area: logo;
+            display: grid;
+            grid-template-columns: 70px 140px;
+            img {
+                width: 70px;
+                height: 70px;
+            }
+            h1 {
+                font-size: 2em;
+                align-self: center;
+                margin-top: 15px;
+            }
+        }
+        .login_form {
+            grid-area: login_form;
+            align-self: center;
+        }
+    }
+    .signup_body {
+        grid-area: signup_body;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "about_us signup_form";
+        .about_us {
+            grid-area: about_us;
+        }
+        .signup_form {
+            grid-area: signup_form;
+            align-self: center;
+            line-height: 3
+        }
+    }
+}
