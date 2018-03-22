@@ -1,0 +1,36 @@
+img {
+	height: 70px;
+}
+
+.homepage_container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr auto;
+	height: 100%
+}
+
+.logo {
+	display: flex;
+	border-bottom: solid black 2px;
+	background-color: #4468b0;
+	text-align: center;
+}
+
+.login_form {
+	display: flex;
+	border-bottom: solid black 2px;
+	justify-content: center;
+	align-items: center;
+	background-color: #4468b0;
+}
+
+.signup_form > form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: left;
+}
+
+.signup_submit {
+	width: 100px;
+}
