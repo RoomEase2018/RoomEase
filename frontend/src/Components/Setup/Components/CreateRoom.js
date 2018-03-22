@@ -3,10 +3,11 @@ import React from 'react';
 
 class CreateRoom extends React.Component {
     render() {
-        const { handleInput, handleCreate } = this.props;
+        const { resetButton, handleInput, handleCreate } = this.props;
         return (
-            <div className='setup-modal'>
+            <div className='setup-modal' onClick={resetButton}>
                 <form onSubmit={handleCreate}>
+                    <span onClick={resetButton}>&times;</span>
                     <label>
                         Room Name: {' '}
                         <input type='text' name='roomName' onChange={handleInput} />
