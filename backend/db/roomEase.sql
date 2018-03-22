@@ -17,7 +17,7 @@ CREATE TABLE users (
   apartment_id SERIAL REFERENCES apartments,
   full_name VARCHAR NOT NULL, 
   username VARCHAR UNIQUE NOT NULL,
-  gender BOOLEAN,
+  gender VARCHAR,
   password_digest VARCHAR NOT NULL,
   karma INTEGER,
   email VARCHAR UNIQUE NOT NULL,
@@ -26,8 +26,8 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (apartment_id, full_name, username, gender, password_digest, karma, email, phone, profile_pic)
-  VALUES (1, 'Lizzie McGuire', 'LizBiz', FALSE, '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 0, 'lizbiz@email.com', '12345678', 'http://images2.fanpop.com/image/photos/11200000/Lizzie-in-Movin-On-Up-episode-lizzie-mcguire-11212776-768-576.jpg'), 
-  (1, 'David Gordon', 'Gordo', TRUE, '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 0, 'gordo@email.com', '23456789', 'http://www.lizziemcguirereviewed.com/wp-content/uploads/2016/03/stay-off-the-dwarf-kids-lizzie-mcguire-reviewed.png');
+  VALUES (1, 'Lizzie McGuire', 'LizBiz', 'F', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 0, 'lizbiz@email.com', '12345678', 'http://images2.fanpop.com/image/photos/11200000/Lizzie-in-Movin-On-Up-episode-lizzie-mcguire-11212776-768-576.jpg'), 
+  (1, 'David Gordon', 'Gordo', 'M', '$2a$10$brAZfSmByFeZmPZ/MH5zne9YDhugjW9CtsBGgXqGfix0g1tcooZWq', 0, 'gordo@email.com', '23456789', 'http://www.lizziemcguirereviewed.com/wp-content/uploads/2016/03/stay-off-the-dwarf-kids-lizzie-mcguire-reviewed.png');
 
 CREATE TABLE chores (
   ID SERIAL PRIMARY KEY,
