@@ -14,8 +14,8 @@ INSERT INTO apartments (nick_name, banner_pic)
 
 CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
-  apartment_id SERIAL REFERENCES apartments,
-  full_name VARCHAR NOT NULL, 
+  apartment_id INTEGER REFERENCES apartments,
+  full_name VARCHAR, 
   username VARCHAR UNIQUE NOT NULL,
   gender BOOLEAN,
   password_digest VARCHAR NOT NULL,
@@ -31,9 +31,9 @@ INSERT INTO users (apartment_id, full_name, username, gender, password_digest, k
 
 CREATE TABLE chores (
   ID SERIAL PRIMARY KEY,
-  apartment_id SERIAL REFERENCES apartments, 
+  apartment_id INTEGER REFERENCES apartments, 
   chore_name VARCHAR,
-  posted_by_id SERIAL REFERENCES users,
+  posted_by_id INTEGER REFERENCES users,
   completed BOOLEAN,
   chore_timestamp timestamp not null default CURRENT_TIMESTAMP,
   expected_completed_date VARCHAR,
@@ -46,7 +46,7 @@ INSERT INTO chores (apartment_id, chore_name, posted_by_id, completed, expected_
 
 CREATE TABLE fixed_expenses (
   ID SERIAL PRIMARY KEY,
-  apartment_id SERIAL REFERENCES apartments, 
+  apartment_id INTEGER REFERENCES apartments, 
   expense_name VARCHAR,
   amount INTEGER,
   end_of_month BOOLEAN,
@@ -62,10 +62,10 @@ INSERT INTO fixed_expenses (apartment_id, expense_name, amount, end_of_month, du
 
 CREATE TABLE expenses (
   ID SERIAL PRIMARY KEY,
-  apartment_id SERIAL REFERENCES apartments, 
+  apartment_id INTEGER REFERENCES apartments, 
   expense_name VARCHAR,
   amount INTEGER,
-  payee_id SERIAL REFERENCES users,
+  payee_id INTEGER REFERENCES users,
   due_date VARCHAR,
   expense_timestamp timestamp not null default CURRENT_TIMESTAMP
 );
@@ -78,14 +78,14 @@ INSERT INTO expenses (apartment_id, expense_name, amount, payee_id, due_date)
 CREATE TABLE payments (
   ID SERIAL PRIMARY KEY,
   amount INTEGER,
-  payer_id SERIAL REFERENCES users,
-  expense_id SERIAL REFERENCES expenses,
-  fixed_expense_id SERIAL REFERENCES fixed_expenses
+  payer_id INTEGER REFERENCES users,
+  expense_id INTEGER REFERENCES expenses,
+  fixed_expense_id INTEGER REFERENCES fixed_expenses
 );
 
 CREATE TABLE notes (
   ID SERIAL PRIMARY KEY,
-  apartment_id SERIAL REFERENCES apartments,
+  apartment_id INTEGER REFERENCES apartments,
   note VARCHAR,
   posted_by SERIAL REFERENCES users
 );
