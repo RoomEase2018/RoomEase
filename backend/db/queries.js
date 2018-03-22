@@ -15,7 +15,7 @@ function createUser(req, res, next) {
     .none(
       "INSERT INTO users (full_name, username, password_digest, email, phone) VALUES (${full_name}, ${username}, ${password}, ${email}, ${phone})",
       {
-        full_name: req.body.name,
+        full_name: req.body.full_name,
         username: req.body.username,
         password: hash,
         email: req.body.email,
