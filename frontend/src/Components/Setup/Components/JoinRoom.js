@@ -9,7 +9,7 @@ class JoinRoom extends React.Component {
         return (
             <div className='setup-modal' onClick={resetButton}>
                 <form onSubmit={handleJoin}>
-                <span onClick={resetButton}>&times;</span>
+                <span className='reset' onClick={resetButton}>&times;</span>
                     <label>
                         Room ID: {' '}
                         <input type='text' name='roomID' onChange={handleInput} />

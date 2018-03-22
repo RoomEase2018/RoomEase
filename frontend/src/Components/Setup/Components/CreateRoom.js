@@ -3,20 +3,26 @@ import React from 'react';
 
 class CreateRoom extends React.Component {
     render() {
-        const { resetButton, handleInput, handleCreate } = this.props;
+        const { roommateInputs, addInput, removeInput, resetButton, handleInput, handleCreate } = this.props;
         return (
             <div className='setup-modal' onClick={resetButton}>
                 <form onSubmit={handleCreate}>
-                    <span onClick={resetButton}>&times;</span>
+                    <span className='reset' onClick={resetButton}>&times;</span>
                     <label>
                         Room Name: {' '}
                         <input type='text' name='roomName' onChange={handleInput} />
                     </label>
-                    <button> add roommate </button> {/* adds roommate label onCLick (refer to label below)  */}
-                    <label>
-                        Roommate: {' '}
-                        <input type='text' name='roommates' onChange={handleInput} />
-                    </label>
+                    {roommateInputs.map((input, idx) => {
+                        return(
+                            <label key={idx}>
+                                Roommate {idx + 1}: {" "}
+                                {input} {" "}
+                                <span onClick={() => removeInput(idx)}>&times;</span>
+                            </label>
+                        );
+                    })}
+                    <span onClick={addInput}> add roommate </span> {/* adds roommate label onClick (refer to label below)  */}
+                    
                     <input type='submit' onClick={handleCreate} />
                 </form>
             </div>

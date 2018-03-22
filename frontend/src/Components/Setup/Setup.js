@@ -10,7 +10,7 @@ class Setup extends React.Component {
         super();
         this.state = {
             roomID: '',
-            roommates: [],
+            roommateInputs: [],
             roomName: '',
             button: '',
         };
@@ -22,10 +22,29 @@ class Setup extends React.Component {
         });
     };
 
-    resetButton = () => {
+    addInput = (e) => {
+        let { roommateInputs } = this.state;
+
         this.setState({
-            button: ''
+            roommateInputs: [...roommateInputs, <input type='text' name={`roommate${ roommateInputs.length + 1 }`} onChange={this.handleInput} />],
         });
+    };
+
+    removeInput = idx => {
+        let { roommateInputs } = this.state;
+        roommateInputs = roommateInputs.filter((input, arrIdx) => arrIdx !== idx);
+
+        this.setState({
+            roommateInputs: roommateInputs,
+        });
+
+    }
+
+    resetButton = (e) => {
+        e.target.className === 'reset' || e.target.className === 'setup-modal' 
+            ? this.setState({
+                button: ''
+            }) : '';
     };
 
     handleCreate = e => {
@@ -39,14 +58,28 @@ class Setup extends React.Component {
     };
 
     render() {
-        const { button } = this.state;
+        const { roommateInputs, button } = this.state;
+        console.log(this.state);
         return (
             <div className='setup'>
                 <h2> Don't Have a Room? </h2>
                 <button onClick={(button) => { this.setState({ button: button === 'create' ? '' : 'create' }) }}> Create room </button>
                 <button onClick={(button) => { this.setState({ button: button === 'join' ? '' : 'join' }) }}> Join room </button>
-                { button === 'create' ? <CreateRoom resetButton={this.resetButton} handleInput={this.handleInput} handleCreate={this.handleCreate} /> : '' }
-                { button === 'join' ? <JoinRoom resetButton={this.resetButton} handleInput={this.handleInput} handleJoin={this.handleJoin} /> : '' }
+                { button === 'create' 
+                    ? <CreateRoom 
+                        roommateInputs={roommateInputs} 
+                        addInput={this.addInput} 
+                        removeInput={this.removeInput}
+                        resetButton={this.resetButton} 
+                        handleInput={this.handleInput} 
+                        handleCreate={this.handleCreate} /> 
+                    : '' }
+                { button === 'join' 
+                    ? <JoinRoom 
+                        resetButton={this.resetButton} 
+                        handleInput={this.handleInput} 
+                        handleJoin={this.handleJoin} /> 
+                    : '' }
             </div>
         );
     }
