@@ -4,7 +4,6 @@ const passport = require("../auth/local");
 
 //user queries
 function createUser(req, res, next) {
-  console.log("createuser");
   if (req.body.password.length <= 6) {
     res.status(200).json({
       message: `password must be longer than 6 characters`
@@ -12,13 +11,11 @@ function createUser(req, res, next) {
     return;
   }
   const hash = authHelpers.createHash(req.body.password);
-  console.log("hash", hash);
-  console.log("req.body.username", req.body.username);
   db
     .none(
-      "INSERT INTO users (full_name, username, password_digest, email, phone) VALUES (${full_name}, ${username}, ${password}, ${email}, ${phone})",
+      "INSERT INTO users (full_name, username, password_digest, email, phone) VALUES (${full_name}, ${username}, ${password}, ${email}, ${phone});",
       {
-        full_name: req.body.name,
+        full_name: req.body.full_name,
         username: req.body.username,
         password: hash,
         email: req.body.email,
@@ -31,7 +28,6 @@ function createUser(req, res, next) {
       });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).send("error creating user");
     });
 };
