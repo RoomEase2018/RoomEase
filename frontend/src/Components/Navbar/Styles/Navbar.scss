@@ -1,0 +1,17 @@
+.navbar {
+    grid-area: navbar;
+    display: grid;
+    grid-template-columns: 240px auto 100px;
+    grid-template-areas: 'navbar_logo . navbar_buttons';
+    .navbar_logo {
+        grid-area: navbar_logo;
+        display: grid;
+        grid-template-columns: 70px 170px;
+    }
+    .navbar_buttons {
+        grid-area: navbar_buttons;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+}
