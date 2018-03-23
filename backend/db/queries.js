@@ -4,8 +4,8 @@ const passport = require("../auth/local");
 
 //user queries
 function createUser(req, res, next) {
-  if (req.body.password.length <= 6) {
-    res.status(200).json({
+  if (req.body.password.length < 6) {
+    res.status(400).json({
       message: `password must be longer than 6 characters`
     });
     return;
