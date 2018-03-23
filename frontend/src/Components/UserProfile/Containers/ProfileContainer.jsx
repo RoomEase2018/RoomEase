@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Profile from '../Components/Profile';
-import Setup from '../../Setup/Setup';
+import Setup from '../Components/Setup';
 
 class ProfileContainer extends Component {
     render() {

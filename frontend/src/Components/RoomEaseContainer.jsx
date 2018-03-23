@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom"
 
 import HomepageContainer from "./Homepage/Containers/HomepageContainer"
 import ProfileContainer from "./UserProfile/Containers/ProfileContainer"
-import Setup from "./Setup/Setup"
 import Navbar from "./Navbar"
 
 class RoomEaseContainer extends Component {

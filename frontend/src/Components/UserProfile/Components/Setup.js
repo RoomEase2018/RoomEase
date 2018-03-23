@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import './Styles/Setup.css';
+import '../Styles/Setup.css';
 
-import CreateRoom from './Components/CreateRoom';
-import JoinRoom from './Components/JoinRoom';
+import CreateRoom from './CreateRoom';
+import JoinRoom from './JoinRoom';
 
 class Setup extends React.Component {
     constructor() {
