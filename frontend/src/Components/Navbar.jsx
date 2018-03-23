@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => (
     <div>
@@ -7,8 +8,8 @@ const Navbar = () => (
             <h1>RoomEase</h1>
         </div>
         <div className="buttons">
-            <i class="fas fa-tv" />
-            <i class="far fa-user" />
+            <Link to="/dashboard"> <i class="fas fa-tv" /> </Link>
+            <Link to="/profile"> <i class="fas fa-user" /> </Link>
             <i class="fas fa-home" />
             <i class="fas fa-plus" />
             <i class="fas fa-cog" />

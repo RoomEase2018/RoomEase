@@ -2,10 +2,11 @@ import React, { Component } from "react"
 import { connect } from "react-redux" // ALLOWS THE USE OF REDUC TO GET THE STATE FROM THIS.PROPS
 import { Route, Switch } from "react-router-dom"
 
-import HomepageContainer from "./Homepage/Containers/HomepageContainer"
-import ProfileContainer from "./UserProfile/Containers/ProfileContainer"
-import Setup from "./Setup/Setup"
-import Navbar from "./Navbar"
+import HomepageContainer from "./Homepage/Containers/HomepageContainer";
+import ProfileContainer from "./UserProfile/Containers/ProfileContainer";
+// import DashboardContainer from "./Dashboard/Containers/DashboardContainer";
+import Setup from "./Setup/Setup";
+import Navbar from "./Navbar";
 
 class RoomEaseContainer extends Component {
     render() {
