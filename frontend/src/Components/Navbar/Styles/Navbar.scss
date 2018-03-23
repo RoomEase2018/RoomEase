@@ -10,6 +10,8 @@
     }
     .navbar_buttons {
         grid-area: navbar_buttons;
-        align-self: center;
+        display: grid;
+        justify-items: center;
+        align-items: center;
     }
 }
