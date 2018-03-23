@@ -1,10 +1,10 @@
 import react, { Component } from 'react';
 
 class Calendar extends Component {
-	const { tasks } = this.props;
 	render() {
+		const { tasks } = this.props;
 		return (
-
+<div/>
 		)
 	}
 }

@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux" // ALLOWS THE USE OF REDUC TO GET THE STATE FROM THIS.PROPS
-import { Route, Switch } from "react-router-dom"
+import { withRouter, Route, Switch } from "react-router-dom"
 
 import HomepageContainer from "./Homepage/Containers/HomepageContainer"
 import ProfileContainer from "./UserProfile/Containers/ProfileContainer"
 import NavbarContainer from "./Navbar/Containers/NavbarContainer"
+import DashboardContainer from './Dashboard/Containers/DashboardContainer'
 
 
 class RoomEaseContainer extends Component {
@@ -15,7 +16,7 @@ class RoomEaseContainer extends Component {
                 {this.props.Profile.loggedIn ? (
                     <Switch>
                         <Route exact path="/" component={ProfileContainer} />
-                        <Route path="/profile" component={ProfileContainer} />
+                        <Route path="/dashboard" component={DashboardContainer} />
                     </Switch>
                 ) : (
                     <Route exact path="/" component={HomepageContainer} />
@@ -25,4 +26,4 @@ class RoomEaseContainer extends Component {
     }
 }
 
-export default connect(state => state)(RoomEaseContainer)
+export default withRouter(connect(state => state)(RoomEaseContainer))
