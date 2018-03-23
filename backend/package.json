@@ -14,6 +14,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.0.3",
     "jade": "~1.11.0",
+    "mocha": "^5.0.5",
     "morgan": "~1.9.0",
     "nodemon": "^1.17.2",
     "passport": "^0.4.0",
@@ -21,5 +22,8 @@
     "password-hash-and-salt": "^0.1.4",
     "pg-promise": "^8.2.2",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "node-mocks-http": "^1.5.8"
   }
 }
