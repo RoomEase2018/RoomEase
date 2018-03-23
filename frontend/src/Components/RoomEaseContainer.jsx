@@ -5,18 +5,22 @@ import { Route, Switch } from "react-router-dom"
 import HomepageContainer from "./Homepage/Containers/HomepageContainer"
 import ProfileContainer from "./UserProfile/Containers/ProfileContainer"
 import Setup from "./Setup/Setup"
+import Navbar from "./Navbar"
 
 class RoomEaseContainer extends Component {
     render() {
         return (
-            <Switch>
+            <div>
+                {this.props.Profile.loggedIn && <Navbar />}
                 {this.props.Profile.loggedIn ? (
-                    <Route exact path="/" component={ProfileContainer} />
+                    <Switch>
+                        <Route exact path="/" component={ProfileContainer} />
+                        <Route path="/profile" component={ProfileContainer} />
+                    </Switch>
                 ) : (
                     <Route exact path="/" component={HomepageContainer} />
                 )}
-                <Route path="/setup" component={Setup} />
-            </Switch>
+            </div>
         )
     }
 }

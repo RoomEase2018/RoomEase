@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Profile from '../Components/Profile';
+import Setup from '../../Setup/Setup';
 
 class ProfileContainer extends Component {
     render() {
@@ -9,6 +10,7 @@ class ProfileContainer extends Component {
                 <Profile
                   user={this.props.Profile} 
                 />
+                <Setup />
             </div>
         );
     }
