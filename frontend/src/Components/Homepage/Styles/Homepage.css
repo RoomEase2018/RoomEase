@@ -1,12 +1,12 @@
 .home {
   display: grid;
-  grid-template-columns: auto 800px auto;
+  grid-template-columns: auto 1000px auto;
   grid-template-rows: 70px auto;
   grid-template-areas: "home_nav home_nav home_nav" ". signup_body ."; }
   .home .home_nav {
     grid-area: home_nav;
     display: grid;
-    grid-template-columns: auto 800px auto;
+    grid-template-columns: auto 1000px auto;
     grid-template-areas: '. login_menu .';
     background-color: #A1C6E7; }
     .home .home_nav .login_menu {

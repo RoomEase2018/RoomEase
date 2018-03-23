@@ -20,7 +20,7 @@ const Navbar = ({logout}) => (
                         <i class="fas fa-tv" />
                     </Link>{" "}
                     <Link to="/">
-                        <i class="fas fa-user" size={32}/>
+                        <i class="fas fa-user"/>
                     </Link>{" "}
                     <Link to="/">
                         <i class="fas fa-home" />
