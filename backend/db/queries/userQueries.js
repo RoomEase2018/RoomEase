@@ -1,15 +1,15 @@
-const db = require("../../index");
-const authHelpers = require("../../../auth/helpers");
-const passport = require("../../../auth/local");
+const db = require("../index");
+const authHelpers = require("../../auth/helpers");
+const passport = require("../../auth/local");
 
 //user queries
 function createUser(req, res, next) {
-  // if (req.body.password.length <= 6) {
-  //   res.status(406).json({
-  //     message: `password must be longer than 6 characters`
-  //   });
-  //   return;
-  // }
+  if (req.body.password.length <= 6) {
+    res.status(406).json({
+      message: `password must be longer than 6 characters`
+    });
+    return;
+  }
   const hash = authHelpers.createHash(req.body.password);
   db
     .none(

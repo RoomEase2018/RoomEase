@@ -6,8 +6,8 @@ CREATE DATABASE roomease;
 CREATE TABLE apartments (
   id SERIAL PRIMARY KEY,
   apt_name VARCHAR,
-  apt_pic VARCHAR,
-  bulletin_id INTEGER REFERENCES bulletin_board (id) NOT NULL
+  apt_pic VARCHAR
+  -- bulletin_id INTEGER REFERENCES bulletin_board (id) NOT NULL
 );
 
 CREATE TABLE users (
@@ -27,7 +27,7 @@ CREATE TABLE users (
 CREATE TABLE users_apt (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users (id) NOT NULL,
-  apt_id INTEGER REFERENCES apartments (id) NOT NULL,
+  apt_id INTEGER REFERENCES apartments (id) NOT NULL
 );
 
 CREATE TABLE chores (
