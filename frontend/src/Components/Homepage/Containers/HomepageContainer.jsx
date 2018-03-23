@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import {connect} from "react-redux"
 import Homepage from "../Components/Homepage"
 import "../Styles/Homepage.css"
 
@@ -35,8 +36,13 @@ class HomepageContainer extends Component {
         e.preventDefault()
     }
 
+    login = () => {
+        const {dispatch} = this.props
+        dispatch({type:"PROFILE_USER_LOGGED_IN"})
+    }
+
     render() {
-        const { handleChange, handleLogin, handleSignUp } = this
+        const { handleChange, handleLogin, handleSignUp, login } = this
         console.log(this.state)
         return (
             <div className="RoomEase">
@@ -44,10 +50,12 @@ class HomepageContainer extends Component {
                     handleChange={handleChange}
                     handleLogin={handleLogin}
                     handleSignUp={handleSignUp}
+                    login={login}
                 />
             </div>
         )
     }
 }
 
-export default HomepageContainer
+export default connect(state => state)(HomepageContainer)
+

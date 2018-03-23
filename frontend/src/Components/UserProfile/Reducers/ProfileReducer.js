@@ -1,5 +1,7 @@
+import update from "react-addons-update"
+
 const defaultState = {
-  loggedIn: true,
+  loggedIn: false,
   username: "Ryry",
   pic: "https://demos.subinsb.com/isl-profile-pic/image/person.png",
   roomKarma: 3,
@@ -12,10 +14,14 @@ const defaultState = {
 export default (state = defaultState, action) => {
   let newstate = state
   switch (action.type) {
-    case "PROFILE": {
-      return {
-        profile: null
-      }
+    case "PROFILE_USER_LOGGED_IN": {
+      return update(newstate, {
+        loggedIn: {
+          $apply: function (x) {
+            return !x
+          }
+        }
+      })
     }
     default:
       return newstate

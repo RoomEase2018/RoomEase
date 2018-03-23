@@ -2,9 +2,10 @@ import React from "react"
 import { Link } from "react-router-dom"
 import "../Styles/Navbar.css"
 
-const Navbar = () => (
+const Navbar = ({logout}) => (
     <div className="navbar_container">
         <div className="navbar">
+            <button onClick={logout}>Log Out Redux</button>
             <div className="navbar_logo">
                 <img
                     className="navbar_logo_icon"
