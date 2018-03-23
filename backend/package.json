@@ -1,25 +1,28 @@
 {
-  "name": "roomease",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "nodemon ./bin/www"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "express-session": "^1.15.6",
-    "express-validator": "^5.0.3",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0",
-    "nodemon": "^1.17.2",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "password-hash-and-salt": "^0.1.4",
-    "pg-promise": "^8.2.2",
-    "serve-favicon": "~2.4.5"
-  }
+    "name": "roomease",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "nodemon ./bin/www",
+        "test": "./node_modules/mocha/bin/mocha tests"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "~1.18.2",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.9",
+        "express": "~4.15.5",
+        "express-session": "^1.15.6",
+        "express-validator": "^5.0.3",
+        "jade": "~1.11.0",
+        "mocha": "^5.0.4",
+        "morgan": "~1.9.0",
+        "node-mocks-http": "^1.5.8",
+        "nodemon": "^1.17.2",
+        "passport": "^0.4.0",
+        "passport-local": "^1.0.0",
+        "password-hash-and-salt": "^0.1.4",
+        "pg-promise": "^8.2.2",
+        "serve-favicon": "~2.4.5"
+    }
 }

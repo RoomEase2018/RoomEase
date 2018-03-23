@@ -1,8 +1,9 @@
 const defaultState = {
+  loggedIn: true,
   username: "Ryry",
   pic: "https://demos.subinsb.com/isl-profile-pic/image/person.png",
   roomKarma: 3,
-  chore: [{
+  task: [{
     desc: "Take out trash",
     date: "03/25/18"
   }],
