@@ -2,11 +2,14 @@ import React from 'react';
 
 
 class JoinRoom extends React.Component {
+    
+
     render() {
-        const { handleInput, handleJoin } = this.props;
+        const { resetButton, handleInput, handleJoin } = this.props;
         return (
-            <div className='setup-modal'>
+            <div className='setup-modal' onClick={resetButton}>
                 <form onSubmit={handleJoin}>
+                <span className='reset' onClick={resetButton}>&times;</span>
                     <label>
                         Room ID: {' '}
                         <input type='text' name='roomID' onChange={handleInput} />
