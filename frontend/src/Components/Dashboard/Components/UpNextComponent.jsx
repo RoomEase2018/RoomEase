@@ -1,10 +1,10 @@
 import react, { Component } from 'react';
 
 class UpNextComponent extends Component {
-	const { karma, task, handleCompleted } = this.props;
 	render() {
-		return (
+		return (<div>
 
+		</div>
 		)
 	}
 }
