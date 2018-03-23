@@ -5,27 +5,29 @@ class Homepage extends Component {
         const { handleChange, handleLogin, handleSignUp } = this.props
         return (
             <div className="home">
-                <div className="login_menu">
-                    <div className="logo">
-                        <img src="https://i.imgur.com/m6bz64S.png" />
-                        <h1>RoomEase</h1>
-                    </div>
-                    <div className="login_form">
-                        <form onSubmit={handleLogin}>
-                            <input
-                                type="text"
-                                placeholder="username"
-                                name="loginUsername"
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="password"
-                                placeholder="password"
-                                name="loginPassword"
-                                onChange={handleChange}
-                            />
-                            <input type="submit" value="login" />
-                        </form>
+                <div className='home_nav'>
+                    <div className="login_menu">
+                        <div className="logo">
+                            <img src="https://i.imgur.com/m6bz64S.png" />
+                            <h1>RoomEase</h1>
+                        </div>
+                        <div className="login_form">
+                            <form onSubmit={handleLogin}>
+                                <input
+                                    type="text"
+                                    placeholder="username"
+                                    name="loginUsername"
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    type="password"
+                                    placeholder="password"
+                                    name="loginPassword"
+                                    onChange={handleChange}
+                                />
+                                <input type="submit" value="login" />
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -38,27 +40,27 @@ class Homepage extends Component {
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
                             blah blah blah blah blah blah blah blah blah blah
-                            blah{" "}
+                            blah blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah{" "}
                         </p>
                     </div>
                     <div className="signup_form">

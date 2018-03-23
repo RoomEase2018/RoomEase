@@ -2,26 +2,31 @@
   display: grid;
   grid-template-columns: auto 800px auto;
   grid-template-rows: 70px auto;
-  grid-template-areas: ". login_menu ." ". signup_body ."; }
-  .home .login_menu {
-    grid-area: login_menu;
+  grid-template-areas: "home_nav home_nav home_nav" ". signup_body ."; }
+  .home .home_nav {
+    grid-area: home_nav;
     display: grid;
-    grid-template-columns: 250px auto 360px;
-    grid-template-areas: "logo . login_form"; }
-    .home .login_menu .logo {
-      grid-area: logo;
+    grid-template-columns: auto 800px auto;
+    grid-template-areas: '. login_menu .';
+    background-color: #A1C6E7; }
+    .home .home_nav .login_menu {
+      grid-area: login_menu;
       display: grid;
-      grid-template-columns: 70px 180px; }
-      .home .login_menu .logo img {
-        width: 70px;
-        height: 70px; }
-      .home .login_menu .logo h1 {
-        font-size: 2em;
-        align-self: center;
-        margin-top: 15px; }
-    .home .login_menu .login_form {
-      grid-area: login_form;
-      align-self: center; }
+      grid-template-columns: 240px auto 360px;
+      grid-template-areas: "logo . login_form"; }
+      .home .home_nav .login_menu .logo {
+        grid-area: logo;
+        display: grid;
+        grid-template-columns: 70px 170px; }
+        .home .home_nav .login_menu .logo img {
+          height: 70px; }
+        .home .home_nav .login_menu .logo h1 {
+          font-size: 2em;
+          align-self: center;
+          margin-top: 15px; }
+      .home .home_nav .login_menu .login_form {
+        grid-area: login_form;
+        align-self: center; }
   .home .signup_body {
     grid-area: signup_body;
     display: grid;
