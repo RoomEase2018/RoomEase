@@ -1,17 +1,27 @@
-.navbar {
-    grid-area: navbar;
+.navbar_container {
     display: grid;
-    grid-template-columns: 240px auto 100px;
-    grid-template-areas: 'navbar_logo . navbar_buttons';
-    .navbar_logo {
-        grid-area: navbar_logo;
+    grid-template-columns: auto 1000px auto;
+    grid-template-areas: ". navbar .";
+    .navbar {
+        grid-area: navbar;
         display: grid;
-        grid-template-columns: 70px 170px;
-    }
-    .navbar_buttons {
-        grid-area: navbar_buttons;
-        display: grid;
-        justify-items: center;
-        align-items: center;
+        grid-template-columns: 240px auto 150px;
+        grid-template-rows: 70px;
+        grid-template-areas: "navbar_logo . navbar_buttons";
+        .navbar_logo {
+            grid-area: navbar_logo;
+            display: grid;
+            grid-template-columns: 70px 170px;
+        }
+        .navbar_buttons {
+            grid-area: navbar_buttons;
+            align-items: center;
+            .navbar_buttons_icons {
+                position: relative;
+                top: 35px;
+                right: 150px;
+                transform: translateY(-50%) translateX(115%);
+                }
+        }
     }
 }
