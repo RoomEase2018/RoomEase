@@ -9,7 +9,7 @@ import Navbar from "./Navbar/Components/Navbar"
 class RoomEaseContainer extends Component {
     render() {
         return (
-            <div>
+            <div className="RoomEase">
                 {this.props.Profile.loggedIn && <Navbar />}
                 {this.props.Profile.loggedIn ? (
                     <Switch>
