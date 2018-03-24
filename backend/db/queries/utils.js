@@ -38,6 +38,7 @@ function validatePhone(phoneNum) {
     })
 }
 
+
 // function validateUsername(username) {
 //   if (!username) { return 'need a username'}
 //   db.any('SELECT * FROM users WHERE username=${username}', { username: username })
