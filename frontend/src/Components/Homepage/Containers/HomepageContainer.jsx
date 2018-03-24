@@ -1,6 +1,9 @@
-import React, { Component } from "react"
-import Homepage from "../Components/Homepage"
-import "../Styles/Homepage.css"
+import React, { Component } from "react";
+import Homepage from "../Components/Homepage";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
+import axios from "axios";
+import "../Styles/Homepage.css";
 
 class HomepageContainer extends Component {
     constructor() {
@@ -17,7 +20,7 @@ class HomepageContainer extends Component {
             email: "",
             password: "",
             gender: "",
-            phone: ""
+            phone: "",
         }
     }
 
@@ -28,7 +31,27 @@ class HomepageContainer extends Component {
     }
 
     handleLogin = e => {
-        e.preventDefault()
+        e.preventDefault();
+        const { loginUsername, loginPassword} = this.state;
+        axios
+            .post(`/users/login`, {
+                username: loginUsername,
+                password: loginPassword
+            })
+            .then(res => {
+                console.log(res.data);
+                this.login(res.data);
+                console.log(this.props.Profile);
+                
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    login = (user) => {
+        const { dispatch } = this.props;
+        dispatch({ type: "LOGIN", user });
     }
 
     handleSignUp = e => {
@@ -36,8 +59,13 @@ class HomepageContainer extends Component {
     }
 
     render() {
-        const { handleChange, handleLogin, handleSignUp } = this
-        console.log(this.state)
+        const { handleChange, handleLogin, handleSignUp } = this;
+        console.log(this.props);
+
+        if (this.props.Profile.loggedIn) {
+            return <Redirect to="/" />
+        };
+
         return (
             <div className="RoomEase">
                 <Homepage
@@ -50,4 +78,4 @@ class HomepageContainer extends Component {
     }
 }
 
-export default HomepageContainer
+export default  connect(state => state)(HomepageContainer);

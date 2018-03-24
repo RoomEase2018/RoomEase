@@ -1,5 +1,5 @@
 const defaultState = {
-  loggedIn: true,
+  loggedIn: false,
   username: "Ryry",
   pic: "https://demos.subinsb.com/isl-profile-pic/image/person.png",
   roomKarma: 3,
@@ -12,9 +12,19 @@ const defaultState = {
 export default (state = defaultState, action) => {
   let newstate = state
   switch (action.type) {
-    case "PROFILE": {
+    case "LOGIN": {
+      const user = action.user;
+
       return {
-        profile: null
+        loggedIn: true,
+        username: user.username,
+        id: user.id,
+        pic: user.profile_pic,
+        roomKarma: user.karma,
+        task: [{
+          desc: state.task.desc,
+          date: state.task.date
+        }]
       }
     }
     default:
