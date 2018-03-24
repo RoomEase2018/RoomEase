@@ -40,7 +40,7 @@ class HomepageContainer extends Component {
             })
             .then(res => {
                 console.log(res.data);
-                this.login(res.data);
+                this.loggedIn(res.data);
                 console.log(this.props.Profile);
                 
             })
@@ -49,7 +49,7 @@ class HomepageContainer extends Component {
             })
     }
 
-    login = (user) => {
+    loggedIn = (user) => {
         const { dispatch } = this.props;
         dispatch({ type: "LOGIN", user });
     }
@@ -58,8 +58,13 @@ class HomepageContainer extends Component {
         e.preventDefault()
     }
 
+    login = () => {
+        const {dispatch} = this.props
+        dispatch({type:"PROFILE_USER_LOGGED_IN"})
+    }
+
     render() {
-        const { handleChange, handleLogin, handleSignUp } = this;
+        const { handleChange, handleLogin, handleSignUp, login } = this;
         console.log(this.props);
 
         if (this.props.Profile.loggedIn) {
@@ -72,6 +77,7 @@ class HomepageContainer extends Component {
                     handleChange={handleChange}
                     handleLogin={handleLogin}
                     handleSignUp={handleSignUp}
+                    login={login}
                 />
             </div>
         )

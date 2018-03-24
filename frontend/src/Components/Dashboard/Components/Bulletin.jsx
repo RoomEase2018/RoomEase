@@ -1,10 +1,10 @@
 import react, { Component } from 'react';
 
 class Bulletin extends Component {
-	const { notes } = this.props;
 	render() {
+		const { notes } = this.props;
 		return (
-
+<div/>
 		)
 	}
 }

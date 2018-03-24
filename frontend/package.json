@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "rc-menu": "^6.2.6",
     "react": "^16.2.0",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",

@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 class Homepage extends Component {
     render() {
-        const { handleChange, handleLogin, handleSignUp } = this.props
+        const { handleChange, handleLogin, handleSignUp, login } = this.props
         return (
             <div className="home">
                 <div className='home_nav'>
@@ -28,6 +28,7 @@ class Homepage extends Component {
                                 <input type="submit" value="login" />
                             </form>
                         </div>
+                                <button onClick={login}>REDUX LOGIN</button>
                     </div>
                 </div>
 

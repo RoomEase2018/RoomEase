@@ -1,3 +1,5 @@
+import update from "react-addons-update"
+
 const defaultState = {
   loggedIn: false,
   username: "Ryry",
@@ -26,6 +28,16 @@ export default (state = defaultState, action) => {
           date: state.task.date
         }]
       }
+    };
+    
+    case "PROFILE_USER_LOGGED_IN": {
+      return update(newstate, {
+        loggedIn: {
+          $apply: function (x) {
+            return !x
+          }
+        }
+      })
     }
     default:
       return newstate

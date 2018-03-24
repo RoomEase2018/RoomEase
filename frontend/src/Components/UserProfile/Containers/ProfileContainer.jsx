@@ -11,7 +11,7 @@ class ProfileContainer extends Component {
     
     render() {
         return (
-            <div>
+            <div className='userProfile'>
                 <Profile
                   user={this.props.Profile} 
                   setUser={this.setUser}
