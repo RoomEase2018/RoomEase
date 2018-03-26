@@ -7,6 +7,7 @@ import ProfileContainer from "./UserProfile/Containers/ProfileContainer"
 import NavbarContainer from "./Navbar/Containers/NavbarContainer"
 import DashboardContainer from './Dashboard/Containers/DashboardContainer'
 import ApartmentContainer from './Apartment/Containers/ApartmentContainer'
+import FooterContainer from "./Footer/Containers/FooterContainer";
 
 class RoomEaseContainer extends Component {
     render() {
@@ -22,6 +23,7 @@ class RoomEaseContainer extends Component {
                 ) : (
                     <Route component={HomepageContainer} />
                 )}
+                <FooterContainer />
             </div>
         )
     }
