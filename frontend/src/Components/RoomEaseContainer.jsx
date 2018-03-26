@@ -19,6 +19,7 @@ class RoomEaseContainer extends Component {
                         <Route exact path="/" component={ProfileContainer} />
                         <Route path="/dashboard" component={DashboardContainer} />
                         <Route path="/apartment" component={ApartmentContainer} />
+                        <Route path="/profile" component={ProfileContainer} />
                     </Switch>
                 ) : (
                     <Route component={HomepageContainer} />
