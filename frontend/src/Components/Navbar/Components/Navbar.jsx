@@ -41,10 +41,10 @@ const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
             <Link to="/dashboard">
               <i class="fas fa-tv" />
             </Link>{" "}
-            <Link to="/">
+            <Link to="/profile">
               <i class="fas fa-user" />
             </Link>{" "}
-            <Link to="/">
+            <Link to="/apartment">
               <i class="fas fa-home" />
             </Link>{" "}
             <button onClick={handleClick} name="addButton">
