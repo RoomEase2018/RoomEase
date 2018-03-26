@@ -1,13 +1,14 @@
 import React from 'react';
-import { Line } from 'rc-progress';
+import { Circle } from 'rc-progress';
 
 const Progressbar = ({ karma }) => {
+    console.log(karma)
     return(
-        <div id="progressbar">
-        karma: {karma} points
-        <Line
+        <div id="progressbar" style={{height:100, width:100}}>
+        <Circle
         percent={karma} 
-        strokeWidth="2"
+        strokeWidth="10"
+        trailWidth="10"
         strokeColor="#3FC7FA"
         />
         </div>
