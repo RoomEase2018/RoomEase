@@ -12,6 +12,8 @@
       grid-area: navbar_logo;
       display: grid;
       grid-template-columns: 70px 170px; }
+      .navbar_container .navbar .navbar_logo .navbar_logo_name {
+        margin: auto auto auto 0; }
     .navbar_container .navbar .navbar_buttons {
       grid-area: navbar_buttons;
       align-items: center; }
