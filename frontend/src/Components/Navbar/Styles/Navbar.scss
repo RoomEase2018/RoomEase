@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: auto 1000px auto;
     grid-template-areas: ". navbar .";
+    background-color: #F1F1F1;
     .navbar {
         grid-area: navbar;
         display: grid;

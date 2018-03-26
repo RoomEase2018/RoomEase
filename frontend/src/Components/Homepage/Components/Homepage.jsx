@@ -28,7 +28,7 @@ class Homepage extends Component {
                                 <input type="submit" value="login" />
                             </form>
                         </div>
-                        <button onClick={login}>LOGIN</button>
+                        {/* <button onClick={login}>LOGIN</button> */}
                     </div>
                 </div>
 

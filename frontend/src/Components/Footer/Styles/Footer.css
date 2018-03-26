@@ -2,4 +2,8 @@
     text-align: center;
     background-color: #F1F1F1;
     line-height: 3em;
+    position: absolute;
+    bottom: 0px;
+    margin-right: auto;
+    margin-left: auto;
 }

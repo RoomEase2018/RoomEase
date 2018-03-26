@@ -1,7 +1,8 @@
 .navbar_container {
   display: grid;
   grid-template-columns: auto 1000px auto;
-  grid-template-areas: ". navbar ."; }
+  grid-template-areas: ". navbar .";
+  background-color: #F1F1F1; }
   .navbar_container .navbar {
     grid-area: navbar;
     display: grid;
