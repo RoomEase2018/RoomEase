@@ -7,8 +7,8 @@
     grid-area: home_nav;
     display: grid;
     grid-template-columns: auto 1000px auto;
-    grid-template-areas: '. login_menu .';
-    background-color: #A1C6E7; }
+    grid-template-areas: ". login_menu .";
+    background-color: #F1F1F1; }
     .home .home_nav .login_menu {
       grid-area: login_menu;
       display: grid;
@@ -23,7 +23,7 @@
         .home .home_nav .login_menu .logo h1 {
           font-size: 2em;
           align-self: center;
-          margin-top: 15px; }
+          margin: 0; }
       .home .home_nav .login_menu .login_form {
         grid-area: login_form;
         align-self: center; }
@@ -34,10 +34,21 @@
     grid-template-rows: 1fr;
     grid-template-areas: "about_us signup_form"; }
     .home .signup_body .about_us {
-      grid-area: about_us; }
+      grid-area: about_us;
+      padding: 0px 30px; }
     .home .signup_body .signup_form {
       grid-area: signup_form;
       align-self: center;
       line-height: 3; }
+      .home .signup_body .signup_form h2 {
+        padding: 0 0 0 30px; }
+      .home .signup_body .signup_form form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 40px;
+        grid-gap: 20px;
+        padding: 0px 30px; }
+        .home .signup_body .signup_form form .form_gender {
+          justify-self: center; }
 
 /*# sourceMappingURL=Homepage.css.map */

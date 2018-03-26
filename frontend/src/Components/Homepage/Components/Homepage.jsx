@@ -5,7 +5,7 @@ class Homepage extends Component {
         const { handleChange, handleLogin, handleSignUp, login } = this.props
         return (
             <div className="home">
-                <div className='home_nav'>
+                <div className="home_nav">
                     <div className="login_menu">
                         <div className="logo">
                             <img src="https://i.imgur.com/m6bz64S.png" />
@@ -28,7 +28,7 @@ class Homepage extends Component {
                                 <input type="submit" value="login" />
                             </form>
                         </div>
-                                <button onClick={login}>REDUX LOGIN</button>
+                        {/* <button onClick={login}>LOGIN</button> */}
                     </div>
                 </div>
 
@@ -65,56 +65,53 @@ class Homepage extends Component {
                         </p>
                     </div>
                     <div className="signup_form">
+                        <h2>Sign Up</h2>
                         <form onSubmit={handleSignUp}>
-                            <label>
-                                Name:
-                                <input
-                                    type="text"
-                                    name="name"
-                                    onChange={handleChange}
-                                />
-                            </label>{" "}
-                            <label>
-                                Username:
-                                <input
-                                    type="text"
-                                    name="username"
-                                    onChange={handleChange}
-                                />
-                            </label>{" "}
-                            <label>
-                                Email:
-                                <input
-                                    type="text"
-                                    name="email"
-                                    onChange={handleChange}
-                                />
-                            </label>{" "}
-                            <label>
-                                Password:
-                                <input
-                                    type="password"
-                                    name="password"
-                                    onChange={handleChange}
-                                />
-                            </label>{" "}
-                            <label>
-                                Phone Number:
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    onChange={handleChange}
-                                />
-                            </label>{" "}
-                            <label>
+                            <input
+                                type="text"
+                                name="name"
+                                onChange={handleChange}
+                                placeholder="Name"
+                            />
+                            <input
+                                type="text"
+                                name="username"
+                                onChange={handleChange}
+                                placeholder="Username"
+                            />
+                            <input
+                                type="text"
+                                name="email"
+                                onChange={handleChange}
+                                placeholder="Email"
+                            />
+                            <input
+                                type="text"
+                                name="email_confirm"
+                                onChange={handleChange}
+                                placeholder="Re-Enter Email"
+                            />
+                            <input
+                                type="password"
+                                name="password"
+                                onChange={handleChange}
+                                placeholder="New Password"
+                            />
+                            <input
+                                type="text"
+                                name="phone"
+                                onChange={handleChange}
+                                placeholder="Phone Number"
+                            />
+                            <label className="form_gender">
                                 <input name="gender" type="radio" value="M" />{" "}
                                 Male
                             </label>{" "}
-                            <label>
+                            <label className="form_gender">
                                 <input name="gender" type="radio" value="F" />{" "}
                                 Female
                             </label>
-                            <button>Submit</button>
+                            <button>Create Account</button>
                         </form>
                     </div>
                 </div>
