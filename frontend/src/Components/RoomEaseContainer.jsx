@@ -6,7 +6,7 @@ import HomepageContainer from "./Homepage/Containers/HomepageContainer"
 import ProfileContainer from "./UserProfile/Containers/ProfileContainer"
 import NavbarContainer from "./Navbar/Containers/NavbarContainer"
 import DashboardContainer from './Dashboard/Containers/DashboardContainer'
-
+import ApartmentContainer from './Apartment/Containers/ApartmentContainer'
 
 class RoomEaseContainer extends Component {
     render() {
@@ -17,9 +17,10 @@ class RoomEaseContainer extends Component {
                     <Switch>
                         <Route exact path="/" component={ProfileContainer} />
                         <Route path="/dashboard" component={DashboardContainer} />
+                        <Route path="/apartment" component={ApartmentContainer} />
                     </Switch>
                 ) : (
-                    <Route exact path="/" component={HomepageContainer} />
+                    <Route component={HomepageContainer} />
                 )}
             </div>
         )
