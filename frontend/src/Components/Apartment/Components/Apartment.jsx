@@ -1,4 +1,5 @@
 import React from "react"
+import AptProgress from "./AptProgress";
 
 const Apartment = () => (
     <div className="apt">
@@ -16,7 +17,7 @@ const Apartment = () => (
             <h2>Rewards</h2>
             <div>Goal List</div>
             <div>Requirements List</div>
-            <div>Progress Bar</div>
+            <AptProgress />
         </div>
 
     </div>
