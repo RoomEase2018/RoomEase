@@ -11,9 +11,7 @@ function createUser(req, res, next) {
   //   });
   //   return;
   // }
-  const { first_name, last_name, username, gender, email, phone } = req.body;
-
-
+  
   const hash = authHelpers.createHash(req.body.password);
   db
     .none(
@@ -47,6 +45,23 @@ function logoutUser(req, res, next) {
   req.logout();
   res.status(200).send("log out success");
 }
+
+function getAllUsernames(req, res, next) {
+  db
+    .any("SELECT username FROM users")
+    .then(data => {
+      res.status(200).json({
+        status: "success",
+        data: data,
+        message: "Fetched all usernames"
+      })
+    })
+}
+
+
+
+
+
 
 function getUserById(req, res, next) {
   db

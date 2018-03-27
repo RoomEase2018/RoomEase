@@ -2,71 +2,45 @@ const db = require("../index");
 const authHelpers = require("../../auth/helpers");
 const passport = require("../../auth/local");
 
-function validateUsername(username) {
-  if (!username) { return 'need a username to check'; }
+function validateCreatinguser(req) {
+  const { first_name, last_name, username, password, gender, email, phone } = req.body;
+  if (!first_name) { return res.status(400).send('missing first_name'); }
+  if (!last_name) { return res.status(400).send('missing last_name'); }
+  if (!username) { return res.status(400).send('missing username'); }
+  if (!password) { return res.status(400).send('missing password'); }
+  if (!gender) { return res.status(400).send('missing gender'); }
+  if (!email) { return res.status(400).send('missing email'); }
+  if (!phone) { return res.status(400).send('missing phone'); }
+
   db.any('SELECT * FROM users WHERE username=${username}', { username: username })
     .then(data => {
       if(data.length) { return 'username is taken'; }
-      else { return false; }
+      else {
+        db.any('SELECT * FROM users WHERE email WHERE email=${email}', { email: email })
+          .then(data => {
+            if (data.length) { return 'email is taken'; }
+            else {
+              db.any('SELECT * FROM users WHERE phone=${phone}', { phone: phoneNum })
+                .then(data => {
+                  if (data.length) { return 'phone number is taken'; }
+                  else { return false; }
+                })
+                .catch(err => {
+                  res.status(400).send('error checking phone number');
+                })
+            }
+          })
+          .catch(err => {
+            res.status(400).send('error checking email')
+          })
+      }
     })
     .catch(err => {
       res.status(400).send('error checking username')
     })
 }
 
-function validateEmail(email) {
-  if (!email) { return 'need an email to check' }
-  db.any('SELECT * FROM users WHERE email WHERE email=${email}', { email: email })
-    .then(data => {
-      if (data.length) { return 'email is taken'; }
-      else { return false; }
-    })
-    .catch(err => {
-      res.status(400).send('error checking email')
-    })
-}
-
-function validatePhone(phoneNum) {
-  if (!phoneNum) { return 'need a phone number to check' }
-  db.any('SELECT * FROM users WHERE phone=${phone}', { phone: phoneNum })
-    .then(data => {
-      if (data.length) { return 'phone number is taken'; }
-      else { return false; }
-    })
-    .catch(err => {
-      res.status(400).send('error checking phone number');
-    })
-}
-
-
-// function validateUsername(username) {
-//   if (!username) { return 'need a username'}
-//   db.any('SELECT * FROM users WHERE username=${username}', { username: username })
-//     .then(data => {
-//       if(data.length) { return false; }
-//       else { return 'username is taken'; }
-//     })
-//     .catch(err => {
-//       res.status(400).send('error checking username')
-//     })
-// }
-
-// function validateApartment(apt) {
-//   if (!apt) { return 'need a username'}
-//   db.any('SELECT * FROM apartment WHERE id=${apt}', { apt: apt })
-//     .then(data => {
-//       if(data.length) { return false; }
-//       else { return 'username is taken'; }
-//     })
-//     .catch(err => {
-//       res.status(400).send('error checking username')
-//     })
-// }
-
-//user queries
 
 module.exports {
-  validateUsername,
-  validateEmail,
-  validatePhone
+  validateCreatinguser
 }
