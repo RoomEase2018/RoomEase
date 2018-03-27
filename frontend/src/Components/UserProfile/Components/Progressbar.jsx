@@ -1,5 +1,5 @@
 import React from 'react';
-import { Circle, Line } from 'rc-progress';
+import { Line } from 'rc-progress';
 
 const Progressbar = ({ karma }) => {
     return(
