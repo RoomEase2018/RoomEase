@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import UpNext from "./UpNextComponent";
+import Calendar from "./Calendar";
 
 class Dashboard extends Component {
     render() {
-        console.log("dashboard props : ", this.props.profile)
         return (
             <div>
                 <UpNext task={this.props.profile.task} karma={this.props.profile.roomKarma} />
-                <div className="calendar" />
+                <Calendar />
                 <div className="bulletin" />
             </div>
         )

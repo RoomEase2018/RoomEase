@@ -4,7 +4,6 @@ import Checkbox from "./Checkbox";
 
 class UpNextComponent extends Component {
   render() {
-    console.log("upnext props : ", this.props);
     return (
       <div>
           <Progressbar karma={this.props.karma} />

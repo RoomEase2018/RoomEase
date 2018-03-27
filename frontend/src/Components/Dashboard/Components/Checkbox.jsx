@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Checkbox = ({ karma }) => {
-    console.log(karma)
     return(
         <div id="checkbox" style={{ fontSize: 40 }}>
             Completed
