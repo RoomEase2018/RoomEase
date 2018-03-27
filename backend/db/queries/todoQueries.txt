@@ -1,0 +1,39 @@
+TODO QUERIES
+
+__tasks/bills__
+get tasks/bill dates by month in future
+insert bill
+insert task
+
+
+
+
+__nav bar__
+	-add
+		*add new chore
+		*add new task
+		*add bulletin note
+	-settings
+
+
+__dashboard__
+	-up next
+		*needs chores
+	-calendar
+		*needs chores due week/month
+		*needs bills due week/month
+	-bulletin board
+		*needs visible notes
+
+__user profile__
+
+
+
+
+__apartment proflile__
+
+
+
+questions
+
+who gets to spend karma points?
