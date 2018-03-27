@@ -160,3 +160,8 @@ function getUserInfo(req, res, next) {
 			next(err);
 		})
 }
+
+// function getAllUserApartmentInfo(req, res, next) {
+// 	db
+// 		.any("SELECT * FROM users_apt WHERE apt_id")
+// }
