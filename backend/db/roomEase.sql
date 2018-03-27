@@ -49,7 +49,7 @@ CREATE TABLE tasks_completed (
   completed_by_id INTEGER REFERENCES users (id) NOT NULL,
   karma INTEGER NOT NULL,
   completed_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE tasks_recurring (
   id SERIAL PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE tasks_recurring (
   task_name VARCHAR NOT NULL,
   posted_by_id INTEGER REFERENCES users (id) NOT NULL,
   assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
-  due_date DATE NOT NULL,
+  due_day VARCHAR NOT NULL,
   due_time TIME,
   message VARCHAR,
   is_active BOOLEAN DEFAULT TRUE,
@@ -67,12 +67,12 @@ CREATE TABLE tasks_recurring (
 
 CREATE TABLE tasks_recurring_completed (
   id SERIAL PRIMARY KEY,
-  task_id INTEGER REFERENCES recurring_tasks (id) NOT NULL,
+  task_id INTEGER REFERENCES tasks_recurring (id) NOT NULL,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
   completed_by_id INTEGER REFERENCES users (id) NOT NULL,
   karma INTEGER NOT NULL,
   completed_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE expenses (
   id SERIAL PRIMARY KEY,
@@ -84,7 +84,6 @@ CREATE TABLE expenses (
   payee_id INTEGER REFERENCES users (id),
   due_date DATE NOT NULL,
   due_time TIME,
-  is_active BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -109,12 +108,12 @@ CREATE TABLE expenses_recurring (
   amount INTEGER NOT NULL,
   payer_id INTEGER REFERENCES users (id),
   payee_id INTEGER REFERENCES users (id),
-  due_date DATE NOT NULL,
+  due_day VARCHAR NOT NULL,
   due_time TIME,
   is_active BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE payments_recurring_expenses (
   id SERIAL PRIMARY KEY,
@@ -126,7 +125,7 @@ CREATE TABLE payments_recurring_expenses (
   message VARCHAR,
   karma INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE bulletin_notes (
   id SERIAL PRIMARY KEY,
@@ -149,7 +148,7 @@ CREATE TABLE goals_apartment (
   is_recurring BOOLEAN DEFAULT FALSE,
   karma_cost INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE goals_redeemed (
   id SERIAL PRIMARY KEY,
@@ -158,7 +157,7 @@ CREATE TABLE goals_redeemed (
   redeemed_by_id INTEGER REFERENCES users (id) NOT NULL,
   karma INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 
 -- INSERT INTO apartments (nick_name, banner_pic)

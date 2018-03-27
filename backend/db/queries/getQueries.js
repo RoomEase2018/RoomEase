@@ -1,7 +1,7 @@
 const db = require("../index");
 const authHelpers = require("../../auth/helpers");
 const passport = require("../../auth/local");
-const utils = require("./utils");
+// const utils = require("./utils");
 
 // ---------------
 // FOR DASHBOARD |
@@ -36,11 +36,12 @@ function getActiveRecurringTasks (req, res, next) {
 		})
 }
 
-function getActiveExpenses (req, res, next) {
+function getActiveExpensesByUser (req, res, next) {
 	db
-		.any('SELECT * FROM expenses A LEFT JOIN payments_expenses B ON A.id = B.expense_id WHERE A.id!=B.expense_id AND A.apt_id=${apt_id}', {
-			apt_id: req.params.apt_id
-		})		.then(data => {
+		.any('SELECT * FROM expenses A LEFT JOIN payments_expenses B ON A.id = B.expense_id WHERE A.id!=B.expense_id AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
+			user_id: req.params.user_id
+		})		
+		.then(data => {
 			res.status(200).json({
 				status: "sucess",
 				data: data,
@@ -49,10 +50,10 @@ function getActiveExpenses (req, res, next) {
 		})
 }
 
-function getActiveRecurringExpenses (req, res, next) {
+function getActiveRecurringExpensesByUser (req, res, next) {
 	db
-		.any('SELECT * FROM expenses_recurring A LEFT JOIN payments_recurring_expenses B ON A.id = B.expense_id WHERE A.id!=B.expense_id AND A.apt_id=${apt_id}', {
-			apt_id: req.params.apt_id
+		.any('SELECT * FROM expenses_recurring A LEFT JOIN payments_recurring_expenses B ON A.id = B.expense_id WHERE A.id!=B.expense_id AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
+			user_id: req.params.user_id
 		})
 		.then(data => {
 			res.status(200).json({
@@ -158,7 +159,7 @@ function getUserInfo(req, res, next) {
 		})
 		.catch(err => {
 			next(err);
-		})
+		}) 
 }
 
 // function getAllUserApartmentInfo(req, res, next) {
