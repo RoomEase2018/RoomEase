@@ -1,7 +1,7 @@
 import React from "react";
 import UserSnapshot from "./UserSnapshot";
 import "../Styles/Profile.css";
-import Progressbar from "./Progressbar";
+import Badges from "./Badges";
 import Setup from '../Components/Setup';
 import { Grid } from "semantic-ui-react";
 
@@ -9,7 +9,7 @@ const Profile = ({ user }) => {
     const { username, pic, roomKarma, task, apt_id } = user;
 
     return (
-        <Grid className="profile" centered columns={3}>
+        <Grid className="profile" container stackable centered columns={4} verticalAlign="middle">
             <Grid.Row centered columns={2}> 
                 <UserSnapshot
                     username={username}
@@ -18,7 +18,7 @@ const Profile = ({ user }) => {
                     userTask={task}
                 />
                 
-                <Progressbar karma={roomKarma} />
+                <Badges />
             </Grid.Row>
             <Grid.Row>
                 { !apt_id ? <Setup /> : ''}

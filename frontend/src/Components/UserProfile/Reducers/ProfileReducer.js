@@ -9,7 +9,7 @@ const defaultState = {
   roomKarma: 3,
   task: [{
     desc: "Take out trash",
-    date: "03/25/18"
+    date: "04/12/18"
   }],
 }
 

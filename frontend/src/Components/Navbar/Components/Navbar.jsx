@@ -27,7 +27,7 @@ const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
   return (
     <div className="navbar_container">
       <div className="navbar">
-        <button onClick={logout}>Log Out Redux</button>
+        {/* <button onClick={logout}>Log Out Redux</button> */}
         <div className="navbar_logo">
           <img
             className="navbar_logo_icon"
@@ -41,10 +41,10 @@ const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
             <Link to="/dashboard">
               <i class="fas fa-tv" />
             </Link>{" "}
-            <Link to="/">
+            <Link to="/profile">
               <i class="fas fa-user" />
             </Link>{" "}
-            <Link to="/">
+            <Link to="/apartment">
               <i class="fas fa-home" />
             </Link>{" "}
             <button onClick={handleClick} name="addButton">

@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: auto 1000px auto;
     grid-template-areas: ". navbar .";
+    background-color: #F1F1F1;
     .navbar {
         grid-area: navbar;
         display: grid;
@@ -12,6 +13,9 @@
             grid-area: navbar_logo;
             display: grid;
             grid-template-columns: 70px 170px;
+            .navbar_logo_name {
+                margin: auto auto auto 0;
+            }
         }
         .navbar_buttons {
             grid-area: navbar_buttons;
