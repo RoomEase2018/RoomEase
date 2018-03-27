@@ -1,23 +1,36 @@
-const db = require("./index");
-const authHelpers = require("../auth/helpers");
-const passport = require("../auth/local");
+const db = require("../index");
+const authHelpers = require("../../auth/helpers");
+const passport = require("../../auth/local");
+const utils = require("./utils");
 
 //user queries
 function createUser(req, res, next) {
+<<<<<<< HEAD:backend/db/queries.js
   if (req.body.password.length < 6) {
     res.status(400).json({
       message: `password must be longer than 6 characters`
     });
     return;
   }
+=======
+  // if (req.body.password.length <= 6) {
+  //   res.status(406).json({
+  //     message: `password must be longer than 6 characters`
+  //   });
+  //   return;
+  // }
+  
+>>>>>>> 9dede9180d6479aaa6a4ba2b7c30861c75f074c3:backend/db/queries/insertQueries.js
   const hash = authHelpers.createHash(req.body.password);
   db
     .none(
-      "INSERT INTO users (full_name, username, password_digest, email, phone) VALUES (${full_name}, ${username}, ${password}, ${email}, ${phone})",
+      "INSERT INTO users (first_name, last_name, username, password_digest, gender, email, phone) VALUES (${first_name}, ${last_name}, ${username}, ${password}, ${gender}, ${email}, ${phone})",
       {
-        full_name: req.body.full_name,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         username: req.body.username,
         password: hash,
+        gender: req.body.gender,
         email: req.body.email,
         phone: req.body.phone
       }
@@ -29,7 +42,7 @@ function createUser(req, res, next) {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).send("error creating user");
+      res.status(406).send("error creating user");
     });
 }
 
@@ -41,6 +54,23 @@ function logoutUser(req, res, next) {
   req.logout();
   res.status(200).send("log out success");
 }
+
+function getAllUsernames(req, res, next) {
+  db
+    .any("SELECT username FROM users")
+    .then(data => {
+      res.status(200).json({
+        status: "success",
+        data: data,
+        message: "Fetched all usernames"
+      })
+    })
+}
+
+
+
+
+
 
 function getUserById(req, res, next) {
   db
