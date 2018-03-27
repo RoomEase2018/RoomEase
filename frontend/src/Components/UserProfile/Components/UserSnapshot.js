@@ -1,12 +1,15 @@
 import React from "react";
+import { Grid, Image } from "semantic-ui-react";
 
 const UserSnapshot = ({ username, userPic, userRoomKarma, userTask }) => (
-    <div className='user-snapshot'>
-        <img alt="Profile Picture" src={userPic} />
-        <p>@{username}</p>
-        <p> Karma Points: {userRoomKarma} </p>
-        <p> Upcoming Task: {`${userTask[0].desc} ${userTask[0].date}`} </p>
-    </div>
+    <Grid.Column className='user-snapshot'>
+        <Image alt="Profile Picture" src={userPic} size='medium' avatar />
+        <span>
+            @{username}
+            <p> Karma Points: {userRoomKarma} </p>
+            <p> Upcoming Task: {`${userTask[0].desc} ${userTask[0].date}`} </p>
+        </span>
+    </Grid.Column>
 );
 
 export default UserSnapshot;

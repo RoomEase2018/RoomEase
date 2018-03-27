@@ -11,17 +11,14 @@ const Profile = ({ user }) => {
     return (
         <Grid className="profile" centered columns={3}>
             <Grid.Row centered columns={2}> 
-                <Grid.Column width={5}>
-                    <UserSnapshot
-                        username={username}
-                        userPic={pic}
-                        userRoomKarma={roomKarma}
-                        userTask={task}
-                    />
-                </Grid.Column>
-                <Grid.Column width={5}>
-                    <Progressbar karma={roomKarma} />
-                </Grid.Column>
+                <UserSnapshot
+                    username={username}
+                    userPic={pic}
+                    userRoomKarma={roomKarma}
+                    userTask={task}
+                />
+                
+                <Progressbar karma={roomKarma} />
             </Grid.Row>
             <Grid.Row>
                 { !apt_id ? <Setup /> : ''}
