@@ -39,19 +39,19 @@ const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
         <div className="navbar_buttons">
           <div className="navbar_buttons_icons">
             <Link to="/dashboard">
-              <i class="fas fa-tv" />
+              <i className="fas fa-tv" />
             </Link>{" "}
             <Link to="/profile">
-              <i class="fas fa-user" />
+              <i className="fas fa-user" />
             </Link>{" "}
             <Link to="/apartment">
-              <i class="fas fa-home" />
+              <i className="fas fa-home" />
             </Link>{" "}
             <button onClick={handleClick} name="addButton">
-              <i class="fas fa-plus" />
+              <i className="fas fa-plus" />
             </button>
             <button onClick={handleClick} name="gearButton">
-              <i onClick={handleClick} class="fas fa-cog" name="gearButton" />
+              <i onClick={handleClick} className="fas fa-cog" name="gearButton" />
             </button>
           </div>
           {addButton ? (

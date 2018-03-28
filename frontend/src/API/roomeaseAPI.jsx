@@ -42,24 +42,24 @@ export const fetchUserInfo = username => {
   return axios.get(`/users/${username}`);
 };
 
-export const createUser = () => {
-  return axios.post(`/users/new`, {
-    first_name,
-    last_name,
-    username,
-    password,
-    gender,
-    email,
-    phone
-  });
-};
+// export const createUser = () => {
+//   return axios.post(`/users/new`, {
+//     first_name: req.body.first_name,
+//     last_name: req.body.last_name,
+//     username: req.body.username,
+//     password: req.body.password,
+//     gender: req.body.gender,
+//     email: req.body.email,
+//     phone: req.body.phone
+//   });
+// };
 
-export const loginUser = () => {
-  return axios.post(`/users/login`, {
-    username,
-    password
-  });
-};
+// export const loginUser = () => {
+//   return axios.post(`/users/login`, {
+//     username,
+//     password
+//   });
+// };
 
 export const logoutUser = () => {
   return axios.get(`/users/logout`);
