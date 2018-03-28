@@ -3,56 +3,70 @@ const authHelpers = require("../../auth/helpers");
 const passport = require("../../auth/local");
 const utils = require("./utils");
 
-//user queries
-function createUser(req, res, next) {  
-  const hash = authHelpers.createHash(req.body.password);
+// USER LOGIN/LOGOUT QUERIES
+// -----------------------------------------------
+
+function insertNewApartment(req, res, next) {
   db
-    .none(
-      "INSERT INTO users (first_name, last_name, username, password_digest, gender, email, phone) VALUES (${first_name}, ${last_name}, ${username}, ${password}, ${gender}, ${email}, ${phone})",
-      {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        username: req.body.username,
-        password: hash,
-        gender: req.body.gender,
-        email: req.body.email,
-        phone: req.body.phone
-      }
-    )
-    .then(() => {
-      res.status(200).json({
-        message: `created user: ${req.body.username}`
-      });
+    .any("INSERT INTO apartments (apt_name, apt_pic) VALUES ()")
+}
+
+// INSERT NEW APARTMENT
+
+// INSERT NEW USER_APT
+
+// INSERT NEW TASK/RECURRING
+
+// INSERT NEW EXPENSE/RECURRING
+
+// INSERT NEW NOTE
+
+// INSERT NEW GOAL
+
+// INSERT NEW REDEMEEMED GOAL
+function insertNewAparasdfent(req, res, next) {
+  db
+    .any("SELECT * FROM bulletin_notes WHERE apt_id=${apt_id} AND is_visible=TRUE", {
+      apt_id: req.params.apt_id
     })
-    .catch(err => {
-      console.log(err);
-      res.status(406).send("error creating user");
-    });
-}
-
-function loginUser(req, res, next) {
-  passport.authenticate("local", {});
-}
-
-function logoutUser(req, res, next) {
-  req.logout();
-  res.status(200).send("log out success");
-}
-
-function getAllUsernames(req, res, next) {
-  db
-    .any("SELECT username FROM users")
     .then(data => {
       res.status(200).json({
         status: "success",
         data: data,
-        message: "Fetched all usernames"
-      })
+        message: "Fetched all visible bulletin notes"
+      });
+    })
+    .catch(err => {
+      next(err);
     })
 }
+
+
 
 module.exports = {
   createUser,
   logoutUser,
   loginUser
+};
+
+
+const fetchNewThread = (req, res, next) => {
+    let query =
+        "INSERT INTO threads (user_1, user_2) VALUES (${username1}, ${username2}) RETURNING ID";
+    db
+        .any(query, {
+            username1: req.body.username1,
+            username2: req.body.username2
+        })
+        .then(function(data) {
+            res.status(200).json({
+                status: "success",
+                data: data,
+                message: "data is the thread ID."
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).send("Error getting thread.");
+        });
 };
