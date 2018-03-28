@@ -1,7 +1,16 @@
 import update from "react-addons-update"
 
 const defaultState = {
-
+  loggedIn: true,
+  username: "Ryry",
+  user_id: 1,
+  apt_id: 1,
+  pic: "https://demos.subinsb.com/isl-profile-pic/image/person.png",
+  roomKarma: 3,
+  task: [{
+    desc: "Take out trash",
+    date: "04/12/18"
+  }],
 }
 
 export default (state = defaultState, action) => {
@@ -24,7 +33,7 @@ export default (state = defaultState, action) => {
       }
     };
     
-    case "SIGN_OUT": {
+    case "PROFILE_USER_LOGGED_IN": {
       return update(newstate, {
         loggedIn: {
           $apply: function (x) {
@@ -37,17 +46,3 @@ export default (state = defaultState, action) => {
       return newstate
   }
 }
-
-
-// const defaultState = {
-//   loggedIn: true,
-//   username: "Ryry",
-//   user_id: 1,
-//   apt_id: 1,
-//   pic: "https://demos.subinsb.com/isl-profile-pic/image/person.png",
-//   roomKarma: 3,
-//   task: [{
-//     desc: "Take out trash",
-//     date: "04/12/18"
-//   }],
-// }

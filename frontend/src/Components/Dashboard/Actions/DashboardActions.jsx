@@ -74,7 +74,7 @@ export const fetchAllActiveTask = params => (dispatch) => {
   );
 };
 
-export const fetchAllActiveRecurrungTask = params => (dispatch) => {
+export const fetchAllActiveRecurringTask = params => (dispatch) => {
   return fetchAllActiveApartmentTasks(params).then(res =>
     dispatch(receiveAllActiveTasks(res.data))
   );
