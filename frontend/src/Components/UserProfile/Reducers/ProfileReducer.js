@@ -1,13 +1,15 @@
 import update from "react-addons-update"
 
 const defaultState = {
-  loggedIn: false,
+  loggedIn: true,
   username: "Ryry",
+  user_id: 1,
+  apt_id: 1,
   pic: "https://demos.subinsb.com/isl-profile-pic/image/person.png",
   roomKarma: 3,
   task: [{
     desc: "Take out trash",
-  date: "03/25/18"
+    date: "04/12/18"
   }],
 }
 
@@ -20,12 +22,13 @@ export default (state = defaultState, action) => {
       return {
         loggedIn: true,
         username: user.username,
-        id: user.id,
+        user_id: user.id,
+        apt_id: state.apt_id,
         pic: user.profile_pic,
         roomKarma: user.karma,
         task: [{
-          desc: state.task.desc,
-          date: state.task.date
+          desc: state.task[0].desc,
+          date: state.task[0].date
         }]
       }
     };

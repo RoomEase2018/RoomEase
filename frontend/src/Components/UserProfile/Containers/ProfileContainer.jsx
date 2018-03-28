@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Profile from '../Components/Profile';
-import Setup from '../Components/Setup';
 
 class ProfileContainer extends Component {
     setUser = (user) => {
@@ -16,7 +15,6 @@ class ProfileContainer extends Component {
                   user={this.props.Profile} 
                   setUser={this.setUser}
                 />
-                <Setup />
             </div>
         );
     }
