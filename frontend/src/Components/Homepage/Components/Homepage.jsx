@@ -105,12 +105,12 @@ class Homepage extends Component {
                             />
                             <label className="form_gender">
                                 <input name="gender" type="radio" value="M" />{" "}
-                                Male
-                            </label>{" "}
-                            <label className="form_gender">
+                                Male {" "}
                                 <input name="gender" type="radio" value="F" />{" "}
                                 Female
-                            </label>
+                            </label>{" "}
+                            <div className="form_gender">
+                            </div>
                             <button>Create Account</button>
                         </form>
                     </div>

@@ -1,7 +1,7 @@
 import update from "react-addons-update"
 
 const defaultState = {
-  loggedIn: false,
+  loggedIn: true,
   username: "Ryry",
   user_id: 1,
   apt_id: 1,
