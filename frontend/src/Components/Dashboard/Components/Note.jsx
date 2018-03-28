@@ -1,24 +1,42 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
+import '../Styles/Dashboard.css'
 
 // bulletin board width + height needs to be fixed (define width + height)
 // props = message + removeNote function + index
 
 class Note extends Component {
 	
-	removeNote = () => {
-		this.props.removeNote(this.props.index)
+	hideNote = () => {
+		this.props.hideNote(this.props.index)
 	}
 
 	render() {
-		return (
-			<Draggable cancel="message">
-				<div style={this.props.style}>
-					<p>{this.props.message}</p>
-					<button onClick={this.removeNote}>DELETE</button>
-				</div>
-			</Draggable>
-		)
+		const { message, index } = this.props;
+		// return (
+		// 	<div>hello world</div>
+		// )
+
+		if (message === null) {
+			return (
+				<Draggable onStart={() => false}>
+					<div className='note invisible'>
+						<p>{message}</p>
+						<button onClick={this.hideNote}>DELETE</button>
+					</div>
+				</Draggable>
+			)
+		}
+		else {
+			return (
+				<Draggable>
+					<div className='note'>
+						<p>{message}</p>
+						<button onClick={this.hideNote}>DELETE</button>
+					</div>
+				</Draggable>
+			)
+		}
 	}
 }
 

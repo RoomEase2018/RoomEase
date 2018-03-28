@@ -1,33 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, Icon, Image, Dropdown } from "semantic-ui-react";
 import "../Styles/Navbar.css";
-import Menu, { MenuItem } from "rc-menu";
 
 const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
-  const AddMenu = () => {
-    return (
-      <Menu defaultActiveFirst>
-        <MenuItem >add roommate</MenuItem>
-        <MenuItem key="3">add chore</MenuItem>
-        <MenuItem key="4">add expense</MenuItem>
-      </Menu>
-    );
-  };
-
-  const SettingsMenu = () => {
-    return (
-      <Menu defaultActiveFirst>
-        <MenuItem>edit apartment profile</MenuItem>
-        <MenuItem key="3">edit user profile</MenuItem>
-        <MenuItem key="4">log out</MenuItem>
-      </Menu>
-    );
-  };
 
   return (
     <div className="navbar_container">
       <div className="navbar">
-        {/* <button onClick={logout}>Log Out Redux</button> */}
+
         <div className="navbar_logo">
           <img
             className="navbar_logo_icon"
@@ -36,38 +17,35 @@ const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
           />
           <h1 className="navbar_logo_name">RoomEase</h1>
         </div>
-        <div className="navbar_buttons">
-          <div className="navbar_buttons_icons">
+
+        <div className="navbar_buttons navbar_buttons_icons">
+        {/* className="navbar_buttons" */}
+          {/* className="navbar_buttons_icons" */}
             <Link to="/dashboard">
-              <i class="fas fa-tv" />
+              <Icon link size="large" name="dashboard" />
             </Link>{" "}
             <Link to="/profile">
-              <i class="fas fa-user" />
+              <Icon link size="large" name="user circle outline" />
             </Link>{" "}
             <Link to="/apartment">
-              <i class="fas fa-home" />
+              <Icon link size="large" name="users" />
             </Link>{" "}
-            <button onClick={handleClick} name="addButton">
-              <i class="fas fa-plus" />
-            </button>
-            <button onClick={handleClick} name="gearButton">
-              <i onClick={handleClick} class="fas fa-cog" name="gearButton" />
-            </button>
-          </div>
-          {addButton ? (
-                <div>
-                  <div>{AddMenu()}</div>
-                </div>
-              ) : (
-                ""
-              )}
-              {gearButton ? (
-                <div>
-                  <div>{SettingsMenu()}</div>
-                </div>
-              ) : (
-                ""
-              )}
+
+            <Dropdown icon='plus' size="large" floating className='icon' direction='left'>
+              <Dropdown.Menu>
+                <Dropdown.Item label={<Icon name="add to calendar" color="red" />} text='Add Task' />
+                <Dropdown.Item label={<Icon><Icon.Group><Icon name="dollar" color="blue" /><Icon corner name="plus" color="blue" /></Icon.Group></Icon>} text='Add Expense' />
+                <Dropdown.Item label={<Icon name="add user" color="green" />} text='Add Roommate' />
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown icon='setting' size="large" floating className='icon' direction='left'>
+              <Dropdown.Menu>
+                <Dropdown.Item label={<Icon name="setting" color="blue" />} text='Edit Apartment Profile' />
+                <Dropdown.Item label={<Icon name="setting" color="red" />} text='Edit User Profile' />
+                <Dropdown.Item onClick={logout} label={<Icon name="power" color="teal" />} text='Sign out' />
+              </Dropdown.Menu>
+            </Dropdown>
         </div>
       </div>
     </div>
