@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Footer = () => (
-    <div className='footer' >
+    <footer className='footer' >
         RoomEase Copyright 2018
-    </div>
+    </footer>
 );
 
 export default Footer;
