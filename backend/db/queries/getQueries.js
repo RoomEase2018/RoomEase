@@ -10,7 +10,7 @@ const passport = require("../../auth/local");
 // ----------------------------------------------
 function getActiveTasks (req, res, next) {
 	db
-		.any('SELECT * FROM tasks A LEFT JOIN tasks_completed B ON A.id = B.task_id WHERE A.id!=B.task_id AND A.apt_id=${apt_id}', {
+		.any('SELECT A.* FROM tasks A LEFT JOIN tasks_completed B ON A.id = B.task_id WHERE B.task_id IS NULL AND A.apt_id=${apt_id}', {
 			apt_id: req.params.apt_id
 		})
 		.then(data => {
@@ -24,7 +24,7 @@ function getActiveTasks (req, res, next) {
 
 function getActiveRecurringTasks (req, res, next) {
 	db
-		.any('SELECT * FROM tasks_recurring A LEFT JOIN tasks_recurring_completed B ON A.id = B.task_id WHERE A.id!=B.task_id AND A.apt_id=${apt_id}', {
+		.any('SELECT A.* FROM tasks_recurring A LEFT JOIN tasks_recurring_completed B ON A.id = B.task_id WHERE B.task_id IS NULL AND A.apt_id=${apt_id}', {
 			apt_id: req.params.apt_id
 		})
 		.then(data => {
@@ -38,7 +38,7 @@ function getActiveRecurringTasks (req, res, next) {
 
 function getActiveExpensesByUser (req, res, next) {
 	db
-		.any('SELECT * FROM expenses A LEFT JOIN payments_expenses B ON A.id = B.expense_id WHERE A.id!=B.expense_id AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
+		.any('SELECT A.* FROM expenses A LEFT JOIN payments_expenses B ON A.id = B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
 			user_id: req.params.user_id
 		})		
 		.then(data => {
@@ -52,7 +52,7 @@ function getActiveExpensesByUser (req, res, next) {
 
 function getActiveRecurringExpensesByUser (req, res, next) {
 	db
-		.any('SELECT * FROM expenses_recurring A LEFT JOIN payments_recurring_expenses B ON A.id = B.expense_id WHERE A.id!=B.expense_id AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
+		.any('SELECT A.* FROM expenses_recurring A LEFT JOIN payments_recurring_expenses B ON A.id = B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
 			user_id: req.params.user_id
 		})
 		.then(data => {
