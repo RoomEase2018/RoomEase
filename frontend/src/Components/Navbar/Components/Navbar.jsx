@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button, Icon, Image, Dropdown } from "semantic-ui-react";
 import "../Styles/Navbar.css";

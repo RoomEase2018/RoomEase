@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "react";
+import axios from "axios";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import Navbar from "../Components/Navbar";
 
@@ -13,14 +14,15 @@ class NavbarContainer extends React.Component {
 
   logout = () => {
     const { dispatch } = this.props;
-    dispatch({ type: "SIGN_OUT" });
-    // axios
-    //   .get(`/users/logout`)
-    //   .then(res => {
-    //   })
-    //   .catch(err => {
-    //     console.log("error:", err);
-    //   });
+    axios
+    .get(`/users/logout`)
+    .then(res => {
+      dispatch({ type: "SIGN_OUT" });
+      return <Redirect to="/" />
+    })
+    .catch(err => {
+      console.log("error:", err);
+    });
   };
 
   handleClick = e => {
@@ -37,6 +39,7 @@ class NavbarContainer extends React.Component {
 
   render() {
     const { addButton, gearButton } = this.state;
+    
     return <Navbar logout={this.logout} handleClick={this.handleClick} />;
   }
 }
