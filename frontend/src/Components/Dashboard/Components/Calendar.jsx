@@ -25,6 +25,13 @@ class Calendar extends Component {
       end: new Date(2015, 3, 1)
     },
     {
+      id: 1,
+      title: "All Day 2",
+      allDay: true,
+      start: new Date(2015, 3, 1),
+      end: new Date(2015, 3, 1)
+    },
+    {
       id: 2,
       title: "All Day 3",
       allDay: true,
@@ -43,9 +50,9 @@ class Calendar extends Component {
     const { tasks } = this.props;
     return (
         <BigCalendar
-          style={{ height: 300, width: 900 }}
           events={this.events}
           views={['week', 'month', 'agenda']}
+          defaultView={'week'}
           step={60}
           showMultiDayTimes
           defaultDate={new Date(2015, 3, 1)}

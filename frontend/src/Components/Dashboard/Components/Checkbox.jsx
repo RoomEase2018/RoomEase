@@ -4,7 +4,7 @@ const Checkbox = ({ karma }) => {
     return(
         <div className="checkbox" id="checkbox" >
             <input type="checkbox" name="completed" value="false"/>
-            Completed
+            Done
         </div>
     )
 }

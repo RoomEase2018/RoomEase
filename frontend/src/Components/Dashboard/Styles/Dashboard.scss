@@ -1,4 +1,7 @@
 .dashboard {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 20px;
     .up_next {
         background-color: grey;
         border: 1px black solid;
@@ -7,7 +10,7 @@
         display: grid;
         align-items: center;
         justify-items: center;
-        grid-template-columns: auto 200px 600px 100px auto;
+        grid-template-columns: auto 100px 650px 150px auto;
         grid-template-areas: ". progress_bar next_task checkbox .";
         .progress_bar {
             grid-area: progress_bar;
@@ -35,6 +38,7 @@
         }
     }
     .rbc-calendar {
+        width: 900px;
         .rbc-time-view {
             border: none;
             .rbc-time-content {
@@ -44,5 +48,8 @@
                 border: 1px solid grey;
             }
         }
+    }
+    .rbc-month-view {
+        height: 500px;
     }
 }
