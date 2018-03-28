@@ -20,9 +20,9 @@ class Bulletin extends Component {
 		}
 	}
 
-	removeNote = index => {
-		const notes = this.state.notes.slice();
-		notes.splice(index, 1);
+	hideNote = index => {
+		const notes = this.state.notes;
+		notes[index].message = null;
 		this.setState({
 			notes: notes
 		})
@@ -39,10 +39,9 @@ class Bulletin extends Component {
 					{this.state.notes.map((note, i) => (
 						<Note
 							message={note.message}
-							style={note.style}
 							index={i}
 							key={i}
-							removeNote={this.removeNote}
+							hideNote={this.hideNote}
 						/>
 					))}
 				</div>

@@ -1,0 +1,11 @@
+.note {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	background-color: yellow;
+	border: 1px black solid;
+}
+
+.invisible {
+	opacity: 0;
+}
