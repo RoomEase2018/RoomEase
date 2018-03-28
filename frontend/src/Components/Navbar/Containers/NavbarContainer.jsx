@@ -29,7 +29,7 @@ class NavbarContainer extends React.Component {
   };
 
   render() {
-      const { addButton, gearButton } = this.state;
+    const { addButton, gearButton } = this.state;
     return <Navbar logout={this.logout} addButton={addButton} gearButton={gearButton} handleClick={this.handleClick} />;
   }
 }

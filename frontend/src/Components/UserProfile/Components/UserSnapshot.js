@@ -12,7 +12,7 @@ const UserSnapshot = ({ username, userPic, userRoomKarma, userTask }) => (
             spaced
             centered
             circular />
-        <Segment compact color="pink" floated='left'>
+        <Segment compact color="pink" floated="left">
             <span>@{username}</span> <br />
             <span>{userRoomKarma} Karma Points</span> <br />
             <span> Upcoming Task: {`${userTask[0].desc} ${userTask[0].date}`} </span>

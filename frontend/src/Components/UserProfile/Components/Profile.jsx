@@ -1,8 +1,9 @@
 import React from "react";
 import UserSnapshot from "./UserSnapshot";
 import "../Styles/Profile.css";
+import Activity from "./Activity";
 import Badges from "./Badges";
-import Setup from '../Components/Setup';
+import Setup from "./Setup";
 import { Grid } from "semantic-ui-react";
 
 const Profile = ({ user }) => {
@@ -21,7 +22,7 @@ const Profile = ({ user }) => {
                 <Badges />
             </Grid.Row>
             <Grid.Row>
-                { !apt_id ? <Setup /> : ''}
+                { !apt_id ? <Setup /> : <Activity />}
             </Grid.Row>
         </Grid>
     );
