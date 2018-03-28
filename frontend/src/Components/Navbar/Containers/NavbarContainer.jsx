@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import Navbar from "../Components/Navbar";
 
@@ -6,14 +8,21 @@ class NavbarContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      addButton: false,
-      gearButton: false
+      
     };
   }
 
   logout = () => {
     const { dispatch } = this.props;
-    dispatch({ type: "PROFILE_USER_LOGGED_IN" });
+    axios
+    .get(`/users/logout`)
+    .then(res => {
+      dispatch({ type: "SIGN_OUT" });
+      return <Redirect to="/" />
+    })
+    .catch(err => {
+      console.log("error:", err);
+    });
   };
 
   handleClick = e => {
@@ -30,7 +39,8 @@ class NavbarContainer extends React.Component {
 
   render() {
     const { addButton, gearButton } = this.state;
-    return <Navbar logout={this.logout} addButton={addButton} gearButton={gearButton} handleClick={this.handleClick} />;
+    
+    return <Navbar logout={this.logout} handleClick={this.handleClick} />;
   }
 }
 

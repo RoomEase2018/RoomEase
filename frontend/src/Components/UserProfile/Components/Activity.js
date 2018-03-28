@@ -15,30 +15,30 @@ class Activity extends React.Component {
                     <Card.Content>
                     <Feed>
                         <Feed.Event>
-                        <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/jenny.jpg' />
+                        <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
                         <Feed.Content>
                             <Feed.Summary>
-                            You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                                You paid <a>@Aiden Shih</a> $5.00 for the groceries.
                             </Feed.Summary>
                             <Feed.Date content='1 day ago' />
                         </Feed.Content>
                         </Feed.Event>
 
                         <Feed.Event>
-                        <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/molly.png' />
+                        <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
                         <Feed.Content>
                             <Feed.Summary>
-                            You added <a>Molly Malone</a> as a friend.
+                                You completed your 'Take out the trash' task.
                             </Feed.Summary>
                             <Feed.Date content='3 days ago' />
                         </Feed.Content>
                         </Feed.Event>
 
                         <Feed.Event>
-                        <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
+                        <Feed.Label image='https://react.semantic-ui.com/assets/images/avatar/small/daniel.jpg' />
                         <Feed.Content>
                             <Feed.Summary>
-                            You added <a>Elliot Baker</a> to your <a>musicians</a> group.
+                                <a>@Benjy</a> paid you $10.00 for the 'buy snacks for the game' expense.
                             </Feed.Summary>
                             <Feed.Date content='4 days ago' />
                         </Feed.Content>
