@@ -12,13 +12,34 @@ class Calendar extends Component {
   events = [
     {
       id: 0,
-      title: "All Day Event very long title",
+      title: "All Day 1",
       allDay: true,
       start: new Date(2015, 3, 0),
+      end: new Date(2015, 3, 0)
+    },
+    {
+      id: 1,
+      title: "All Day 2",
+      allDay: true,
+      start: new Date(2015, 3, 1),
       end: new Date(2015, 3, 1)
     },
     {
       id: 1,
+      title: "All Day 2",
+      allDay: true,
+      start: new Date(2015, 3, 1),
+      end: new Date(2015, 3, 1)
+    },
+    {
+      id: 2,
+      title: "All Day 3",
+      allDay: true,
+      start: new Date(2015, 3, 1),
+      end: new Date(2015, 3, 1)
+    },
+    {
+      id: 3,
       title: "Long Event",
       start: new Date(2015, 3, 7),
       end: new Date(2015, 3, 10)
@@ -30,7 +51,6 @@ class Calendar extends Component {
     return (
       <div>
         <BigCalendar
-          style={{ height: 300, width: 900 }}
           events={this.events}
           views={['week', 'month', 'agenda']}
           step={60}

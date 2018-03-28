@@ -1,0 +1,20 @@
+.rbc-calendar {
+    height: 100%;
+    width: 900px;
+    .rbc-time-view {
+        border: none;
+        .rbc-time-content {
+            display: none;
+        }
+        .rbc-time-header {
+            border: 1px solid grey;
+            height: 100%;
+            .rbc-label {
+                padding: 0;
+            }
+        }
+    }
+    .rbc-month-view {
+        height: 500px;
+    }
+}
