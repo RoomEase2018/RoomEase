@@ -69,7 +69,7 @@ function getActiveRecurringExpensesByUser (req, res, next) {
 
 function getActiveApartmentGoals(req, res, next) {
 	db
-		.any('SELECT * FROM goals_apartment WHERE apt_id=${apt_id}) AND (is_active=TRUE)', {
+		.any('SELECT * FROM goals_apartment WHERE apt_id=${apt_id} AND (is_active=TRUE)', {
 			apt_id: req.params.apt_id
 		})
 		.then(data => {

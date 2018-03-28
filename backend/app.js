@@ -13,6 +13,7 @@ var apartment = require('./routes/apartment');
 var tasks = require('./routes/tasks');
 var expenses = require('./routes/expenses');
 var notes = require('./routes/notes');
+var goals = require('./routes/goals');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/apartment', apartment);
 app.use('/tasks', tasks);
 app.use('/expenses', expenses);
 app.use('/notes', notes);
+app.use('/goals', goals);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
