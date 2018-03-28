@@ -1,9 +1,11 @@
+@import '../../RootStyles'; 
+
 .dashboard {
     display: grid;
     justify-items: center;
     grid-row-gap: 20px;
     .up_next {
-        background-color: grey;
+        background-color: white;
         border: 1px black solid;
         height: 200px;
         width: 900px;

@@ -1,7 +1,5 @@
 .footer {
-    text-align: center;
-    background-color: #F1F1F1;
-    line-height: 3em;
-    width: 100%;
-    position: sticky;
-}
+  text-align: center;
+  background-color: grey;
+  line-height: 5em;
+  width: 100%; }

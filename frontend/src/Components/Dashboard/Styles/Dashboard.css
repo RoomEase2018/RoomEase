@@ -3,7 +3,7 @@
   justify-items: center;
   grid-row-gap: 20px; }
   .dashboard .up_next {
-    background-color: grey;
+    background-color: white;
     border: 1px black solid;
     height: 200px;
     width: 900px;
@@ -42,5 +42,3 @@
         border: 1px solid grey; }
   .dashboard .rbc-month-view {
     height: 500px; }
-
-/*# sourceMappingURL=Dashboard.css.map */
