@@ -22,7 +22,7 @@ class RoomEaseContainer extends Component {
                         <Route path="/profile" component={ProfileContainer} />
                     </Switch>
                 ) : (
-                    <Route component={HomepageContainer} />
+                    <Route component={ProfileContainer} />
                 )}
                 <FooterContainer />
             </div>
