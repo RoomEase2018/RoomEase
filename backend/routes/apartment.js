@@ -1,8 +1,12 @@
-// var express = require('express');
-// var router = express.Router();
-// let db = require("../db/queries");
+var express = require('express');
+var router = express.Router();
+let db = require("../db/queries/getQueries");
 
-// /* GET notes. */
-// router.get("/:aptid", db.getNotesByApartmentId);
+/* Apartment routes. */
+router.get('/', function(req, res, next) {
+  res.send(`APARTMENT queries are:     /:id = get apartment info`);
+});
 
-// module.exports = router;
+router.get('/:id', db.getApartmentInfo);
+
+module.exports = router;

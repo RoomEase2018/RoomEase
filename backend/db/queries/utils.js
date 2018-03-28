@@ -41,6 +41,6 @@ function validateCreatinguser(req) {
 }
 
 
-module.exports {
+module.exports = {
   validateCreatinguser
 }
