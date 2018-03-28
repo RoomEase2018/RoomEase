@@ -6,8 +6,7 @@ class NavbarContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      addButton: false,
-      gearButton: false
+      
     };
   }
 
@@ -30,7 +29,7 @@ class NavbarContainer extends React.Component {
 
   render() {
     const { addButton, gearButton } = this.state;
-    return <Navbar logout={this.logout} addButton={addButton} gearButton={gearButton} handleClick={this.handleClick} />;
+    return <Navbar logout={this.logout} handleClick={this.handleClick} />;
   }
 }
 
