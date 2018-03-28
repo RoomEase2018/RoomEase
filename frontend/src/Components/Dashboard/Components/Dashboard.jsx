@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UpNext from "./UpNextComponent";
 import Calendar from "./Calendar";
+import Bulletin from "../Containers/BulletinContainer"
 
 class Dashboard extends Component {
     render() {
@@ -8,7 +9,7 @@ class Dashboard extends Component {
             <div>
                 <UpNext task={this.props.profile.task} karma={this.props.profile.roomKarma} />
                 <Calendar />
-                <div className="bulletin" />
+                <Bulletin />
             </div>
         )
     }
