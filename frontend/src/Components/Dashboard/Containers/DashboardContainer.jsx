@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import Dashboard from '../Components/Dashboard';
+import Dashboard from '../Components/Dashboard'
+import "../Styles/Dashboard.css"
 
 class DashboardContainer extends Component {
     render() {
