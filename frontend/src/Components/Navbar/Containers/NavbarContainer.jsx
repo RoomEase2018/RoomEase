@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "react";
 import { connect } from "react-redux";
 import Navbar from "../Components/Navbar";
 
@@ -12,7 +13,14 @@ class NavbarContainer extends React.Component {
 
   logout = () => {
     const { dispatch } = this.props;
-    dispatch({ type: "PROFILE_USER_LOGGED_IN" });
+    dispatch({ type: "SIGN_OUT" });
+    // axios
+    //   .get(`/users/logout`)
+    //   .then(res => {
+    //   })
+    //   .catch(err => {
+    //     console.log("error:", err);
+    //   });
   };
 
   handleClick = e => {
