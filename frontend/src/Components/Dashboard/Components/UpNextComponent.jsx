@@ -4,11 +4,10 @@ import Checkbox from "./Checkbox";
 
 class UpNextComponent extends Component {
   render() {
-    console.log("upnext props : ", this.props);
     return (
       <div>
           <Progressbar karma={this.props.karma} />
-          <div id="next-task" style={{ fontSize: 80 }}>
+          <div id="next-task" style={{fontSize: 50, width: 500}}>
             {this.props.task[0].desc}
           </div>
 		  <Checkbox />
