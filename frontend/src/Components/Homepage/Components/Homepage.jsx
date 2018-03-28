@@ -95,7 +95,7 @@ class Homepage extends Component {
                                 type="password"
                                 name="password"
                                 onChange={handleChange}
-                                placeholder="New Password"
+                                placeholder="Password"
                             />
                             <input
                                 type="text"
