@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-let db = require("../db/queries");
+let db = require("../db/queries/getQueries");
 const passport = require("../auth/local");
 
-/* GET users listing. */
+/* USERS routes. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send(`USERS queries are:     /new = create a user --- /login = login a user --- /logout = log out a user --- /:username = get a user's info`);
 });
 
 router.post("/new", db.createUser);
@@ -16,6 +16,6 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 
 router.get("/logout", db.logoutUser);
 
-router.get("/user/:id", db.getUserById);
+router.get("/:username", db.getUserInfo);
 
 module.exports = router;

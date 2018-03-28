@@ -1,12 +1,10 @@
-// var express = require('express');
-// var router = express.Router();
-// let db = require("../db/queries");
+var express = require('express');
+var router = express.Router();
+let db = require("../db/queries/getQueries");
 
-// /* GET expenses. */
-// router.get("/user/:userid", db.getExpensesByUserId);
+/* GET expenses. */
+router.get("/:user_id", db.getActiveExpensesByUser);
 
-// router.get("/apartment/:aptid", db.getExpensesByApartmentId);
+router.get("/recurring/:userid", db.getActiveRecurringExpensesByUser);
 
-// router.get("/fixed/:aptid", db.getFixedExpensesByApartmentId);
-
-// module.exports = router;
+module.exports = router;
