@@ -2,9 +2,9 @@ import React from 'react';
 
 const Checkbox = ({ karma }) => {
     return(
-        <div id="checkbox" style={{ fontSize: 40 }}>
+        <div className="checkbox" id="checkbox" >
+            <input type="checkbox" name="completed" value="false"/>
             Completed
-            <input type="checkbox" name="completed" value="false" style={{zoom: 3}}/>
         </div>
     )
 }

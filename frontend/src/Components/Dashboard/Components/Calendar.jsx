@@ -42,7 +42,6 @@ class Calendar extends Component {
   render() {
     const { tasks } = this.props;
     return (
-      <div>
         <BigCalendar
           style={{ height: 300, width: 900 }}
           events={this.events}
@@ -51,7 +50,6 @@ class Calendar extends Component {
           showMultiDayTimes
           defaultDate={new Date(2015, 3, 1)}
         />
-      </div>
     );
   }
 }
