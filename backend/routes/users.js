@@ -1,21 +1,21 @@
-// var express = require('express');
-// var router = express.Router();
-// let db = require("../db/queries");
-// const passport = require("../auth/local");
+var express = require('express');
+var router = express.Router();
+let db = require("../db/queries/getQueries");
+const passport = require("../auth/local");
 
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
+/* USERS routes. */
+router.get('/', function(req, res, next) {
+  res.send(`USERS queries are:     /new = create a user --- /login = login a user --- /logout = log out a user --- /:username = get a user's info`);
+});
 
-// router.post("/new", db.createUser);
+router.post("/new", db.createUser);
 
-// router.post("/login", passport.authenticate("local"), (req, res) => {
-//   res.json(req.user);
-// });
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  res.json(req.user);
+});
 
-// router.get("/logout", db.logoutUser);
+router.get("/logout", db.logoutUser);
 
-// router.get("/user/:id", db.getUserById);
+router.get("/:username", db.getUserInfo);
 
-// module.exports = router;
+module.exports = router;
