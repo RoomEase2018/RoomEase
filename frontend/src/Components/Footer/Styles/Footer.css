@@ -1,11 +1,5 @@
 .footer {
-    text-align: center;
-    background-color: #F1F1F1;
-    line-height: 3em;
-    margin-top: 20px;
-    position: fixed;
-    bottom: 0px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-}
+  text-align: center;
+  background-color: grey;
+  line-height: 5em;
+  width: 100%; }

@@ -3,7 +3,7 @@ import { Circle } from 'rc-progress';
 
 const Progressbar = ({ karma }) => {
     return(
-        <div id="progressbar" style={{height:100, width:100}}>
+        <div className='progress_bar' id="progressbar">
         <Circle
         percent={karma} 
         strokeWidth="10"

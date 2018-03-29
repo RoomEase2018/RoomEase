@@ -1,16 +1,53 @@
-.rbc-calendar {
-    height: 100%;
-    width: 900px;
-    .rbc-time-view {
-        border: none;
-        .rbc-time-content {
-            display: none;
+@import "../../RootStyles";
+
+.dashboard {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 20px;
+    .up_next {
+        background-color: white;
+        border: 1px black solid;
+        height: 200px;
+        width: 900px;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        grid-template-columns: auto 100px 650px 150px auto;
+        grid-template-areas: ". progress_bar next_task checkbox .";
+        .progress_bar {
+            grid-area: progress_bar;
+            height: 100px;
+            width: 100px;
         }
-        .rbc-time-header {
-            border: 1px solid grey;
-            height: 100%;
-            .rbc-label {
-                padding: 0;
+        .next_task {
+            grid-area: next_task;
+            font-size: 50px;
+            text-align: center;
+            line-height: 1em;
+            width: 600px;
+        }
+        .checkbox {
+            grid-area: checkbox;
+            justify-self: start;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            margin-left: 5px;
+            input {
+                zoom: 2;
+                margin-right: 5px;
+            }
+        }
+    }
+    .rbc-calendar {
+        width: 900px;
+        .rbc-time-view {
+            border: none;
+            .rbc-time-content {
+                display: none;
+            }
+            .rbc-time-header {
+                border: 1px solid grey;
             }
         }
     }
@@ -18,3 +55,17 @@
         height: 500px;
     }
 }
+
+
+.note {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	background-color: yellow;
+	border: 1px black solid;
+}
+
+.invisible {
+	opacity: 0;
+}
+
