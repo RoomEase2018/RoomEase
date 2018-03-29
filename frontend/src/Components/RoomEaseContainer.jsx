@@ -11,6 +11,7 @@ import FooterContainer from "./Footer/Containers/FooterContainer";
 
 class RoomEaseContainer extends Component {
     render() {
+        console.log("1", this.props)
         return (
             <div className="RoomEase">
                 {this.props.Profile.loggedIn && <NavbarContainer />}

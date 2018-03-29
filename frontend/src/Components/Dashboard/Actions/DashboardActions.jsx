@@ -73,14 +73,8 @@ export const fetchAllVisibleNotes = aptid => dispatch => {
   });
 };
 
-export const fetchAllVisibleNotes = aptid => dispatch => {
-  return api.fetchAllApartmentVisibleNotes(aptid).then(notes => {
-    dispatch(getAllVisibleNotes(notes));
-  });
-};
-
 export const fetchAllApartmentGoals = aptid => dispatch => {
   return api.fetchAllApartmentActiveGoals(aptid).then(goals => {
-    dispatch(getAllVisibleNotes(goals));
+    dispatch(getAllActiveGoals(goals));
   });
 };

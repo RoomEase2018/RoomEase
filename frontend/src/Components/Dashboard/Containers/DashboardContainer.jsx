@@ -12,13 +12,23 @@ import {
 class DashboardContainer extends Component {
 
     render() {
-        console.log(this.props)
+        console.log(this.props.allActiveTasks)
         return (
             <Dashboard
                 store={this.props.Dashboard}
                 profile={this.props.Profile}    
             />
         );
+    }
+
+    mapStateToProps = (state) => {
+        return {
+            allActiveTasks: state
+        }
+    }
+
+    mapDispachToProps = (dispatch) => {
+        
     }
 }
 
