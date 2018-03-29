@@ -36,31 +36,31 @@ const passport = require("../auth/local");
 
 // ____________________
 
-router.post("/insertNewApartment", db.insertNewApartment)
+// router.post("/insertNewApartment", db.insertNewApartment)
 
-router.post("/insertUserIntoApartment", db.insertUserIntoApartment)
+// router.post("/insertUserIntoApartment", db.insertUserIntoApartment)
 
-router.post("/insertTask", db.insertTask)
+// router.post("/insertTask", db.insertTask)
 
-router.post("/insertTaskCompleted", db.insertTaskCompleted)
+// router.post("/insertTaskCompleted", db.insertTaskCompleted)
 
-router.post("/insertRecurringTask", db.insertRecurringTask)
+// router.post("/insertRecurringTask", db.insertRecurringTask)
 
-router.post("/insertRecurringTaskCompleted", db.insertRecurringTaskCompleted)
+// router.post("/insertRecurringTaskCompleted", db.insertRecurringTaskCompleted)
 
-router.post("/insertExpense", db.insertExpense)
+// router.post("/insertExpense", db.insertExpense)
 
-router.post("/insertPayment", db.insertPayment)
+// router.post("/insertPayment", db.insertPayment)
 
-router.post("/insertRecurringExpense", db.insertRecurringExpense)
+// router.post("/insertRecurringExpense", db.insertRecurringExpense)
 
-router.post("/insertRecurringPayment", db.insertRecurringPayment)
+// router.post("/insertRecurringPayment", db.insertRecurringPayment)
 
-router.post("/insertBulletinNote", db.insertBulletinNote)
+// router.post("/insertBulletinNote", db.insertBulletinNote)
 
-router.post("/insertGoal", db.insertGoal)
+// router.post("/insertGoal", db.insertGoal)
 
-router.post("/updateRecurringTaskActive", db.updateRecurringTaskActive)
+// router.post("/updateRecurringTaskActive", db.updateRecurringTaskActive)
 
 router.post("/updateRecurringExpenseActive", db.updateRecurringExpenseActive)
 

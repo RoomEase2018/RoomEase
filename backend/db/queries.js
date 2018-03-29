@@ -27,7 +27,7 @@ function getActiveTasks (req, res, next) {
 
 function getActiveRecurringTasks (req, res, next) {
 	db
-		.any('SELECT * FROM tasks_recurring WHERE apt_id=${apt_id} AND is_active=TRUE', {
+		.any('SELECT * FROM tasks_recurring WHERE apt_id=${apt_id} AND is_recurring=TRUE', {
 			apt_id: req.params.apt_id
 		})
 		.then(data => {
@@ -61,7 +61,7 @@ function getActiveExpensesByUser (req, res, next) {
 
 function getActiveRecurringExpensesByUser (req, res, next) {
 	db
-		.any('SELECT * FROM expenses_recurring WHERE is_active=TRUE AND payer_id=${user_id}', {
+		.any('SELECT * FROM expenses_recurring WHERE is_recurring=TRUE AND payer_id=${user_id}', {
 			user_id: req.params.user_id
 		})
 		.then(data => {
@@ -199,9 +199,9 @@ function logoutUser(req, res, next) {
 
 function insertNewApartment(req, res, next) {
   db
-    .one("INSERT INTO apartments (apt_name, apt_pic) VALUES (${apt_name} RETURNING id, ${apt_pic})", {
-      apt_id: req.params.apt_id,
-      apt_name: req.params.apt_name
+    .one("INSERT INTO apartments (apt_name, apt_pic) VALUES (${apt_name}, ${apt_pic}) RETURNING id", {
+      apt_name: req.body.apt_name,
+      apt_pic: req.body.apt_pic
     })
     .then(data => {
       res.status(200).json({
@@ -218,8 +218,8 @@ function insertNewApartment(req, res, next) {
 function insertUserIntoApartment(req, res, next) {
   db
     .none("INSERT INTO users_apt (user_id, apt_id) VALUES (${user_id}, ${apt_id})", {
-      user_id: req.params.user_id,
-      apt_id: req.params.apt_id
+      user_id: req.body.user_id,
+      apt_id: req.body.apt_id
     })
     .then(() => {
       res.status(200).send('inserted user into apartment')
@@ -231,15 +231,15 @@ function insertUserIntoApartment(req, res, next) {
 
 function insertTask(req, res, next) {
   db
-    .none("INSERT INTO tasks (apt_id, task_name, posted_by_id, assigned_to_id, due_date, due_time, message, karma_value) VALUES ($(apt_id), $(task_name), $(posted_by_id), $(assigned_to_id), $(due_date), $(due_time), $(message), $(karma_value))", {
-      apt_id: req.params.apt_id,
-      task_name: req.params.task_name,
-      posted_by_id: req.params.posted_by_id,
-      assigned_to_id: req.params.assigned_to_id,
-      due_date: req.params.due_date,
-      due_time: req.params.due_time,
-      messsage: req.params.message,
-      karma_value: req.params.karma_value
+    .none("INSERT INTO tasks (apt_id, task_name, posted_by_id, assigned_to_id, due_date, due_time, message, karma_value) VALUES (${apt_id}, ${task_name}, ${posted_by_id}, ${assigned_to_id}, ${due_date}, ${due_time}, ${message}, ${karma_value})", {
+      apt_id: req.body.apt_id,
+      task_name: req.body.task_name,
+      posted_by_id: req.body.posted_by_id,
+      assigned_to_id: req.body.assigned_to_id,
+      due_date: req.body.due_date,
+      due_time: req.body.due_time,
+      message: req.body.message,
+      karma_value: req.body.karma_value
     })
     .then(() => {
       res.status(200).send('inserted new task')
@@ -252,10 +252,10 @@ function insertTask(req, res, next) {
 function insertTaskCompleted(req, res, next) {
   db
     .none("INSERT INTO tasks_completed (task_id, apt_id, completed_by_id, karma) VALUES (${task_id}, ${apt_id}, ${completed_by_id}, ${karma})", {
-      task_id: req.params.task_id,
-      apt_id: req.params.apt_id,
-      completed_by_id: req.params.completed_by_id,
-      karma: req.params.karma,
+      task_id: req.body.task_id,
+      apt_id: req.body.apt_id,
+      completed_by_id: req.body.completed_by_id,
+      karma: req.body.karma,
     })
     .then(() => {
       res.status(200).send('inserted completed task');
@@ -267,15 +267,15 @@ function insertTaskCompleted(req, res, next) {
 
 function insertRecurringTask(req, res, next) {
   db
-    .none("INSERT INTO tasks_recurring (apt_id, task_name, posted_by_id, assigned_to_id, due_day, due_time, message, karma_value) VALUES ($(apt_id), $(task_name), $(posted_by_id), $(assigned_to_id), $(due_date), $(due_time), $(message), $(karma_value))", {
-      apt_id: req.params.apt_id,
-      task_name: req.params.task_name,
-      posted_by_id: req.params.posted_by_id,
-      assigned_to_id: req.params.assigned_to_id,
-      due_day: req.params.due_day,
-      due_time: req.params.due_time,
-      messsage: req.params.message,
-      karma_value: req.params.karma_value
+    .none("INSERT INTO tasks_recurring (apt_id, task_name, posted_by_id, assigned_to_id, due_day, due_time, message, karma_value) VALUES ($(apt_id), $(task_name), $(posted_by_id), $(assigned_to_id), $(due_day), $(due_time), $(message), $(karma_value))", {
+      apt_id: req.body.apt_id,
+      task_name: req.body.task_name,
+      posted_by_id: req.body.posted_by_id,
+      assigned_to_id: req.body.assigned_to_id,
+      due_day: req.body.due_day,
+      due_time: req.body.due_time,
+      message: req.body.message,
+      karma_value: req.body.karma_value
     })
     .then(() => {
       res.status(200).send('inserted new recurring task')
@@ -288,10 +288,10 @@ function insertRecurringTask(req, res, next) {
 function insertRecurringTaskCompleted(req, res, next) {
   db
     .none("INSERT INTO tasks_recurring_completed (task_id, apt_id, completed_by_id, karma) VALUES (${task_id}, ${apt_id}, ${completed_by_id}, ${karma})", {
-      task_id: req.params.task_id,
-      apt_id: req.params.apt_id,
-      completed_by_id: req.params.completed_by_id,
-      karma: req.params.karma,
+      task_id: req.body.task_id,
+      apt_id: req.body.apt_id,
+      completed_by_id: req.body.completed_by_id,
+      karma: req.body.karma,
     })
     .then(() => {
       res.status(200).send('inserted completed recurring task');
@@ -303,12 +303,12 @@ function insertRecurringTaskCompleted(req, res, next) {
 
 function updateRecurringTaskActive(req, res, next) {
   db
-    .none("UPDATE tasks_recurring SET is_active=${is_active} WHERE id={task_id}", {
-      is_active: req.params.is_active,
-      task_id: req.params.task_id
+    .none("UPDATE tasks_recurring SET is_recurring=${is_recurring} WHERE id=${task_id}", {
+      is_recurring: req.body.is_recurring,
+      task_id: req.body.task_id
     })
     .then(() => {
-      res.status(200).send('updated recurring task is_active');
+      res.status(200).send('updated recurring task is_recurring');
     })
     .catch(err => {
       next(err);
@@ -318,14 +318,15 @@ function updateRecurringTaskActive(req, res, next) {
 function insertExpense(req, res, next) {
   db
     .none("INSERT INTO expenses (apt_id, expense_name, message, amount, payer_id, payee_id, due_date, due_time, karma_value) VALUES (${apt_id}, ${expense_name}, ${message}, ${amount}, ${payer_id}, ${payee_id}, ${due_date}, ${due_time}, ${karma_value})", {
-      apt_id: req.params.apt_id,
-      expense_name: req.params.expense_name,
-      message: req.params.message,
-      amount: req.params.amount,
-      payer_id: req.params.payer_id,
-      payee_id: req.params.payee_id,
-      due_date: req.params.due_date,
-      karma_value: req.params.karma_value
+      apt_id: req.body.apt_id,
+      expense_name: req.body.expense_name,
+      message: req.body.message,
+      amount: req.body.amount,
+      payer_id: req.body.payer_id,
+      payee_id: req.body.payee_id,
+      due_date: req.body.due_date,
+      due_time: req.body.due_time,
+      karma_value: req.body.karma_value
     })
     .then(() => {
       res.status(200).send('inserted new expense');
@@ -337,13 +338,14 @@ function insertExpense(req, res, next) {
 
 function insertPayment(req, res, next) {
   db
-    .none("INSERT INTO expenses (amount, apt_id, payer_id, payee_id, expense_id, message, karma) VALUES (${amount}, ${apt_id}, ${payer_id}, ${payee_id}, ${expense_id}, ${message}, ${karma})", {
-      amount: req.params.amount,
-      apt_id: req.params.apt_id,
-      payer_id: req.params.payer_id,
-      payee_id: req.params.payee_id,
-      message: req.params.message,
-      karma: req.params.karma
+    .none("INSERT INTO payments_expenses (amount, apt_id, payer_id, payee_id, expense_id, message, karma) VALUES (${amount}, ${apt_id}, ${payer_id}, ${payee_id}, ${expense_id}, ${message}, ${karma})", {
+      amount: req.body.amount,
+      apt_id: req.body.apt_id,
+      payer_id: req.body.payer_id,
+      payee_id: req.body.payee_id,
+      expense_id: req.body.expense_id,
+      message: req.body.message,
+      karma: req.body.karma
     })
     .then(() => {
       res.status(200).send('inserted new payment');
@@ -355,15 +357,16 @@ function insertPayment(req, res, next) {
 
 function insertRecurringExpense(req, res, next) {
   db
-    .none("INSERT INTO expenses (apt_id, expense_name, message, amount, payer_id, payee_id, due_day, due_time, karma_value) VALUES (${apt_id}, ${expense_name}, ${message}, ${amount}, ${payer_id}, ${payee_id}, ${due_day}, ${due_time}, ${karma_value})", {
-      apt_id: req.params.apt_id,
-      expense_name: req.params.expense_name,
-      message: req.params.message,
-      amount: req.params.amount,
-      payer_id: req.params.payer_id,
-      payee_id: req.params.payee_id,
-      due_day: req.params.due_day,
-      karma_value: req.params.karma_value
+    .none("INSERT INTO expenses_recurring (apt_id, expense_name, message, amount, payer_id, payee_id, due_day, due_time, karma_value) VALUES (${apt_id}, ${expense_name}, ${message}, ${amount}, ${payer_id}, ${payee_id}, ${due_day}, ${due_time}, ${karma_value})", {
+      apt_id: req.body.apt_id,
+      expense_name: req.body.expense_name,
+      message: req.body.message,
+      amount: req.body.amount,
+      payer_id: req.body.payer_id,
+      payee_id: req.body.payee_id,
+      due_day: req.body.due_day,
+      due_time: req.body.due_time,
+      karma_value: req.body.karma_value
     })
     .then(() => {
       res.status(200).send('inserted new expense');
@@ -375,12 +378,12 @@ function insertRecurringExpense(req, res, next) {
 
 function updateRecurringExpenseActive(req, res, next) {
   db
-    .none("UPDATE expenses_recurring SET is_active=${is_active} WHERE id={expense_id}", {
-      is_active: req.body.is_active,
+    .none("UPDATE expenses_recurring SET is_recurring=${is_recurring} WHERE id=${expense_id}", {
+      is_recurring: req.body.is_recurring,
       expense_id: req.body.expense_id
     })
     .then(() => {
-      res.status(200).send('updated recurring expense is_active');
+      res.status(200).send('updated recurring expense is_recurring');
     })
     .catch(err => {
       next(err);
@@ -389,14 +392,14 @@ function updateRecurringExpenseActive(req, res, next) {
 
 function insertRecurringPayment(req, res, next) {
   db
-    .none("INSERT INTO payments_recurring_expenses (amount, apt_id, payer_id, payee_id, expense_id, message, karma) VALUES (${amount}, ${apt_id}, ${payer_id}, ${payee_id}, ${expense_id}, ${message}, ${karma}", {
-        amount: req.params.amount, 
-        apt_id: req.params.apt_id,
-        payer_id: req.params.payer_id,
-        payee_id: req.params.payee_id,
-        expense_id: req.params.expense_id,
-        message: req.params.message,
-        karma: req.params.karma
+    .none("INSERT INTO payments_recurring_expenses (amount, apt_id, payer_id, payee_id, expense_id, message, karma) VALUES (${amount}, ${apt_id}, ${payer_id}, ${payee_id}, ${expense_id}, ${message}, ${karma})", {
+        amount: req.body.amount, 
+        apt_id: req.body.apt_id,
+        payer_id: req.body.payer_id,
+        payee_id: req.body.payee_id,
+        expense_id: req.body.expense_id,
+        message: req.body.message,
+        karma: req.body.karma
     })
     .then(() => {
       res.status(200).send('inserted recurring payment');
@@ -409,9 +412,9 @@ function insertRecurringPayment(req, res, next) {
 function insertBulletinNote(req, res, next) {
   db
     .none("INSERT INTO bulletin_notes (apt_id, posted_by, note) VALUES (${apt_id}, ${posted_by}, ${note})", {
-      apt_id: req.params.apt_id,
-      posted_by: req.params.posted_by,
-      note: req.params.note
+      apt_id: req.body.apt_id,
+      posted_by: req.body.posted_by,
+      note: req.body.note
     })
     .then(() => {
       res.status(200).send('inserted new bulletin note');
@@ -423,12 +426,13 @@ function insertBulletinNote(req, res, next) {
 
 function insertGoal(req, res, next) {
   db
-    .none("INSERT INTO goals_apartment (apt_id, posted_by, title, note, is_recurring) VALUES (${apt_id}, ${posted_by}, ${title}, ${note}, ${is_recurring})", {
-      apt_id: req.params.apt_id,
-      posted_by: req.params.posted_by,
-      title: req.params.title,
-      note: req.params.note,
-      is_recurring: req.params.is_recurring
+    .none("INSERT INTO goals_apartment (apt_id, posted_by, title, note, is_recurring, karma_cost) VALUES (${apt_id}, ${posted_by}, ${title}, ${note}, ${is_recurring}, ${karma_cost})", {
+      apt_id: req.body.apt_id,
+      posted_by: req.body.posted_by,
+      title: req.body.title,
+      note: req.body.note,
+      karma_cost: req.body.karma_cost,
+      is_recurring: req.body.is_recurring
     })
     .then(() => {
       res.status(200).send('inserted apt goal');
@@ -440,12 +444,12 @@ function insertGoal(req, res, next) {
 
 function updateGoalIsRecurring(req, res, next) {
   db
-    .none("UPDATE goals_apartment SET is_active=${is_active} WHERE id={goal_id}", {
-      is_active: req.params.is_active,
-      goal_id: req.params.goal_id
+    .none("UPDATE goals_apartment SET is_recurring=${is_recurring} WHERE id=${goal_id}", {
+      is_recurring: req.body.is_recurring,
+      goal_id: req.body.goal_id
     })
     .then(() => {
-      res.status(200).send('updated recurring apartment goal is_active');
+      res.status(200).send('updated recurring apartment goal is_recurring');
     })
     .catch(err => {
       next(err);
@@ -455,10 +459,10 @@ function updateGoalIsRecurring(req, res, next) {
 function insertGoalRedeemed(req, res, next) {
   db
     .none("INSERT INTO goals_redeemed (apt_id, goal_id, redeemed_by_id, karma) VALUES (${apt_id}, ${goal_id}, ${redeemed_by_id}, ${karma}", {
-      apt_id: req.params.apt_id,
-      goal_id: req.params.goal_id,
-      redeemed_by_id: req.params.redeemed_by_id,
-      karma: req.params.karma
+      apt_id: req.body.apt_id,
+      goal_id: req.body.goal_id,
+      redeemed_by_id: req.body.redeemed_by_id,
+      karma: req.body.karma
     })
 }
   
