@@ -1,7 +1,6 @@
-const db = require("../index");
-const authHelpers = require("../../auth/helpers");
-const passport = require("../../auth/local");
-// const utils = require("./utils");
+const db = require(".index");
+const authHelpers = require("../auth/helpers");
+const passport = require("../auth/local");
 
 // ---------------
 // FOR DASHBOARD |
@@ -127,8 +126,8 @@ function getVisibleBulletinNotes(req, res, next) {
 
 function getApartmentInfo(req, res, next) {
 	db
-		.any("SELECT * FROM apartments WHERE id=${id}", {
-			id: req.params.id
+		.any("SELECT * FROM apartments WHERE id=${apt_id}", {
+			id: req.params.apt_id
 		})
 		.then(data => {
 			res.status(200).json({
@@ -383,8 +382,8 @@ function insertRecurringExpense(req, res, next) {
 function updateRecurringExpenseActive(req, res, next) {
   db
     .none("UPDATE expenses_recurring SET is_active=${is_active} WHERE id={expense_id}", {
-      is_active: req.params.is_active,
-      expense_id: req.params.expense_id
+      is_active: req.body.is_active,
+      expense_id: req.body.expense_id
     })
     .then(() => {
       res.status(200).send('updated recurring expense is_active');
@@ -470,10 +469,10 @@ function insertGoalRedeemed(req, res, next) {
 }
   
 module.exports = {
-	// getActiveTasks,
-	// getActiveRecurringTasks,
-	// getActiveExpensesByUser,
-	// getActiveRecurringExpensesByUser,
+	getActiveTasks,
+	getActiveRecurringTasks,
+	getActiveExpensesByUser,
+	getActiveRecurringExpensesByUser,
 	getActiveApartmentGoals,
 	getActiveRecurringApartmentGoals,
 	getVisibleBulletinNotes,
@@ -482,20 +481,20 @@ module.exports = {
 	createUser,
 	logoutUser,
 	loginUser,
-	// insertNewApartment,
-	// insertUserIntoApartment,
-	// insertTask,
-	// insertTaskCompleted,
-	// insertRecurringTask,
-	// insertRecurringTaskCompleted,
+	insertNewApartment,
+	insertUserIntoApartment,
+	insertTask,
+	insertTaskCompleted,
+	insertRecurringTask,
+	insertRecurringTaskCompleted,
 	updateRecurringTaskActive,
-	// insertExpense,
-	// insertPayment,
-	// insertRecurringExpense,
+	insertExpense,
+	insertPayment,
+	insertRecurringExpense,
 	updateRecurringExpenseActive,
-	// insertRecurringPayment,
-	// insertBulletinNote,
-	// insertGoal,
+	insertRecurringPayment,
+	insertBulletinNote,
+	insertGoal,
 	updateGoalIsRecurring,
-	// insertGoalRedeemed
+	insertGoalRedeemed
   };

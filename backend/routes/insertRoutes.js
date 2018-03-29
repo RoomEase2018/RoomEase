@@ -1,4 +1,4 @@
-let db = require("../db/queries/getQueries");
+let db = require("../db/queries");
 var express = require('express');
 var router = express.Router();
 const { loginRequired } = require("../auth/helpers");
@@ -28,6 +28,10 @@ router.post("/insertBulletinNote", loginRequired, db.insertBulletinNote)
 
 router.post("/insertGoal", loginRequired, db.insertGoal)
 
-router.post("/insertGoalRedeemed", loginRequired, db.insertGoalRedeemed)
+router.post("/updateRecurringTaskActive", loginRequired, db.updateRecurringTaskActive)
+
+router.post("/updateRecurringExpenseActive", loginRequired, db.updateRecurringExpenseActive)
+
+router.post("/updateGoalIsRecurring", loginRequired, db.updateGoalIsRecurring)
 
 module.exports = router;

@@ -8,12 +8,9 @@ const session = require("express-session");
 const passport = require("passport");
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-var apartment = require('./routes/apartment');
-var tasks = require('./routes/tasks');
-var expenses = require('./routes/expenses');
-var notes = require('./routes/notes');
-var goals = require('./routes/goals');
+var getRoutes = require('./routes/getRoutes');
+var insertRoutes = require('./routes/insertRoutes');
+;
 
 var app = express();
 
@@ -42,12 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', index);
-app.use('/users', users);
-app.use('/apartment', apartment);
-app.use('/tasks', tasks);
-app.use('/expenses', expenses);
-app.use('/notes', notes);
-app.use('/goals', goals);
+app.use('/getRoutes', users);
+app.use('/insertRoutes', apartment);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
