@@ -142,9 +142,6 @@ CREATE TABLE goals_apartment (
   posted_by INTEGER REFERENCES users (id) NOT NULL,
   title VARCHAR NOT NULL,
   note VARCHAR,
-  due_date DATE,
-  due_time TIME,
-  is_active BOOLEAN DEFAULT TRUE,
   is_recurring BOOLEAN DEFAULT FALSE,
   karma_cost INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
