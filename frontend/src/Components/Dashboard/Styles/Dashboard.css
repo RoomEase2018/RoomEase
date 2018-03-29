@@ -1,72 +1,54 @@
-.note {
-	position: relative;
-	width: 150px;
-	height: 150px;
-	background-color: yellow;
-	border: 1px black solid;
-}
 .dashboard {
   display: grid;
   justify-items: center;
   grid-row-gap: 20px; }
-
-.dashboard .up_next {
-  background-color: white;
-  border: 1px black solid;
-  height: 200px;
-  width: 900px;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-columns: auto 100px 650px 150px auto;
-  grid-template-areas: ". progress_bar next_task checkbox ."; }
-
-.dashboard .up_next .progress_bar {
-  grid-area: progress_bar;
-  height: 100px;
-  width: 100px; }
-
-.dashboard .up_next .next_task {
-  grid-area: next_task;
-  font-size: 50px;
-  text-align: center;
-  line-height: 1em;
-  width: 600px; }
-
-.dashboard .up_next .checkbox {
-  grid-area: checkbox;
-  justify-self: start;
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  margin-left: 5px; }
-
-.dashboard .up_next .checkbox input {
-  zoom: 2;
-  margin-right: 5px; }
-
-.dashboard .rbc-calendar {
-  width: 900px; }
-  .rbc-calendar .rbc-time-view {
-    border: none; }
-    .rbc-calendar .rbc-time-view .rbc-time-content {
-      display: none; }
-    .rbc-calendar .rbc-time-view .rbc-time-header {
-      border: 1px solid grey;
-      height: 100%; }
-      .rbc-calendar .rbc-time-view .rbc-time-header .rbc-label {
-        padding: 0; }
-  .rbc-calendar .rbc-month-view {
+  .dashboard .up_next {
+    background-color: white;
+    border: 1px black solid;
+    height: 200px;
+    width: 900px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: auto 100px 650px 150px auto;
+    grid-template-areas: ". progress_bar next_task checkbox ."; }
+    .dashboard .up_next .progress_bar {
+      grid-area: progress_bar;
+      height: 100px;
+      width: 100px; }
+    .dashboard .up_next .next_task {
+      grid-area: next_task;
+      font-size: 50px;
+      text-align: center;
+      line-height: 1em;
+      width: 600px; }
+    .dashboard .up_next .checkbox {
+      grid-area: checkbox;
+      justify-self: start;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      margin-left: 5px; }
+      .dashboard .up_next .checkbox input {
+        zoom: 2;
+        margin-right: 5px; }
+  .dashboard .rbc-calendar {
+    width: 900px; }
+    .dashboard .rbc-calendar .rbc-time-view {
+      border: none; }
+      .dashboard .rbc-calendar .rbc-time-view .rbc-time-content {
+        display: none; }
+      .dashboard .rbc-calendar .rbc-time-view .rbc-time-header {
+        border: 1px solid grey; }
+  .dashboard .rbc-month-view {
     height: 500px; }
 
-.dashboard .rbc-calendar .rbc-time-view {
-  border: none; }
+.note {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background-color: yellow;
+  border: 1px black solid; }
 
-.dashboard .rbc-calendar .rbc-time-view .rbc-time-content {
-  display: none; }
-
-.dashboard .rbc-calendar .rbc-time-view .rbc-time-header {
-  border: 1px solid grey; }
-
-.dashboard .rbc-month-view {
-  height: 500px; }
+.invisible {
+  opacity: 0; }
