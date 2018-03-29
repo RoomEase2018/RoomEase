@@ -287,5 +287,5 @@ insertRecurringPayment,
 insertBulletinNote,
 insertGoal,
 updateGoalIsRecurring,
-insertGoalRedeemed,
+insertGoalRedeemed
 };
