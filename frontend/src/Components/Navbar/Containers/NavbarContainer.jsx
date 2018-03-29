@@ -8,33 +8,33 @@ class NavbarContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      
+      active: "",
     };
   }
 
   logout = () => {
     const { dispatch } = this.props;
     axios
-    .get(`/users/logout`)
-    .then(res => {
-      dispatch({ type: "SIGN_OUT" });
-      return <Redirect to="/" />
-    })
-    .catch(err => {
-      console.log("error:", err);
-    });
+      .get(`/users/logout`)
+      .then(res => {
+        dispatch({ type: "SIGN_OUT" });
+        return <Redirect to="/" />
+      })
+      .catch(err => {
+        console.log("error:", err);
+      });
   };
 
-  handleClick = e => {
-    const { taskButton, expenseButton, roommateButton, userEditBtn, apartmentEditBtn } = this.state;
-    
-
+  handleClick = (e, {name}) => {
+    this.setState({ active: name })
   };
 
   render() {
-    
+    const { active } = this.state;
+
     return (
       <Navbar 
+        active={active}
         logout={this.logout} 
         handleClick={this.handleClick} 
       />
