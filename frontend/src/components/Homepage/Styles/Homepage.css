@@ -3,64 +3,50 @@
   grid-template-columns: auto 1000px auto;
   grid-template-rows: 70px auto;
   grid-template-areas: "home_nav home_nav home_nav" ". signup_body ."; }
-
-.home .home_nav {
-  grid-area: home_nav;
-  display: grid;
-  grid-template-columns: auto 1000px auto;
-  grid-template-areas: ". login_menu .";
-  background-color: #F1F1F1; }
-
-.home .home_nav .login_menu {
-  grid-area: login_menu;
-  display: grid;
-  grid-template-columns: 240px auto 360px;
-  grid-template-areas: "logo . login_form"; }
-
-.home .home_nav .login_menu .logo {
-  grid-area: logo;
-  display: grid;
-  grid-template-columns: 70px 170px; }
-
-.home .home_nav .login_menu .logo img {
-  height: 70px; }
-
-.home .home_nav .login_menu .logo h1 {
-  font-size: 2em;
-  align-self: center;
-  margin: 0; }
-
-.home .home_nav .login_menu .login_form {
-  grid-area: login_form;
-  align-self: center; }
-
-.home .signup_body {
-  grid-area: signup_body;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "about_us signup_form"; }
-
-.home .signup_body .about_us {
-  grid-area: about_us;
-  padding: 0px 30px; }
-
-.home .signup_body .signup_form {
-  grid-area: signup_form;
-  align-self: center;
-  line-height: 3; }
-
-.home .signup_body .signup_form h2 {
-  padding: 0 0 0 30px; }
-
-.home .signup_body .signup_form form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 40px;
-  grid-gap: 20px;
-  padding: 0px 30px; }
-
-.home .signup_body .signup_form form .form_gender {
-  justify-self: center; }
-
-/*# sourceMappingURL=Homepage.css.map */
+  .home .home_nav {
+    grid-area: home_nav;
+    display: grid;
+    grid-template-columns: auto 1000px auto;
+    grid-template-areas: ". login_menu .";
+    background-color: #F1F1F1; }
+    .home .home_nav .login_menu {
+      grid-area: login_menu;
+      display: grid;
+      grid-template-columns: 240px auto 360px;
+      grid-template-areas: "logo . login_form"; }
+      .home .home_nav .login_menu .logo {
+        grid-area: logo;
+        display: grid;
+        grid-template-columns: 70px 170px; }
+        .home .home_nav .login_menu .logo img {
+          height: 70px; }
+        .home .home_nav .login_menu .logo h1 {
+          font-size: 2em;
+          align-self: center;
+          margin: 0; }
+      .home .home_nav .login_menu .login_form {
+        grid-area: login_form;
+        align-self: center; }
+  .home .signup_body {
+    grid-area: signup_body;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "about_us signup_form"; }
+    .home .signup_body .about_us {
+      grid-area: about_us;
+      padding: 0px 30px; }
+    .home .signup_body .signup_form {
+      grid-area: signup_form;
+      align-self: center;
+      line-height: 3; }
+      .home .signup_body .signup_form h2 {
+        padding: 0 0 0 30px; }
+      .home .signup_body .signup_form form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 40px;
+        grid-gap: 20px;
+        padding: 0px 30px; }
+        .home .signup_body .signup_form form .form_gender {
+          justify-self: center; }
