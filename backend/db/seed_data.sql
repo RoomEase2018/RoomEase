@@ -74,6 +74,10 @@ INSERT INTO expenses (apt_id, expense_name, message, amount, payer_id, payee_id,
 
 INSERT INTO expenses (apt_id, expense_name, message, amount, payer_id, payee_id, due_date, karma_value) VALUES (1, 'for tp', 'got the fancy tp :)', 4, 1, 2, DATE '2018/04/10', 10);
 
+INSERT INTO expenses (apt_id, expense_name, message, amount, payer_id, payee_id, due_date, karma_value) VALUES (1, 'BUBBLE GUM', 'BOUGHT IN BULK', 20, 1, 4, DATE '2018/04/13', 10);
+
+INSERT INTO expenses (apt_id, expense_name, message, amount, payer_id, payee_id, due_date, karma_value) VALUES (1, 'groceries', 'boughgt a bunch of brocolli', 14, 1, 3, DATE '2018/04/15', 10);
+
 INSERT INTO payments_expenses (amount, apt_id, payer_id, payee_id, expense_id, message, karma) VALUES (1.50, 1, 1, 2, 1, '', 10);
 
 INSERT INTO payments_expenses (amount, apt_id, payer_id, payee_id, expense_id, message, karma) VALUES (4, 1, 1, 2, 2, '', 10);
