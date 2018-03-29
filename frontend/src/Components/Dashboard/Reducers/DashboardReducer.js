@@ -1,3 +1,5 @@
+import * as actions from "../Actions/DashboardActions";
+
 const defaultState = {
   allActiveTasks: {
     tasks: [],
@@ -18,7 +20,7 @@ export default (state = defaultState, action) => {
     case "GET_ALL_ACTIVE_TASK":
       return {
         allActiveTasks: {
-          tasks: [ ...newState.allActiveTasks.tasks, {}],
+          tasks: action.tasks,
           recurringTasks: newState.allActiveTasks.recurringTasks
         },
         allActiveExpenses: {
