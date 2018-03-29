@@ -49,15 +49,14 @@ class Calendar extends Component {
   render() {
     const { tasks } = this.props;
     return (
-      <div>
         <BigCalendar
           events={this.events}
           views={['week', 'month', 'agenda']}
+          defaultView={'week'}
           step={60}
           showMultiDayTimes
           defaultDate={new Date(2015, 3, 1)}
         />
-      </div>
     );
   }
 }

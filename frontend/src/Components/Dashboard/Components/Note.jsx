@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import '../Styles/Dashboard.css'
 
-
 // bulletin board width + height needs to be fixed (define width + height)
 // props = message + removeNote function + index
 

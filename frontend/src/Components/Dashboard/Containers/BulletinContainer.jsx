@@ -32,9 +32,9 @@ class Bulletin extends Component {
 		return (
 			<div>
 				<div style={{
-					height: '900px',
+					height: '600px',
 					width: '900px',
-					border: 'red 3px solid'
+					border: 'blue 1px solid'
 				}}>
 					{this.state.notes.map((note, i) => (
 						<Note
