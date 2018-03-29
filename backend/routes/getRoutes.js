@@ -14,12 +14,10 @@ router.get("/getActiveRecurringExpensesByUser/:user_id", loginRequired, db.getAc
 
 router.get("/getActiveApartmentGoals/:apt_id", loginRequired, db.getActiveApartmentGoals)
 
-router.get("/getActiveRecurringApartmentGoals/:apt_id", loginRequired, db.getActiveRecurringApartmentGoals)
-
 router.get("/getVisibleBulletinNotes/:apt_id", loginRequired, db.getVisibleBulletinNotes)
 
 router.get("/getApartmentInfo/:apt_id", loginRequired, db.getApartmentInfo)
 
-// router.get("/getUserInfo", loginRequired, db.getUserInfo)
+router.get("/getUserInfo/:username", db.getUserInfo)
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const db = require(".index");
+const db = require("./index");
 const authHelpers = require("../auth/helpers");
 const passport = require("../auth/local");
 
@@ -20,11 +20,14 @@ function getActiveTasks (req, res, next) {
 				message: "fetched all active tasks"
 			})
 		})
+    .catch(err => {
+      next(err);
+    })
 }
 
 function getActiveRecurringTasks (req, res, next) {
 	db
-		.any('SELECT A.* FROM tasks_recurring A LEFT JOIN tasks_recurring_completed B ON A.id = B.task_id WHERE B.task_id IS NULL AND A.apt_id=${apt_id}', {
+		.any('SELECT * FROM tasks_recurring WHERE apt_id=${apt_id} AND is_active=TRUE', {
 			apt_id: req.params.apt_id
 		})
 		.then(data => {
@@ -34,11 +37,14 @@ function getActiveRecurringTasks (req, res, next) {
 				message: "fetched all active recurring tasks"
 			})
 		})
+    .catch(err => {
+      next(err);
+    })
 }
 
 function getActiveExpensesByUser (req, res, next) {
 	db
-		.any('SELECT A.* FROM expenses A LEFT JOIN payments_expenses B ON A.id = B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
+		.any('SELECT A.* FROM expenses A LEFT JOIN payments_expenses B ON A.id=B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id})', {
 			user_id: req.params.user_id
 		})		
 		.then(data => {
@@ -48,11 +54,14 @@ function getActiveExpensesByUser (req, res, next) {
 				message: "fetched all active expenses"
 			})
 		})
+    .catch(err => {
+      next(err);
+    })
 }
 
 function getActiveRecurringExpensesByUser (req, res, next) {
 	db
-		.any('SELECT A.* FROM expenses_recurring A LEFT JOIN payments_recurring_expenses B ON A.id = B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id} OR A.payee_id=${user_id})', {
+		.any('SELECT * FROM expenses_recurring WHERE is_active=TRUE AND payer_id=${user_id}', {
 			user_id: req.params.user_id
 		})
 		.then(data => {
@@ -62,6 +71,9 @@ function getActiveRecurringExpensesByUser (req, res, next) {
 				message: "fetched all active recurring expenses"
 			})
 		})
+    .catch(err => {
+      next(err);
+    })
 }
 
 // GETS APARTMENT GOALS
@@ -69,36 +81,19 @@ function getActiveRecurringExpensesByUser (req, res, next) {
 
 function getActiveApartmentGoals(req, res, next) {
 	db
-		.any('SELECT * FROM goals_apartment WHERE apt_id=${apt_id} AND (is_active=TRUE)', {
-			apt_id: req.params.apt_id
-		})
-		.then(data => {
-			res.status(200).json({
-				status: "success",
-				data: data,
-				message: "Fetched all active apartment goals"
-			})
-		})
-		.catch(err => {
-			next(err);
-		})
-}
-
-function getActiveRecurringApartmentGoals(req, res, next) {
-	db
-		.any('SELECT * FROM goals_apartment WHERE apt_id=${apt_id}) AND (is_active=TRUE)', {
-			apt_id: req.params.apt_id
-		})
-		.then(data => {
-			res.status(200).json({
-				status: "success",
-				data: data,
-				message: "Fetched all active recurring apartment goals"
-			})
-		})
-		.catch(err => {
-			next(err);
-		})
+    .any('SELECT A.* FROM goals_apartment A LEFT JOIN goals_redeemed B ON A.id=B.goal_id WHERE A.apt_id=${apt_id} AND (A.is_recurring=TRUE OR B.goal_id IS NULL)', {
+      apt_id: req.params.apt_id
+    })
+    .then(data => {
+      res.status(200).json({
+        status: "success",
+        data: data,
+        message: "Fetched all active recurring apartment goals"
+      })
+    })
+    .catch(err => {
+      next(err);
+    })
 }
 
 // GETS BULLETIN NOTES
@@ -127,7 +122,7 @@ function getVisibleBulletinNotes(req, res, next) {
 function getApartmentInfo(req, res, next) {
 	db
 		.any("SELECT * FROM apartments WHERE id=${apt_id}", {
-			id: req.params.apt_id
+			apt_id: req.params.apt_id
 		})
 		.then(data => {
 			res.status(200).json({
@@ -146,9 +141,8 @@ function getApartmentInfo(req, res, next) {
 
 function getUserInfo(req, res, next) {
 	db
-		.any("SELECT * FROM users WHERE username=${username} OR email=${email}", {
-			username: req.params.username,
-			email: req.params.email
+		.any("SELECT * FROM users WHERE username=${username}", {
+			username: req.params.username
 		})
 		.then(data => {
 			res.status(200).json({
@@ -474,7 +468,6 @@ module.exports = {
 	getActiveExpensesByUser,
 	getActiveRecurringExpensesByUser,
 	getActiveApartmentGoals,
-	getActiveRecurringApartmentGoals,
 	getVisibleBulletinNotes,
 	getApartmentInfo,
 	getUserInfo,
