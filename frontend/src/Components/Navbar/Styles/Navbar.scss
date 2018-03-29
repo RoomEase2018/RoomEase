@@ -1,8 +1,10 @@
+@import '../../sassStyles'; 
+
 .navbar_container {
     display: grid;
     grid-template-columns: auto 1000px auto;
     grid-template-areas: ". navbar .";
-    background-color: #F1F1F1;
+    background-color: $banner-color;
     .navbar {
         grid-area: navbar;
         display: grid;
