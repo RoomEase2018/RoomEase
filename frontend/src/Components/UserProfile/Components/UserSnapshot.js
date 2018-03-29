@@ -9,7 +9,7 @@ const UserSnapshot = ({ username, userPic, userRoomKarma, userTask }) => (
                 <Item.Image size="small" circular src={userPic}  />
 
                 <Item.Content>
-                    <Item.Header>Snapshot</Item.Header>
+                    <Item.Header>Your Snapshot</Item.Header>
                     <Item.Description>
                         <Segment compact color="pink">
                         <span>@{username}</span> <br />

@@ -26,21 +26,19 @@ class NavbarContainer extends React.Component {
   };
 
   handleClick = e => {
-    const { addButton, gearButton } = this.state;
-    console.log(e.target)
-    e.target.name === "addButton"
-      ? this.setState({
-          [e.target.name]: !addButton
-        })
-      : this.setState({
-          [e.target.name]: !gearButton
-        });
+    const { taskButton, expenseButton, roommateButton, userEditBtn, apartmentEditBtn } = this.state;
+    
+
   };
 
   render() {
-    const { addButton, gearButton } = this.state;
     
-    return <Navbar logout={this.logout} handleClick={this.handleClick} />;
+    return (
+      <Navbar 
+        logout={this.logout} 
+        handleClick={this.handleClick} 
+      />
+    );
   }
 }
 

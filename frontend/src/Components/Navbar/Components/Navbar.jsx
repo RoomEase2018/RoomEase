@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon, Image, Dropdown } from "semantic-ui-react";
+import { Icon, Dropdown, Modal, Popup } from "semantic-ui-react";
 import "../Styles/Navbar.css";
 
-const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
+const Navbar = ({ logout, handleClick }) => {
+  const linkButtons = [
+    { name: "dashboard", icon: "dashboard" }, 
+    { name: "profile", icon: "user circle outline" }, 
+    { name: "apartment", icon: "users" }
+  ];
 
   return (
     <div className="navbar_container">
@@ -21,21 +26,31 @@ const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
         <div className="navbar_buttons navbar_buttons_icons">
         {/* className="navbar_buttons" */}
           {/* className="navbar_buttons_icons" */}
-            <Link to="/dashboard">
-              <Icon link size="large" name="dashboard" />
-            </Link>{" "}
-            <Link to="/profile">
-              <Icon link size="large" name="user circle outline" />
-            </Link>{" "}
-            <Link to="/apartment">
-              <Icon link size="large" name="users" />
-            </Link>{" "}
+          {linkButtons.map((button, idx) => 
+            <Popup 
+              key={idx}
+              trigger={
+                <Link to={`/${button.name}`}>
+                  <Icon link size="large" name={`${button.icon}`} />
+                </Link>}
+              content={`${button.name}`}
+              position='bottom center'
+              size='tiny'
+              basic
+            /> 
+          )}
 
             <Dropdown icon='plus' size="large" floating className='icon' direction='left'>
               <Dropdown.Menu>
-                <Dropdown.Item label={<Icon name="add to calendar" color="red" />} text='Add Task' />
-                <Dropdown.Item label={<Icon><Icon.Group><Icon name="dollar" color="blue" /><Icon corner name="plus" color="blue" /></Icon.Group></Icon>} text='Add Expense' />
-                <Dropdown.Item label={<Icon name="add user" color="green" />} text='Add Roommate' />
+                <Modal trigger={<Dropdown.Item label={<Icon name="add to calendar" color="red" />} text='Add Task' />}>
+                  <Modal.Header>Add a Task</Modal.Header>
+                </Modal>
+                <Modal trigger={<Dropdown.Item label={<Icon><Icon.Group><Icon name="dollar" color="blue" /><Icon corner name="plus" color="blue" /></Icon.Group></Icon>} text='Add Expense' />}>
+                  <Modal.Header>Add an Expense</Modal.Header>
+                </Modal>
+                <Modal style={{display:"flex", justifyContent:"center"}} trigger={<Dropdown.Item label={<Icon name="add user" color="green" />} text='Add Roommate' />}>
+                  <Modal.Header>Add a Roommate</Modal.Header>
+                </Modal>
               </Dropdown.Menu>
             </Dropdown>
 
@@ -43,10 +58,11 @@ const Navbar = ({ addButton, gearButton, logout, handleClick }) => {
               <Dropdown.Menu>
                 <Dropdown.Item label={<Icon name="setting" color="blue" />} text='Edit Apartment Profile' />
                 <Dropdown.Item label={<Icon name="setting" color="red" />} text='Edit User Profile' />
-                <Dropdown.Item onClick={logout} label={<Icon name="power" color="teal" />} text='Sign out' />
+                <Dropdown.Item onClick={logout} label={<Icon name="power" color="teal" />} text='Sign Out' />
               </Dropdown.Menu>
             </Dropdown>
         </div>
+        
       </div>
     </div>
   );
