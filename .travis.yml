@@ -1,0 +1,22 @@
+sudo: false
+
+services:
+- postgresql
+
+addons:
+  postgresql: 10.3
+
+env:
+  global:
+      DB_HOST: localhost
+      DB_PASS:
+      DB_USER: postgres
+      DB_POST: 5432
+
+before_script:
+- psql -c 'create database roomease_test;' -U postgres
+
+language: node_js
+
+node_js:
+- "8.9.1"
