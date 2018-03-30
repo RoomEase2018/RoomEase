@@ -8,7 +8,7 @@ const app = require("../app")
 chai.use(chaiAsPromised)
 chai.use(chaitHttp)
 
-const getQueriesTest = require("../db/queries/getQueriesTest")
+// const getQueriesTest = require("../db/queries/getQueriesTest")
 
 before("clone the database for testing => roomease_test", () => {
     db.createDB()

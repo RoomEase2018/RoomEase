@@ -1,6 +1,45 @@
+const pgp = require("pg-promise")({})
+const { QueryFile } = require("pg-promise")
+const { execSync } = require("child_process")
 
-var pgp = require("pg-promise")({});
-var connectionString = "postgres://localhost/roomease";
-var db = pgp(connectionString);
 
-module.exports = db;
+const initConnection = () => {
+    let connectionString = "postgres://localhost/roomease"
+    if (process.env.npm_lifecycle_event === "test") {
+        connectionString += "_test"
+    }
+    return pgp(connectionString)
+}
+
+const db = initConnection()
+
+const sql = new QueryFile(__dirname + "/test_roomEase.sql")
+
+const init = () => {
+    return db.result(sql)
+}
+
+const createDB = () => {
+    execSync("psql -f " + __dirname + "/sql/test_createDB.sql")
+}
+
+const dropAllTables = () => {
+    execSync("psql -f " + __dirname + "/sql/test_dropAllTables.sql")
+}
+
+const createTables = () => {
+    execSync("psql -f " + __dirname + "/sql/test_createTables.sql")
+}
+
+const insertValues = () => {
+    execSync("psql -f " + __dirname + "/sql/test_insertValues.sql")
+}
+
+module.exports = {
+    db,
+    init,
+    createDB,
+    dropAllTables,
+    createTables,
+    insertValues,
+}
