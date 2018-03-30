@@ -22,14 +22,15 @@ class DashboardContainer extends Component {
     }
 
     mapStateToProps = (state) => {
+        console.log(state)
         return {
-            allActiveTasks: state
+            state
         }
     }
 
-    mapDispachToProps = (dispatch) => {
+    // mapDispachToProps = (dispatch) => {
         
-    }
+    // }
 }
 
-export default connect(state => state)(DashboardContainer);
+export default connect(mapStateToProps)(DashboardContainer);
