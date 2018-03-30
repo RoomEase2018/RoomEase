@@ -1,36 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import Dashboard from '../Components/Dashboard';
+import Dashboard from "../Components/Dashboard";
 import "../Styles/Dashboard.css";
 import {
-    fetchAllActiveTask,
-    fetchAllActiveRecurrungTask,
-    fetchAllActiveExpenses,
-    fetc
-    } from "../Actions/DashboardActions";
+  fetchAllActiveTasks,
+  fetchAllActiveRecurrungTask,
+  fetchAllActiveExpenses,
+  fetc
+} from "../Actions/DashboardActions";
 
-class DashboardContainer extends Component {
+const mapStateToProps = state => {
+  console.log("state : ", state.Dashboard);
+  return {
+    allActiveTasks: state.Dashboard.allActiveTasks,
+    allActiveExpenses: state.Dashboard.allActiveExpenses,
+    goals: state.Dashboard.goals
+  };
+};
 
-    render() {
-        console.log(this.props.allActiveTasks)
-        return (
-            <Dashboard
-                store={this.props.Dashboard}
-                profile={this.props.Profile}    
-            />
-        );
+const mapDispatchToProps = dispatch => {
+  console.log("dispatch : ", dispatch);
+  return {
+    fetchAllActiveTasks: id => {
+      dispatch(fetchAllActiveTasks(id));
     }
+  };
+};
 
-    mapStateToProps = (state) => {
-        console.log(state)
-        return {
-            state
-        }
-    }
+class DashboardContainer extends React.Component {
+  componentDidMount() {
+    this.props.fetchAllActiveTasks(1);
+  }
 
-    // mapDispachToProps = (dispatch) => {
-        
-    // }
+  render() {
+    return (
+      <Dashboard store={this.props.Dashboard} profile={this.props.Profile} />
+    );
+  }
 }
 
-export default connect(mapStateToProps)(DashboardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+
+// store={this.props.Dashboard}
+// profile={this.props.Profile}

@@ -1,5 +1,5 @@
 import {
-  GET_ALL_ACTIVE_TASK,
+  GET_ALL_ACTIVE_TASKS,
   GET_ALL_ACTIVE_RECURRING_TASKS,
   GET_ALL_ACTIVE_EXPENSES,
   GET_ALL_ACTIVE_RECURRING_EXPENSES,
@@ -24,7 +24,7 @@ export default (state = defaultState, action) => {
   let newState = state;
 
   switch (action.type) {
-    case GET_ALL_ACTIVE_TASK:
+    case GET_ALL_ACTIVE_TASKS:
       return {
         allActiveTasks: {
           tasks: action.tasks,

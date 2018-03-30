@@ -7,6 +7,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div className='dashboard'>
+                dashboard
                 <UpNext task={this.props.profile.task} karma={this.props.profile.roomKarma} />
                 <Calendar />
                 <BulletinContainer />

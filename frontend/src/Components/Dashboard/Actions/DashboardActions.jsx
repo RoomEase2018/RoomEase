@@ -52,36 +52,36 @@ export const getAllActiveGoals = goals => {
 
 export const fetchAllActiveTasks = aptid => dispatch => {
   return api.fetchAllActiveApartmentTasks(aptid).then(tasks => {
-    dispatch(getAllActiveTasks(tasks));
+    dispatch(getAllActiveTasks(tasks.data.data));
   });
 };
 
 export const fetchAllActiveRecurringTasks = aptid => dispatch => {
   return api.fetchAllApartmentActiveRecurringTasks(aptid).then(tasks => {
-    dispatch(getAllActiveRecurringTasks(tasks));
+    dispatch(getAllActiveRecurringTasks(tasks.data.data));
   });
 };
 
 export const fetchAllActiveExpenses = userid => dispatch => {
   return api.fetchAllActiveUserExpenses(userid).then(expenses => {
-    dispatch(getAllActiveExpenses(expenses));
+    dispatch(getAllActiveExpenses(expenses.data.data));
   });
 };
 
 export const fetchAllActiveRecurringExpenses = userid => dispatch => {
   return api.fetchAllUserActiveRecurringExpenses(userid).then(expenses => {
-    dispatch(getAllActiveRecurringExpenses(expenses));
+    dispatch(getAllActiveRecurringExpenses(expenses.data.data));
   });
 };
 
 export const fetchAllVisibleNotes = aptid => dispatch => {
   return api.fetchAllApartmentVisibleNotes(aptid).then(notes => {
-    dispatch(getAllVisibleNotes(notes));
+    dispatch(getAllVisibleNotes(notes.data.data));
   });
 };
 
 export const fetchAllApartmentGoals = aptid => dispatch => {
   return api.fetchAllApartmentActiveGoals(aptid).then(goals => {
-    dispatch(getAllActiveGoals(goals));
+    dispatch(getAllActiveGoals(goals.data.data));
   });
 };
