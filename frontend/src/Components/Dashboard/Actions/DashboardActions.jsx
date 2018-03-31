@@ -50,6 +50,7 @@ export const getAllActiveGoals = goals => {
   };
 };
 
+// thunk functions
 export const fetchAllActiveTasks = aptid => dispatch => {
   return api.fetchAllActiveApartmentTasks(aptid).then(tasks => {
     dispatch(getAllActiveTasks(tasks.data.data));
