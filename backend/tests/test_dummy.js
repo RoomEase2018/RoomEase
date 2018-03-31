@@ -1,40 +1,42 @@
-let db = require("../db/queries")
-let mocks = require("node-mocks-http")
+const db = require("../db/index")
+const assert = require("assert")
+const chai = require("chai")
+const chaitHttp = require("chai-http")
+const expect = chai.expect
+const chaiAsPromised = require("chai-as-promised")
+const app = require("../app")
+chai.use(chaiAsPromised)
+chai.use(chaitHttp)
 
-var assert = require("assert")
+// const getQueriesTest = require("../db/queries/getQueriesTest")
 
-describe("Database Init", function() {
-    describe("When we call create user", function() {
-        it("will fail if password is less than 6", function() {
-            let req = mocks.createRequest({
-                body: {
-                    username: "ericliu",
-                    full_name: "Eric2",
-                    password: "12345",
-                    email: "eric@email.com",
-                    phone: "12345678"
-                }
-            })
-            let res = mocks.createResponse({})
-            db.createUser(req, res)
+before("clone the database for testing => roomease_test", () => {
+    db.createDB()
+})
 
-            assert.equal(res.statusCode, 400)
+beforeEach("rolling the database back to default", done => {
+    db.dropAllTables()
+    db.createTables()
+    db.insertValues()
+    done()
+})
+
+describe("Database Get Queries:", () => {
+    describe("When we need to getActiveTasks", () => {
+        it("should return -1 when the value is not present", () => {
+            assert.equal([1, 2, 3].indexOf(4), -1)
         })
-    })
-    describe("When we call create user", function() {
-        it("will be ok if password is at least 6", function() {
-            let req = mocks.createRequest({
-                body: {
-                    username: "ericliu2",
-                    full_name: "Eric3",
-                    password: "123456",
-                    email: "eric@email.com",
-                    phone: "12345678"
-                }
-            })
-            let res = mocks.createResponse({})
-            db.createUser(req, res)
-            assert.equal(res.statusCode, 200)
+        it("hits the homepage and returns status 200", done => {
+            chai
+                .request(app)
+                .get("/")
+                .end((err, res) => {
+                    console.log(err)
+                    console.log(res)
+                    expect(err).to.be.null
+                    expect(res).to.have.status(200)
+                    done()
+                })
         })
     })
 })
