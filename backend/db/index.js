@@ -13,10 +13,8 @@ const initConnection = () => {
 
 const db = initConnection()
 
-const sql = new QueryFile(__dirname + "/test_roomEase.sql")
-
 const init = () => {
-    return db.result(sql)
+    return db.result(new QueryFile(__dirname + "/test_roomEase.sql"))
 }
 
 const createDB = () => {
