@@ -7,7 +7,7 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import reducer from "./Components/RoomEaseRootReducer";
+import reducer from "./RootReducer";
 import thunk from "redux-thunk";
 
 const middleware = applyMiddleware(thunk);

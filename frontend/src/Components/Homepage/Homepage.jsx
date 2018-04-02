@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Homepage from "../Components/Homepage";
+import HomepageComponent from "./Components/HomepageComponent";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import axios from "axios";
-import "../Styles/Homepage.css";
+import "./Styles/Homepage.css";
 
-class HomepageContainer extends Component {
+class Homepage extends Component {
     constructor() {
         super()
 
@@ -73,7 +73,7 @@ class HomepageContainer extends Component {
 
         return (
             <div className="RoomEase">
-                <Homepage
+                <HomepageComponent
                     handleChange={handleChange}
                     handleLogin={handleLogin}
                     handleSignUp={handleSignUp}
@@ -84,4 +84,4 @@ class HomepageContainer extends Component {
     }
 }
 
-export default  connect(state => state)(HomepageContainer);
+export default  connect(state => state)(Homepage);

@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
-import Navbar from "../Components/Navbar";
+import NavbarComponent from "./Components/NavbarComponent";
 
-class NavbarContainer extends React.Component {
+class Navbar extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -33,7 +33,7 @@ class NavbarContainer extends React.Component {
     const { active } = this.state;
 
     return (
-      <Navbar 
+      <NavbarComponent 
         active={active}
         logout={this.logout} 
         handleClick={this.handleClick} 
@@ -42,4 +42,4 @@ class NavbarContainer extends React.Component {
   }
 }
 
-export default connect(state => state)(NavbarContainer);
+export default connect(state => state)(Navbar);

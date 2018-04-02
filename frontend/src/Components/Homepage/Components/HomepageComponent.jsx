@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-class Homepage extends Component {
+class HomepageComponent extends Component {
     render() {
         const { handleChange, handleLogin, handleSignUp, login } = this.props
         return (
@@ -120,4 +120,4 @@ class Homepage extends Component {
     }
 }
 
-export default Homepage
+export default HomepageComponent

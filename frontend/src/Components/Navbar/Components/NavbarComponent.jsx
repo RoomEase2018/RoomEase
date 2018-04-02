@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, Icon, Dropdown, Modal, Popup } from "semantic-ui-react";
 import "../Styles/Navbar.css";
 
-const Navbar = ({ logout, active, handleClick }) => {
+const NavbarComponent = ({ logout, active, handleClick }) => {
   const linkButtons = [
     { name: "dashboard", icon: "dashboard" }, 
     { name: "profile", icon: "user circle outline" }, 
@@ -11,7 +11,7 @@ const Navbar = ({ logout, active, handleClick }) => {
   ];
 
   return (
-    // className="navbar_container"
+    // className="Navbar_container"
     <div>
       <Menu secondary>
         <Menu.Item>
@@ -83,4 +83,4 @@ const Navbar = ({ logout, active, handleClick }) => {
   );
 };
 
-export default Navbar;
+export default NavbarComponent;
