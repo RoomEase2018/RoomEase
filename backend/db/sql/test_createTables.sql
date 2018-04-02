@@ -34,7 +34,6 @@ CREATE TABLE tasks (
   due_date DATE NOT NULL,
   due_time TIME,
   message VARCHAR,
-  is_active BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
   created_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
 );
@@ -57,7 +56,7 @@ CREATE TABLE tasks_recurring (
   due_day VARCHAR NOT NULL,
   due_time TIME,
   message VARCHAR,
-  is_active BOOLEAN DEFAULT TRUE,
+  is_recurring BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
   created_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
 );
@@ -76,7 +75,7 @@ CREATE TABLE expenses (
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
   expense_name VARCHAR NOT NULL,
   message VARCHAR,
-  amount INTEGER NOT NULL,
+  amount DECIMAL NOT NULL,
   payer_id INTEGER REFERENCES users (id),
   payee_id INTEGER REFERENCES users (id),
   due_date DATE NOT NULL,
@@ -87,7 +86,7 @@ CREATE TABLE expenses (
 
 CREATE TABLE payments_expenses (
   id SERIAL PRIMARY KEY,
-  amount INTEGER NOT NULL,
+  amount DECIMAL NOT NULL,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
   payer_id INTEGER REFERENCES users (id) NOT NULL,
   payee_id INTEGER REFERENCES users (id) NOT NULL,
@@ -102,19 +101,19 @@ CREATE TABLE expenses_recurring (
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
   expense_name VARCHAR NOT NULL,
   message VARCHAR,
-  amount INTEGER NOT NULL,
+  amount DECIMAL NOT NULL,
   payer_id INTEGER REFERENCES users (id),
   payee_id INTEGER REFERENCES users (id),
   due_day VARCHAR NOT NULL,
   due_time TIME,
-  is_active BOOLEAN DEFAULT TRUE,
+  is_recurring BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE payments_recurring_expenses (
   id SERIAL PRIMARY KEY,
-  amount INTEGER NOT NULL,
+  amount DECIMAL NOT NULL,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
   payer_id INTEGER REFERENCES users (id) NOT NULL,
   payee_id INTEGER REFERENCES users (id) NOT NULL,
@@ -139,9 +138,6 @@ CREATE TABLE goals_apartment (
   posted_by INTEGER REFERENCES users (id) NOT NULL,
   title VARCHAR NOT NULL,
   note VARCHAR,
-  due_date DATE,
-  due_time TIME,
-  is_active BOOLEAN DEFAULT TRUE,
   is_recurring BOOLEAN DEFAULT FALSE,
   karma_cost INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
