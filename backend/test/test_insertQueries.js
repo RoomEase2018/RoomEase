@@ -263,4 +263,23 @@ describe("Database Insert Queries: ==============", () => {
                 })
         })
     })
+    describe("insertBulletinNote", () => {
+        it("it will fail if message does not equal 'inserted new bulletin note'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertBulletinNote")
+                .send({
+                    apt_id: 1,
+                    posted_by: 1,
+                    note: 'parents coming over this weekend'
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal(
+                        "inserted new bulletin note"
+                    )
+                    done()
+                })
+        })
+    })
 })
