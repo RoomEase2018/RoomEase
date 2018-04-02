@@ -48,7 +48,7 @@ describe("Database Insert Queries:", () => {
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal('inserted user into apartment')
+                    expect(res.text).to.equal("inserted user into apartment")
                     done()
                 })
         })
@@ -60,22 +60,22 @@ describe("Database Insert Queries:", () => {
                 .post("/insertRoutes/insertTask")
                 .send({
                     apt_id: 1,
-                    task_name: 'vaccuum',
+                    task_name: "vaccuum",
                     posted_by_id: 1,
                     assigned_to_id: 2,
-                    due_date: '2018/04/09',
-                    message: '',
+                    due_date: "2018/04/09",
+                    message: "",
                     karma_value: 20
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal('inserted new task')
+                    expect(res.text).to.equal("inserted new task")
                     done()
                 })
         })
     })
     describe("insertTaskCompleted", () => {
-        it("it will fail if message does not equal 'inserted new task'", done => {
+        it("it will fail if message does not equal 'inserted completed task'", done => {
             chai
                 .request(app)
                 .post("/insertRoutes/insertTaskCompleted")
@@ -83,11 +83,11 @@ describe("Database Insert Queries:", () => {
                     task_id: 1,
                     apt_id: 1,
                     completed_by_id: 2,
-                    karma: 10,
+                    karma: 10
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal('inserted completed task')
+                    expect(res.text).to.equal("inserted completed task")
                     done()
                 })
         })
@@ -99,16 +99,54 @@ describe("Database Insert Queries:", () => {
                 .post("/insertRoutes/insertRecurringTask")
                 .send({
                     apt_id: 1,
-                    task_name: 'shave my back',
+                    task_name: "shave my back",
                     posted_by_id: 2,
                     assigned_to_id: 1,
-                    due_day: 'friday',
-                    message: 'get shaving cream and shave back',
+                    due_day: "friday",
+                    message: "get shaving cream and shave back",
                     karma_value: 5
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal('inserted new recurring task')
+                    expect(res.text).to.equal("inserted new recurring task")
+                    done()
+                })
+        })
+    })
+    describe("insertRecurringTaskCompleted", () => {
+        it("it will fail if message does not equal 'inserted completed recurring task'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertRecurringTaskCompleted")
+                .send({
+                    task_id: 1,
+                    apt_id: 1,
+                    completed_by_id: 1,
+                    karma: 10
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal(
+                        "inserted completed recurring task"
+                    )
+                    done()
+                })
+        })
+    })
+    describe("updateRecurringTaskActive", () => {
+        it("it will fail if message does not equal 'updated recurring task is_recurring'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/updateRecurringTaskActive")
+                .send({
+                    is_recurring: false,
+                    task_id: 2
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal(
+                        "updated recurring task is_recurring"
+                    )
                     done()
                 })
         })
