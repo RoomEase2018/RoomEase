@@ -92,4 +92,25 @@ describe("Database Insert Queries:", () => {
                 })
         })
     })
+    describe("insertRecurringTask", () => {
+        it("it will fail if message does not equal 'inserted new recurring task'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertRecurringTask")
+                .send({
+                    apt_id: 1,
+                    task_name: 'shave my back',
+                    posted_by_id: 2,
+                    assigned_to_id: 1,
+                    due_day: 'friday',
+                    message: 'get shaving cream and shave back',
+                    karma_value: 5
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal('inserted new recurring task')
+                    done()
+                })
+        })
+    })
 })
