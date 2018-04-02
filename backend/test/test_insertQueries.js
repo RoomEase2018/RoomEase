@@ -198,4 +198,28 @@ describe("Database Insert Queries:", () => {
                 })
         })
     })
+    // describe("insertRecurringExpense", () => {
+    //     it("it will fail if message does not equal 'inserted new expense", done => {
+    //         chai
+    //             .request(app)
+    //             .post("/insertRoutes/insertRecurringExpense")
+    //             .send({
+    //                 apt_id: req.body.apt_id,
+    //                 expense_name: req.body.expense_name,
+    //                 message: req.body.message,
+    //                 amount: req.body.amount,
+    //                 payer_id: req.body.payer_id,
+    //                 payee_id: req.body.payee_id,
+    //                 due_day: req.body.due_day,
+    //                 karma_value: req.body.karma_value
+    //             })
+    //             .end((err, res) => {
+    //                 expect(err).to.be.null
+    //                 expect(res.text).to.equal(
+    //                     "inserted new expense"
+    //                 )
+    //                 done()
+    //             })
+    //     })
+    // })
 })
