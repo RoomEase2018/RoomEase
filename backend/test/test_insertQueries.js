@@ -19,7 +19,7 @@ beforeEach("rolling the database back to default", done => {
     done()
 })
 
-describe("Database Insert Queries:", () => {
+describe("Database Insert Queries: ==============", () => {
     describe("insertNewApartment", () => {
         it("it should return with ID 2", done => {
             chai
@@ -217,6 +217,47 @@ describe("Database Insert Queries:", () => {
                     expect(err).to.be.null
                     expect(res.text).to.equal(
                         "inserted new expense"
+                    )
+                    done()
+                })
+        })
+    })
+    describe("updateRecurringExpenseActive", () => {
+        it("it will fail if message does not equal 'updated recurring expense is_recurring'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/updateRecurringExpenseActive")
+                .send({
+                    is_recurring: false,
+                    expense_id: 1
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal(
+                        "updated recurring expense is_recurring"
+                    )
+                    done()
+                })
+        })
+    })
+    describe("insertRecurringPayment", () => {
+        it("it will fail if message does not equal 'inserted recurring payment'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertRecurringPayment")
+                .send({
+                    amount: 700, 
+                    apt_id: 1,
+                    payer_id: 1,
+                    payee_id: 2,
+                    expense_id: 2,
+                    message: 'More utilities',
+                    karma: 10
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal(
+                        "inserted recurring payment"
                     )
                     done()
                 })
