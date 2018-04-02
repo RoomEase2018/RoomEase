@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import UpNextContainer from "../Containers/UpNextContainer";
-import CalendarContainer from "../Containers/CalendarContainer";
-import BulletinContainer from "../Containers/BulletinContainer";
+import UpNextContainer from "./Containers/UpNextContainer";
+import CalendarContainer from "./Containers/CalendarContainer";
+import BulletinContainer from "./Containers/BulletinContainer";
 
 class Dashboard extends Component {
   render() {
