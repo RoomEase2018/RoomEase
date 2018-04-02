@@ -1,4 +1,4 @@
-let db = require("../db/queries");
+let db = require("../db/queries/userQueries");
 var express = require('express');
 var router = express.Router();
 const { loginRequired } = require("../auth/helpers");
