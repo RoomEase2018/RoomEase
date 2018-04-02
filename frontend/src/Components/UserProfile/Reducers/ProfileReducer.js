@@ -33,7 +33,7 @@ export default (state = defaultState, action) => {
       }
     };
     
-    case "SIGN_OUT": {
+    case "PROFILE_USER_LOGGED_IN": {
       return update(newstate, {
         loggedIn: {
           $apply: function (x) {
