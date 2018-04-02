@@ -8,7 +8,7 @@ BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 // let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
 class Calendar extends Component {
-  //faux events
+  //faux events for render
   events = [
     {
       id: 0,
@@ -49,14 +49,14 @@ class Calendar extends Component {
   render() {
     const { tasks } = this.props;
     return (
-        <BigCalendar
-          events={this.events}
-          views={['week', 'month', 'agenda']}
-          defaultView={'week'}
-          step={60}
-          showMultiDayTimes
-          defaultDate={new Date(2015, 3, 1)}
-        />
+      <BigCalendar
+        events={this.events}
+        views={["week", "month", "agenda"]}
+        defaultView={"week"}
+        step={60}
+        showMultiDayTimes
+        defaultDate={new Date(2015, 3, 1)}
+      />
     );
   }
 }
