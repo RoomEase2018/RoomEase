@@ -1,8 +1,8 @@
-let db = require("../db/queries/insertQueries")
+let db = require("../db/queries")
 var express = require("express")
 var router = express.Router()
-const { loginRequired } = require("../auth/helpers")
-const passport = require("../auth/local")
+// const { loginRequired } = require("../auth/helpers")
+// const passport = require("../auth/local")
 
 router.post("/insertNewApartment", db.insertNewApartment)
 
