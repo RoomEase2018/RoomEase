@@ -151,4 +151,51 @@ describe("Database Insert Queries:", () => {
                 })
         })
     })
+    describe("insertExpense", () => {
+        it("it will fail if message does not equal 'inserted new expense'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertExpense")
+                .send({
+                    apt_id: 1,
+                    expense_name: 'dog food',
+                    message: 'only Acana brand',
+                    amount: 49.99,
+                    payer_id: 1,
+                    payee_id: 2,
+                    due_date: '2018/04/05',
+                    karma_value: 10
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal(
+                        "inserted new expense"
+                    )
+                    done()
+                })
+        })
+    })
+    describe("insertPayment", () => {
+        it("it will fail if message does not equal 'inserted new payment'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertPayment")
+                .send({
+                    amount: 2.00,
+                    apt_id: 1,
+                    payer_id: 1,
+                    payee_id: 2,
+                    expense_id: 2,
+                    message: 'for the toilet paper',
+                    karma: 10
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal(
+                        "inserted new payment"
+                    )
+                    done()
+                })
+        })
+    })
 })
