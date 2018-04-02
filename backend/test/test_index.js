@@ -19,7 +19,7 @@ beforeEach("rolling the database back to default", done => {
     done()
 })
 
-describe("Database Index Query Test:", () => {
+describe("Database Index Query Test:  ==============", () => {
     describe("When we hit db with a home route get request", () => {
         it("it should return OK with status 200", done => {
             chai
