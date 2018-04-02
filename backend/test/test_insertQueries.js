@@ -20,7 +20,7 @@ beforeEach("rolling the database back to default", done => {
 })
 
 describe("Database Insert Queries:", () => {
-    describe("insertNewApartment should return the apartment id", () => {
+    describe("insertNewApartment", () => {
         it("it should return with ID 2", done => {
             chai
                 .request(app)
@@ -37,7 +37,7 @@ describe("Database Insert Queries:", () => {
                 })
         })
     })
-    describe("insertUserIntoApartment will return message 'inserted user into apartment'", () => {
+    describe("insertUserIntoApartment", () => {
         it("it will fail if message does not equal 'inserted user into apartment'", done => {
             chai
                 .request(app)
@@ -53,25 +53,25 @@ describe("Database Insert Queries:", () => {
                 })
         })
     })
-    // describe("insertTask", () => {
-    //     it("placeholder", done => {
-    //         chai
-    //             .request(app)
-    //             .post("/insertRoutes/insertTask")
-    //             .send({
-    //                 apt_id: 3,
-    //                 task_name: 'string',
-    //                 posted_by_id: 1,
-    //                 assigned_to_id: 2,
-    //                 due_date: '2018/04/09',
-    //                 message: 'string',
-    //                 karma_value: 100
-    //             })
-    //             .end((err, res) => {
-    //                 expect(err).to.be.null
-    //                 expect(res.text).to.equal('inserted new task')
-    //                 done()
-    //             })
-    //     })
-    // })
+    describe("insertTask", () => {
+        it("it will fail if message does not equal 'inserted new task'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertTask")
+                .send({
+                    apt_id: 1,
+                    task_name: 'vaccuum',
+                    posted_by_id: 1,
+                    assigned_to_id: 2,
+                    due_date: '2018/04/09',
+                    message: '',
+                    karma_value: 20
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal('inserted new task')
+                    done()
+                })
+        })
+    })
 })
