@@ -74,4 +74,22 @@ describe("Database Insert Queries:", () => {
                 })
         })
     })
+    describe("insertTaskCompleted", () => {
+        it("it will fail if message does not equal 'inserted new task'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertTaskCompleted")
+                .send({
+                    task_id: 1,
+                    apt_id: 1,
+                    completed_by_id: 2,
+                    karma: 10,
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal('inserted completed task')
+                    done()
+                })
+        })
+    })
 })
