@@ -158,19 +158,17 @@ describe("Database Insert Queries: ==============", () => {
                 .post("/insertRoutes/insertExpense")
                 .send({
                     apt_id: 1,
-                    expense_name: 'dog food',
-                    message: 'only Acana brand',
+                    expense_name: "dog food",
+                    message: "only Acana brand",
                     amount: 49.99,
                     payer_id: 1,
                     payee_id: 2,
-                    due_date: '2018/04/05',
+                    due_date: "2018/04/05",
                     karma_value: 10
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal(
-                        "inserted new expense"
-                    )
+                    expect(res.text).to.equal("inserted new expense")
                     done()
                 })
         })
@@ -181,19 +179,17 @@ describe("Database Insert Queries: ==============", () => {
                 .request(app)
                 .post("/insertRoutes/insertPayment")
                 .send({
-                    amount: 2.00,
+                    amount: 2.0,
                     apt_id: 1,
                     payer_id: 1,
                     payee_id: 2,
                     expense_id: 2,
-                    message: 'for the toilet paper',
+                    message: "for the toilet paper",
                     karma: 10
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal(
-                        "inserted new payment"
-                    )
+                    expect(res.text).to.equal("inserted new payment")
                     done()
                 })
         })
@@ -205,19 +201,17 @@ describe("Database Insert Queries: ==============", () => {
                 .post("/insertRoutes/insertRecurringExpense")
                 .send({
                     apt_id: 1,
-                    expense_name: 'rent',
-                    message: 'rent is due',
+                    expense_name: "rent",
+                    message: "rent is due",
                     amount: 500,
                     payer_id: 1,
                     payee_id: 2,
-                    due_day: 'EOM',
+                    due_day: "EOM",
                     karma_value: 10
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal(
-                        "inserted new expense"
-                    )
+                    expect(res.text).to.equal("inserted new expense")
                     done()
                 })
         })
@@ -246,19 +240,17 @@ describe("Database Insert Queries: ==============", () => {
                 .request(app)
                 .post("/insertRoutes/insertRecurringPayment")
                 .send({
-                    amount: 700, 
+                    amount: 700,
                     apt_id: 1,
                     payer_id: 1,
                     payee_id: 2,
                     expense_id: 2,
-                    message: 'More utilities',
+                    message: "More utilities",
                     karma: 10
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
-                    expect(res.text).to.equal(
-                        "inserted recurring payment"
-                    )
+                    expect(res.text).to.equal("inserted recurring payment")
                     done()
                 })
         })
@@ -271,13 +263,67 @@ describe("Database Insert Queries: ==============", () => {
                 .send({
                     apt_id: 1,
                     posted_by: 1,
-                    note: 'parents coming over this weekend'
+                    note: "parents coming over this weekend"
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal("inserted new bulletin note")
+                    done()
+                })
+        })
+    })
+    describe("insertGoal", () => {
+        it("it will fail if message does not equal 'inserted apt goal'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertGoal")
+                .send({
+                    apt_id: 1,
+                    posted_by: 1,
+                    title: "Dave and Buster",
+                    note: "C'mon guys, lets go D&B!",
+                    karma_cost: 500,
+                    is_recurring: true
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal("inserted apt goal")
+                    done()
+                })
+        })
+    })
+    describe("updateGoalIsRecurring", () => {
+        it("it will fail if message does not equal 'updated recurring apartment goal is_recurring'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/updateGoalIsRecurring")
+                .send({
+                    is_recurring: false,
+                    goal_id: 1
                 })
                 .end((err, res) => {
                     expect(err).to.be.null
                     expect(res.text).to.equal(
-                        "inserted new bulletin note"
+                        "updated recurring apartment goal is_recurring"
                     )
+                    done()
+                })
+        })
+    })
+    describe("insertGoalRedeemed", () => {
+        it("it will fail if message does not equal 'inserted goal redeemed'", done => {
+            chai
+                .request(app)
+                .post("/insertRoutes/insertGoalRedeemed")
+                .send({
+                    apt_id: 1,
+                    goal_id: 1,
+                    redeemed_by_id: 1,
+                    karma: 50
+                })
+                .end((err, res) => {
+                    expect(err).to.be.null
+                    expect(res.text).to.equal('inserted goal redeemed')
                     done()
                 })
         })
