@@ -1,7 +1,7 @@
 import React from "react"
 import AptProgress from "./AptProgress";
 
-const Apartment = () => (
+const ApartmentComponent = () => (
     <div className="apt">
         <div className="apt_banner_container">
             <h1 className="banner">
@@ -23,4 +23,4 @@ const Apartment = () => (
     </div>
 )
 
-export default Apartment
+export default ApartmentComponent

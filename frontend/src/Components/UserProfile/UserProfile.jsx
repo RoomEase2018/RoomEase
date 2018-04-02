@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import Profile from '../Components/Profile';
+import Profile from './Components/Profile';
 
-class ProfileContainer extends Component {
+class UserProfile extends Component {
     setUser = (user) => {
         const { dispatch } = this.props;
         dispatch({ type:'LOGIN', user });
@@ -20,4 +20,4 @@ class ProfileContainer extends Component {
     }
 }
 
-export default connect(state => state)(ProfileContainer);
+export default connect(state => state)(UserProfile);

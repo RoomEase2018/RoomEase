@@ -30,7 +30,7 @@ class Note extends Component {
 		else {
 			return (
 				<Draggable>
-					<div className='note'>
+					<div className='note' bounds='parent'>
 						<p>{message}</p>
 						<button onClick={this.hideNote}>DELETE</button>
 					</div>
