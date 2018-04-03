@@ -102,7 +102,7 @@ describe("Database Insert Queries: ==============", () => {
                     task_name: "shave my back",
                     posted_by_id: 2,
                     assigned_to_id: 1,
-                    due_day: "friday",
+                    due_date: "friday",
                     message: "get shaving cream and shave back",
                     karma_value: 5
                 })
@@ -206,7 +206,7 @@ describe("Database Insert Queries: ==============", () => {
                     amount: 500,
                     payer_id: 1,
                     payee_id: 2,
-                    due_day: "EOM",
+                    due_date: "EOM",
                     karma_value: 10
                 })
                 .end((err, res) => {

@@ -3,7 +3,7 @@ import HomepageComponent from "./Components/HomepageComponent";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import axios from "axios";
-import "./Styles/Homepage.css";
+import "./Styles/Homepage.scss";
 
 class Homepage extends Component {
     constructor() {

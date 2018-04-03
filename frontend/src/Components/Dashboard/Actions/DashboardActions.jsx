@@ -1,88 +1,102 @@
 import * as api from "../../../API/roomeaseAPI";
 
-export const GET_ALL_ACTIVE_TASKS = "GET_ALL_ACTIVE_TASKS"
-export const GET_ALL_ACTIVE_RECURRING_TASKS = "GET_ALL_ACTIVE_RECURRING_TASKS"
-export const GET_ALL_ACTIVE_EXPENSES = "GET_ALL_ACTIVE_EXPENSES"
-export const GET_ALL_ACTIVE_RECURRING_EXPENSES = "GET_ALL_ACTIVE_RECURRING_EXPENSES"
-export const GET_ALL_VISIBLE_NOTES = "GET_ALL_VISIBLE_NOTES"
-export const GET_ALL_ACTIVE_GOALS = "GET_ALL_ACTIVE_GOALS"
+export const SET_ALL_ACTIVE_TASKS = "SET_ALL_ACTIVE_TASKS"
+export const SET_ALL_ACTIVE_RECURRING_TASKS = "SET_ALL_ACTIVE_RECURRING_TASKS"
+export const SET_ALL_ACTIVE_EXPENSES = "SET_ALL_ACTIVE_EXPENSES"
+export const SET_ALL_ACTIVE_RECURRING_EXPENSES = "SET_ALL_ACTIVE_RECURRING_EXPENSES"
+export const SET_ALL_VISIBLE_NOTES = "SET_ALL_VISIBLE_NOTES"
+export const SET_ALL_ACTIVE_GOALS = "SET_ALL_ACTIVE_GOALS"
+export const PUSH_SUCCESS_QUERY_ARRAY = "PUSH_SUCCESS_QUERY_ARRAY"
 
 // action creators
-export const getAllActiveTasks = tasks => {
+const setAllActiveTasks = tasks => {
   return {
-    type: GET_ALL_ACTIVE_TASKS,
+    type: SET_ALL_ACTIVE_TASKS,
     tasks
   };
 };
 
-export const getAllActiveRecurringTasks = tasks => {
+const setAllActiveRecurringTasks = tasks => {
   return {
-    type: GET_ALL_ACTIVE_RECURRING_TASKS,
+    type: SET_ALL_ACTIVE_RECURRING_TASKS,
     tasks
   };
 };
 
-export const getAllActiveExpenses = expenses => {
+const setAllActiveExpenses = expenses => {
   return {
-    type: GET_ALL_ACTIVE_EXPENSES,
+    type: SET_ALL_ACTIVE_EXPENSES,
     expenses
   };
 };
 
-export const getAllActiveRecurringExpenses = expenses => {
+const setAllActiveRecurringExpenses = expenses => {
   return {
-    type: GET_ALL_ACTIVE_RECURRING_EXPENSES,
+    type: SET_ALL_ACTIVE_RECURRING_EXPENSES,
     expenses
   };
 };
 
-export const getAllVisibleNotes = notes => {
+const setAllVisibleNotes = notes => {
   return {
-    type: GET_ALL_VISIBLE_NOTES,
+    type: SET_ALL_VISIBLE_NOTES,
     notes
   };
 };
 
-export const getAllActiveGoals = goals => {
+const setAllActiveGoals = goals => {
   return {
-    type: GET_ALL_ACTIVE_GOALS,
+    type: SET_ALL_ACTIVE_GOALS,
     goals
   };
 };
 
+const pushSuccessQueryArray = query => {
+  return {
+    type: PUSH_SUCCESS_QUERY_ARRAY,
+    query
+  }
+}
+
 // thunk functions
 export const fetchAllActiveTasks = aptid => dispatch => {
   return api.fetchAllActiveApartmentTasks(aptid).then(tasks => {
-    dispatch(getAllActiveTasks(tasks.data.data));
+    dispatch(setAllActiveTasks(tasks.data.data));
+    dispatch(pushSuccessQueryArray(['fetchAllActiveTasks']));
   });
 };
 
 export const fetchAllActiveRecurringTasks = aptid => dispatch => {
   return api.fetchAllApartmentActiveRecurringTasks(aptid).then(tasks => {
-    dispatch(getAllActiveRecurringTasks(tasks.data.data));
+    dispatch(setAllActiveRecurringTasks(tasks.data.data));
+    dispatch(pushSuccessQueryArray('fetchAllActiveRecurringTasks'));
   });
 };
 
 export const fetchAllActiveExpenses = userid => dispatch => {
   return api.fetchAllActiveUserExpenses(userid).then(expenses => {
-    dispatch(getAllActiveExpenses(expenses.data.data));
+    dispatch(setAllActiveExpenses(expenses.data.data));
+    dispatch(pushSuccessQueryArray('fetchAllActiveExpenses'));
   });
 };
 
 export const fetchAllActiveRecurringExpenses = userid => dispatch => {
   return api.fetchAllUserActiveRecurringExpenses(userid).then(expenses => {
-    dispatch(getAllActiveRecurringExpenses(expenses.data.data));
+    dispatch(setAllActiveRecurringExpenses(expenses.data.data));
+    dispatch(pushSuccessQueryArray('fetchAllActiveRecurringExpenses'));
   });
 };
 
 export const fetchAllVisibleNotes = aptid => dispatch => {
   return api.fetchAllApartmentVisibleNotes(aptid).then(notes => {
-    dispatch(getAllVisibleNotes(notes.data.data));
+    dispatch(setAllVisibleNotes(notes.data.data));
+    dispatch(pushSuccessQueryArray('fetchAllVisibleNotes'));
   });
 };
 
 export const fetchAllApartmentGoals = aptid => dispatch => {
   return api.fetchAllApartmentActiveGoals(aptid).then(goals => {
-    dispatch(getAllActiveGoals(goals.data.data));
+    dispatch(setAllActiveGoals(goals.data.data));
+    dispatch(pushSuccessQueryArray('fetchAllApartmentGoals'));
   });
 };

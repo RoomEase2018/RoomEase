@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-const NextTask = ({ nextTask }) => {
+const NextTask = ({ title }) => {
   return (
     <div>
-      <p>next task</p>
+      <p>{title}</p>
     </div>
   );
 };
