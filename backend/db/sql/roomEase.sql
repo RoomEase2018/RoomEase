@@ -31,11 +31,10 @@ CREATE TABLE users_apt (
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL, 
-  task_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   posted_by_id INTEGER REFERENCES users (id) NOT NULL,
   assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
   due_date DATE NOT NULL,
-  due_time TIME,
   message VARCHAR,
   karma_value INTEGER NOT NULL,
   created_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
@@ -53,11 +52,13 @@ CREATE TABLE tasks_completed (
 CREATE TABLE tasks_recurring (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL, 
-  task_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   posted_by_id INTEGER REFERENCES users (id) NOT NULL,
   assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
-  due_day VARCHAR NOT NULL,
-  due_time TIME,
+  -- gender CHAR(1) CHECK (gender='M' OR gender='F') NOT NULL,
+
+  due_date_type TEXT CHECK(due_date_type='day' OR due_date_type='week' OR due_date_type='month') NOT NULL,
+  due_date INTEGER NOT NULL,
   message VARCHAR,
   is_recurring BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
@@ -76,13 +77,12 @@ CREATE TABLE tasks_recurring_completed (
 CREATE TABLE expenses (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  expense_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   message VARCHAR,
   amount DECIMAL NOT NULL,
   payer_id INTEGER REFERENCES users (id),
   payee_id INTEGER REFERENCES users (id),
   due_date DATE NOT NULL,
-  due_time TIME,
   karma_value INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -102,13 +102,13 @@ CREATE TABLE payments_expenses (
 CREATE TABLE expenses_recurring (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  expense_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   message VARCHAR,
   amount DECIMAL NOT NULL,
   payer_id INTEGER REFERENCES users (id),
   payee_id INTEGER REFERENCES users (id),
-  due_day VARCHAR NOT NULL,
-  due_time TIME,
+  due_date_type TEXT CHECK(due_date_type='day' OR due_date_type='week' OR due_date_type='month') NOT NULL,
+  due_date INTEGER NOT NULL,
   is_recurring BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
