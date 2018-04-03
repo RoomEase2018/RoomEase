@@ -154,6 +154,23 @@ function getApartmentInfo(req, res, next) {
         })
 }
 
+function getUsersInfoInApartment(req, res, next) {
+    db.
+        any("SELECT * FROM users_apt A JOIN users B ON A.user_id=B.id WHERE apt_id=${apt_id} AND A.user_id=B.id", {
+            apt_id: req.params.apt_id
+        })
+        .then(data => {
+            res.status(200).json({
+                status: "success",
+                data: data,
+                message: "Fetched all apartment info"
+            })
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
 // GETS USER INFO
 // ----------------------------------------------
 
@@ -546,6 +563,7 @@ module.exports = {
     getActiveApartmentGoals,
     getVisibleBulletinNotes,
     getApartmentInfo,
+    getUsersInfoInApartment,
     getUserInfo,
     createUser,
     logoutUser,

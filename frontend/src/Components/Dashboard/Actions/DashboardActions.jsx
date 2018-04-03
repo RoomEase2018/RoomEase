@@ -8,6 +8,7 @@ export const SET_ALL_VISIBLE_NOTES = "SET_ALL_VISIBLE_NOTES"
 export const SET_ALL_ACTIVE_GOALS = "SET_ALL_ACTIVE_GOALS"
 export const PUSH_SUCCESS_QUERY_ARRAY = "PUSH_SUCCESS_QUERY_ARRAY"
 
+
 // action creators
 const setAllActiveTasks = tasks => {
   return {

@@ -4,6 +4,7 @@ import Progressbar from "../Components/Progressbar";
 import Checkbox from "../Components/Checkbox";
 import NextTask from "../Components/NextTask";
 
+
 const mapStateToProps = state => {
   return {
     tasks: state.Dashboard.tasks,
@@ -25,7 +26,8 @@ class UpNextContainer extends Component {
     }
   }
 
-  handleCheckbox = () => {
+  handleCompletedCheckbox = e => {
+    axios
 
   }
 
