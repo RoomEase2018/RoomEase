@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
+import AddTaskModal from "./Components/AddTaskModal";
 import NavbarComponent from "./Components/NavbarComponent";
 
 class Navbar extends React.Component {
@@ -15,7 +16,7 @@ class Navbar extends React.Component {
   logout = () => {
     const { dispatch } = this.props;
     axios
-      .get(`/users/logout`)
+      .get(`/user/logout`)
       .then(res => {
         dispatch({ type: "SIGN_OUT" });
         return <Redirect to="/" />
@@ -26,18 +27,29 @@ class Navbar extends React.Component {
   };
 
   handleClick = (e, {name}) => {
+    console.log(name);
     this.setState({ active: name })
+  };
+
+  handleClose = (e) => {
+    e.target.className === "modal" 
+      ? this.setState({ active: "" })
+      : "";
   };
 
   render() {
     const { active } = this.state;
 
     return (
-      <NavbarComponent 
-        active={active}
-        logout={this.logout} 
-        handleClick={this.handleClick} 
-      />
+      <div>
+        <NavbarComponent 
+          active={active}
+          logout={this.logout} 
+          handleClick={this.handleClick} 
+        />
+        {active === "task" ? <AddTaskModal active={active} handleClose={this.handleClose} /> : ""}
+        {/* {active === "expense" ? <AddExpenseModal /> : ""} */}
+      </div>
     );
   }
 }
