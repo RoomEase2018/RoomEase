@@ -317,7 +317,7 @@ function insertTaskCompleted(req, res, next) {
 function insertRecurringTask(req, res, next) {
   db
   .none(
-    "INSERT INTO tasks_recurring (apt_id, title, message, from_user_id, to_user_id, due_date_type, due_date, karma) VALUES (${apt_id}, ${title}, ${message}, ${from_user_id}, ${to_user_id}, ${due_date_type}, ${due_date}, ${karma})",
+    "INSERT INTO tasks_recurring (apt_id, title, message, from_user_id, to_user_id, due_date_type, due_date, karma, cost) VALUES (${apt_id}, ${title}, ${message}, ${from_user_id}, ${to_user_id}, ${due_date_type}, ${due_date}, ${karma}, ${cost})",
     {
       apt_id: req.body.apt_id,
       title: req.body.title,
@@ -326,7 +326,8 @@ function insertRecurringTask(req, res, next) {
       to_user_id: req.body.to_user_id,
       due_date_type: req.body.due_date_type,
       due_date: req.body.due_date,
-      karma: req.body.karma
+      karma: req.body.karma,
+      cost: req.body.cost
     }
     )
   .then(() => {
