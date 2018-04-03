@@ -70,6 +70,8 @@ class Bulletin extends Component {
   }
 
   render() {
+    const { notes } = this.props;
+    console.log("notes : ", notes);
     return (
       <div>
         <div
@@ -79,9 +81,9 @@ class Bulletin extends Component {
             border: "blue 1px solid"
           }}
         >
-          {this.state.notes.map((note, i) => (
+          {notes.map((note, i) => (
             <Note
-              message={note.message}
+              message={note.note}
               index={i}
               key={i}
               hideNote={this.hideNote}
