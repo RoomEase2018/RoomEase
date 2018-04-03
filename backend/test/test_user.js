@@ -25,7 +25,7 @@ beforeEach("rolling the database back to default", done => {
 })
 
 describe("Database User Query Test:  ==============", () => {
-    it("Create A New User", done => {
+    it("Create New User", done => {
         chai
             .request(app)
             .post("/user/createUser")
@@ -58,7 +58,7 @@ describe("Database User Query Test:  ==============", () => {
     //             done()
     //         })
     // })
-    it("Create A New User", done => {
+    it("Logout User", done => {
         chai
             .request(app)
             .get("/user/logout")
