@@ -35,7 +35,6 @@ CREATE TABLE tasks (
   posted_by_id INTEGER REFERENCES users (id) NOT NULL,
   assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
   due_date DATE NOT NULL,
-  due_time TIME,
   message VARCHAR,
   karma_value INTEGER NOT NULL,
   created_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
@@ -56,8 +55,10 @@ CREATE TABLE tasks_recurring (
   task_name VARCHAR NOT NULL,
   posted_by_id INTEGER REFERENCES users (id) NOT NULL,
   assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
-  due_day VARCHAR NOT NULL,
-  due_time TIME,
+  -- gender CHAR(1) CHECK (gender='M' OR gender='F') NOT NULL,
+
+  due_date_type TEXT CHECK(due_date_type='day' OR due_date_type='week' OR due_date_type='month') NOT NULL,
+  due_date INTEGER NOT NULL,
   message VARCHAR,
   is_recurring BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
@@ -82,7 +83,6 @@ CREATE TABLE expenses (
   payer_id INTEGER REFERENCES users (id),
   payee_id INTEGER REFERENCES users (id),
   due_date DATE NOT NULL,
-  due_time TIME,
   karma_value INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -107,8 +107,8 @@ CREATE TABLE expenses_recurring (
   amount DECIMAL NOT NULL,
   payer_id INTEGER REFERENCES users (id),
   payee_id INTEGER REFERENCES users (id),
-  due_day VARCHAR NOT NULL,
-  due_time TIME,
+  due_date_type TEXT CHECK(due_date_type='day' OR due_date_type='week' OR due_date_type='month') NOT NULL,
+  due_date INTEGER NOT NULL,
   is_recurring BOOLEAN DEFAULT TRUE,
   karma_value INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
