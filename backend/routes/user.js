@@ -1,7 +1,6 @@
 let db = require("../db/queries");
 var express = require('express');
 var router = express.Router();
-const { loginRequired } = require("../auth/helpers");
 const passport = require("../auth/local");
 
 router.post("/createUser", db.createUser);
