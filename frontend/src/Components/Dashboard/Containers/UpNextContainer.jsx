@@ -27,7 +27,7 @@ class UpNextContainer extends Component {
   }
 
   handleCompletedCheckbox = e => {
-    axios
+    
 
   }
 
