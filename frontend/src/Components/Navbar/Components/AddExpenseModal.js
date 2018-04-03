@@ -1,12 +1,11 @@
 import React from "react";
 import { Modal, Dropdown, Icon } from "semantic-ui-react";
 import Paper from 'material-ui/Paper';
-import MenuItem from 'material-ui/MenuItem';
+import Toggle from 'material-ui/Toggle';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import { orange500, blue500 } from 'material-ui/styles/colors';
 import "../Styles/ModalStyles.css";
@@ -26,52 +25,47 @@ const styles = {
     },
 };
 
-const tasks = [
-    {title: "Take out trash", KP: 5},
-    {title: "Clean the dishes", KP: 5},
-    {title: "Sweep the house", KP: 10},
-    {title: "Clean the kitchen", KP: 15},
-    {title: "Mop the floor", KP: 15},
-    {title: "Clean the bathroom", KP: 25},
-];
-
-class AddTaskModal extends React.Component {
+class AddExpenseModal extends React.Component {
     render() {
-        const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate } = this.props;
+        const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate, checked, toggleCheckbox } = this.props;
         return (
             <div className="modal" onClick={handleClose}>
                 <Paper className="form" zDepth={2}>
-                    {/* <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-                        {tasks.map(task => (
-                            <MenuItem value="" primaryText={task.title} />
-                        ))}
-                    </DropDownMenu> */}
                     <TextField
                       name="title"
-                      hintText="Enter task"
-                      floatingLabelText="Task"
+                      hintText="Add Expense"
+                      floatingLabelText="Expense"
                     />
                     <TextField
                       name="description"
-                      hintText="Enter task description"
+                      hintText="Enter expense description"
                       floatingLabelText="Description"
                     />
                     <br />
                     <DatePicker 
-                        hintText="Select a due date"
-                        value={selectedDate}
-                        onChange={handleDate} />
+                      hintText="Select a due date"
+                      value={selectedDate}
+                      onChange={handleDate} />
                     <br />
                     <Dropdown 
-                        placeholder='Select Roommate' 
-                        options={roommates}
-                        multiple  
+                      placeholder='Select Roommate' 
+                      options={roommates}
+                      multiple  
                     />
                     <br />
+                    <div style={{ display: "flex", alignItems: "center", width:"10em", marginBottom: "1em"}}>
+                        Recurring?
+                        <Toggle
+                          label={checked ? "Yes" : "No"}
+                          labelPosition="right"
+                          onClick={toggleCheckbox}
+                        />
+                    </div>
                     <RaisedButton
-                        label="Submit"
-                        primary={true}
-                        icon={<ActionDone />}
+                    //   onClick={handleSubmit}
+                      label="Submit"
+                      primary={true}
+                      icon={<ActionDone />}
                     />
                 </Paper>
             </div>
@@ -79,4 +73,4 @@ class AddTaskModal extends React.Component {
     }
 }
 
-export default AddTaskModal;
+export default AddExpenseModal;

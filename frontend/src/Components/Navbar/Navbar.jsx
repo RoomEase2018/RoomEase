@@ -3,6 +3,7 @@ import axios from "axios";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import AddTaskModal from "./Components/AddTaskModal";
+import AddExpenseModal from "./Components/AddExpenseModal";
 import NavbarComponent from "./Components/NavbarComponent";
 
 class Navbar extends React.Component {
@@ -10,6 +11,26 @@ class Navbar extends React.Component {
     super();
     this.state = {
       active: "",
+      assignedRoommate: [],
+      checked: false,
+      roommates: [
+        {
+          text: 'Aiden',
+          value: 'Aiden',
+          image: { avatar: true, src: 'https://react.semantic-ui.com/assets/images/avatar/small/justen.jpg' },
+        },
+        {
+          text: 'Benjy',
+          value: 'Benjy',
+          image: { avatar: true, src: 'https://react.semantic-ui.com/assets/images/avatar/small/christian.jpg' },
+        },
+        {
+          text: 'Eric',
+          value: 'Eric',
+          image: { avatar: true, src: 'https://react.semantic-ui.com/assets/images/avatar/small/matt.jpg' },
+        },
+      ],
+      selectedDate: null,
     };
   }
 
@@ -27,8 +48,21 @@ class Navbar extends React.Component {
   };
 
   handleClick = (e, {name}) => {
-    console.log(name);
     this.setState({ active: name })
+  };
+
+  handleDate = (event, date) => {
+    this.setState({
+      selectedDate: date,
+    });
+  };
+
+  toggleCheckbox = e => {
+    const { checked } = this.state;
+    console.log(checked)
+    this.setState({
+      checked: !checked
+    });
   };
 
   handleClose = (e) => {
@@ -38,7 +72,7 @@ class Navbar extends React.Component {
   };
 
   render() {
-    const { active } = this.state;
+    const { active, assignedRoommate, checked, roommates, selectedDate, handleDate } = this.state;
 
     return (
       <div>
@@ -47,8 +81,28 @@ class Navbar extends React.Component {
           logout={this.logout} 
           handleClick={this.handleClick} 
         />
-        {active === "task" ? <AddTaskModal active={active} handleClose={this.handleClose} /> : ""}
-        {/* {active === "expense" ? <AddExpenseModal /> : ""} */}
+        {active === "task" 
+          ? <AddTaskModal 
+              active={active}  
+              roommates={roommates} 
+              selectedDate={selectedDate}
+              handleDate={this.handleDate}
+              assignedRoommate={assignedRoommate}
+              handleClose={this.handleClose} /> 
+          : ""}
+        {active === "expense" 
+          ? <AddExpenseModal 
+              active={active}
+              checked={checked}
+              roommates={roommates}
+              selectedDate={selectedDate}
+              handleClose={this.handleClose}
+              toggleCheckbox={this.toggleCheckbox}
+            /> 
+          : ""}
+          {/* {active === "roommate" ? <AddRoommateModal active={active} handleClose={this.handleClose} /> : ""}
+          {active === "apartment" ? <EditApartmentModal active={active} handleClose={this.handleClose} /> : ""}
+          {active === "user" ? <EditUserModal active={active} handleClose={this.handleClose} /> : ""} */}
       </div>
     );
   }
