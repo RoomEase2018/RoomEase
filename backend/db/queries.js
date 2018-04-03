@@ -11,7 +11,7 @@ const passport = require("../auth/local")
 function getActiveTasks(req, res, next) {
     db
         .any(
-            "SELECT A.* FROM tasks A LEFT JOIN tasks_completed B ON A.id = B.task_id WHERE B.task_id IS NULL AND A.apt_id=${apt_id}",
+            "SELECT A.* FROM tasks A LEFT JOIN tasks_completed B ON A.id = B.task_id WHERE B.task_id IS NULL AND A.apt_id=${apt_id} ORDER BY DUE_DATE ASC",
             {
                 apt_id: req.params.apt_id
             }
@@ -51,7 +51,7 @@ function getActiveRecurringTasks(req, res, next) {
 function getActiveExpensesByUser(req, res, next) {
     db
         .any(
-            "SELECT A.* FROM expenses A LEFT JOIN payments_expenses B ON A.id=B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id})",
+            "SELECT A.* FROM expenses A LEFT JOIN payments_expenses B ON A.id=B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id}) ORDER BY DUE_DATE ASC",
             {
                 user_id: req.params.user_id
             }
@@ -297,13 +297,13 @@ function insertTaskCompleted(req, res, next) {
 function insertRecurringTask(req, res, next) {
     db
         .none(
-            "INSERT INTO tasks_recurring (apt_id, task_name, posted_by_id, assigned_to_id, due_day, message, karma_value) VALUES ($(apt_id), $(task_name), $(posted_by_id), $(assigned_to_id), $(due_day), $(message), $(karma_value))",
+            "INSERT INTO tasks_recurring (apt_id, task_name, posted_by_id, assigned_to_id, due_date, message, karma_value) VALUES ($(apt_id), $(task_name), $(posted_by_id), $(assigned_to_id), $(due_date), $(message), $(karma_value))",
             {
                 apt_id: req.body.apt_id,
                 task_name: req.body.task_name,
                 posted_by_id: req.body.posted_by_id,
                 assigned_to_id: req.body.assigned_to_id,
-                due_day: req.body.due_day,
+                due_date: req.body.due_date,
                 message: req.body.message,
                 karma_value: req.body.karma_value
             }
@@ -400,7 +400,7 @@ function insertPayment(req, res, next) {
 function insertRecurringExpense(req, res, next) {
     db
         .none(
-            "INSERT INTO expenses_recurring (apt_id, expense_name, message, amount, payer_id, payee_id, due_day, karma_value) VALUES (${apt_id}, ${expense_name}, ${message}, ${amount}, ${payer_id}, ${payee_id}, ${due_day}, ${karma_value})",
+            "INSERT INTO expenses_recurring (apt_id, expense_name, message, amount, payer_id, payee_id, due_date, karma_value) VALUES (${apt_id}, ${expense_name}, ${message}, ${amount}, ${payer_id}, ${payee_id}, ${due_date}, ${karma_value})",
             {
                 apt_id: req.body.apt_id,
                 expense_name: req.body.expense_name,
@@ -408,7 +408,7 @@ function insertRecurringExpense(req, res, next) {
                 amount: req.body.amount,
                 payer_id: req.body.payer_id,
                 payee_id: req.body.payee_id,
-                due_day: req.body.due_day,
+                due_date: req.body.due_date,
                 karma_value: req.body.karma_value
             }
         )
