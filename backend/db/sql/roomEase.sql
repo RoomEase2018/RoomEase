@@ -1,4 +1,4 @@
-aDROP DATABASE IF EXISTS roomease;
+DROP DATABASE IF EXISTS roomease;
 CREATE DATABASE roomease;
 
 \c roomease;
