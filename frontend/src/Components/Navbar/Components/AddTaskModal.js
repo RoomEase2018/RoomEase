@@ -1,10 +1,12 @@
 import React from "react";
 import { Modal, Dropdown, Icon } from "semantic-ui-react";
 import Paper from 'material-ui/Paper';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import DropDownMenu from 'material-ui/DropDownMenu';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import { orange500, blue500 } from 'material-ui/styles/colors';
 import "../Styles/ModalStyles.css";
@@ -24,12 +26,26 @@ const styles = {
     },
 };
 
+const tasks = [
+    {title: "Take out trash", KP: 5},
+    {title: "Clean the dishes", KP: 5},
+    {title: "Sweep the house", KP: 10},
+    {title: "Clean the kitchen", KP: 15},
+    {title: "Mop the floor", KP: 15},
+    {title: "Clean the bathroom", KP: 25},
+];
+
 class AddTaskModal extends React.Component {
     render() {
         const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate } = this.props;
         return (
             <div className="modal" onClick={handleClose}>
                 <Paper className="form" zDepth={2}>
+                    {/* <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                        {tasks.map(task => (
+                            <MenuItem value="" primaryText={task.title} />
+                        ))}
+                    </DropDownMenu> */}
                     <TextField
                       name="title"
                       hintText="Enter task"

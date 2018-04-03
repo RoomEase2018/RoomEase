@@ -12,6 +12,7 @@ class Navbar extends React.Component {
     this.state = {
       active: "",
       assignedRoommate: [],
+      checked: false,
       roommates: [
         {
           text: 'Aiden',
@@ -56,6 +57,14 @@ class Navbar extends React.Component {
     });
   };
 
+  toggleCheckbox = e => {
+    const { checked } = this.state;
+    console.log(checked)
+    this.setState({
+      checked: !checked
+    });
+  };
+
   handleClose = (e) => {
     e.target.className === "modal" 
       ? this.setState({ active: "" })
@@ -63,7 +72,7 @@ class Navbar extends React.Component {
   };
 
   render() {
-    const { active, assignedRoommate, roommates, selectedDate, handleDate} = this.state;
+    const { active, assignedRoommate, checked, roommates, selectedDate, handleDate } = this.state;
 
     return (
       <div>
@@ -84,9 +93,11 @@ class Navbar extends React.Component {
         {active === "expense" 
           ? <AddExpenseModal 
               active={active}
+              checked={checked}
               roommates={roommates}
               selectedDate={selectedDate}
               handleClose={this.handleClose}
+              toggleCheckbox={this.toggleCheckbox}
             /> 
           : ""}
           {/* {active === "roommate" ? <AddRoommateModal active={active} handleClose={this.handleClose} /> : ""}

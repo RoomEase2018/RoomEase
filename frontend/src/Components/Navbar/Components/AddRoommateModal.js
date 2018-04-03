@@ -55,6 +55,7 @@ class AddRoommateModal extends React.Component {
                         label="Submit"
                         primary={true}
                         icon={<ActionDone />}
+                        // onClick={handleSubmit}
                     />
                 </Paper>
             </div>
