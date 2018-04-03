@@ -12,17 +12,25 @@ import {
 const mapStateToProps = state => {
   return {
     allActiveTasks: state.Dashboard.allActiveTasks,
+    allActiveExpenses: state.Dashboard.allActiveExpenses,
     goals: state.Dashboard.goals
   };
 };
 
 class UpNextContainer extends Component {
-  state = { nextTask: [] };
 
-  //get next task from state and pass to NextTask component
-  getNextTask = (allTasks) => {}
+  // findUpNext = () => {
+  //   let upNext;
+  //   const { allActiveExpenses, allActiveTasks } = this.props;
 
-  handleCheckbox = (e) => {}
+  //   allActiveTasks.tasks.map(task => {
+  //     if (task.due_date > currentDate && task.due_date < upNext) {
+  //       upNext = task.due_date;
+  //     }
+  //   })
+
+  // }
+
 
   render() {
     return (
