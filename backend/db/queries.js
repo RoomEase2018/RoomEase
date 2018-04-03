@@ -51,7 +51,7 @@ function getActiveRecurringTasks(req, res, next) {
 function getActiveExpensesByUser(req, res, next) {
   db
   .any(
-    "SELECT A.* FROM expenses A LEFT JOIN payments_expenses B ON A.id=B.expense_id WHERE B.expense_id IS NULL AND (A.payer_id=${user_id}) ORDER BY DUE_DATE ASC",
+    "SELECT A.* FROM tasks A LEFT JOIN tasks_completed B ON A.id=B.task_id WHERE B.task_id IS NULL AND (A.from_user_id=${user_id}) ORDER BY DUE_DATE ASC",
     {
       user_id: req.params.user_id
     }
@@ -71,7 +71,7 @@ function getActiveExpensesByUser(req, res, next) {
 function getActiveRecurringExpensesByUser(req, res, next) {
   db
   .any(
-    "SELECT * FROM expenses_recurring WHERE is_recurring=TRUE AND payer_id=${user_id}",
+    "SELECT * FROM tasks_recurring WHERE is_recurring=TRUE AND from_user_id=${user_id} AND cost>0",
     {
       user_id: req.params.user_id
     }
