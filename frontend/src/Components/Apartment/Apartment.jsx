@@ -6,7 +6,8 @@ import { fetchAllApartmentInfo } from "./Actions/ApartmentActions";
 
 const mapStateToProps = state => {
   return {
-    apartmentInfo: state.Apartment.apartmentInfo
+    apartmentInfo: state.Apartment.apartmentInfo,
+    goals: state.Dashboard.goals
   };
 };
 
@@ -27,7 +28,7 @@ class Apartment extends Component {
     return (
       <div>
         <Banner info={this.props.apartmentInfo} />
-        <ApartmentComponent info={this.props.apartmentInfo}/>
+        <ApartmentComponent info={this.props.apartmentInfo} />
       </div>
     );
   }
