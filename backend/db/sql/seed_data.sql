@@ -16,7 +16,7 @@ INSERT INTO users (first_name, last_name, username, gender, password_digest, ema
 
 INSERT INTO users (first_name, last_name, username, gender, password_digest, email, phone) VALUES ('Aiden', 'Shih', 'Aiden', 'M', '$2a$10$q8//j/bkolUGfnNCMl66ge0xTOZiYTX4PQiAkVnwY4A6tk1WXdEVa', 'AidenShih@ac.c4q.nyc', '2342342333');
 
-INSERT INTO apartments (apt_name) VALUES ('Koala Bears');
+INSERT INTO apartments (apt_name, apt_pic) VALUES ('Koala Bears', 'https://2.bp.blogspot.com/-QHTjF9WaUg0/TaItgXzcO6I/AAAAAAAAHAI/b5i1WQCM0sU/s1600/koala-wallpaper3.jpg');
 
 INSERT INTO users_apt (user_id, apt_id) VALUES (1, 1);
 
