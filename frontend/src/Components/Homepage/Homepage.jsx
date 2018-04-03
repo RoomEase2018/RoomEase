@@ -34,7 +34,7 @@ class Homepage extends Component {
         e.preventDefault();
         const { loginUsername, loginPassword} = this.state;
         axios
-            .post(`/users/login`, {
+            .post(`/user/login`, {
                 username: loginUsername,
                 password: loginPassword
             })

@@ -1,4 +1,4 @@
-const db = require("../db/index")
+const {createDB, dropAllTables, createTables, insertValues} = require("../db/index")
 const assert = require("assert")
 const chai = require("chai")
 const chaitHttp = require("chai-http")
@@ -9,13 +9,13 @@ chai.use(chaiAsPromised)
 chai.use(chaitHttp)
 
 before("clone the database for testing => roomease_test", () => {
-    db.createDB()
+    createDB()
 })
 
 beforeEach("rolling the database back to default", done => {
-    db.dropAllTables()
-    db.createTables()
-    db.insertValues()
+    dropAllTables()
+    createTables()
+    insertValues()
     done()
 })
 

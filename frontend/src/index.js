@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import "../node_modules/semantic-ui-css/semantic.min.css";
 import "./index.css";
-import App from "./App";
+import AppComponent from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
@@ -17,6 +18,12 @@ const store = createStore(
     middleware,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
+);
+
+const App = () => (
+  <MuiThemeProvider>
+    <AppComponent />
+  </MuiThemeProvider>
 );
 
 ReactDOM.render(

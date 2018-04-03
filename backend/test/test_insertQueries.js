@@ -1,4 +1,4 @@
-const db = require("../db/index")
+const {createDB, dropAllTables, createTables, insertValues} = require("../db/index")
 const assert = require("assert")
 const chai = require("chai")
 const chaitHttp = require("chai-http")
@@ -9,13 +9,13 @@ chai.use(chaiAsPromised)
 chai.use(chaitHttp)
 
 before("clone the database for testing => roomease_test", () => {
-    db.createDB()
+    createDB()
 })
 
 beforeEach("rolling the database back to default", done => {
-    db.dropAllTables()
-    db.createTables()
-    db.insertValues()
+    dropAllTables()
+    createTables()
+    insertValues()
     done()
 })
 
@@ -60,11 +60,11 @@ describe("Database Insert Queries: ==============", () => {
                 .post("/insertRoutes/insertTask")
                 .send({
                     apt_id: 1,
-                    task_name: "vaccuum",
+                    title: "vaccuum",
                     posted_by_id: 1,
                     assigned_to_id: 2,
                     due_date: "2018/04/09",
-                    message: "",
+                    message: '',
                     karma_value: 20
                 })
                 .end((err, res) => {
@@ -99,10 +99,11 @@ describe("Database Insert Queries: ==============", () => {
                 .post("/insertRoutes/insertRecurringTask")
                 .send({
                     apt_id: 1,
-                    task_name: "shave my back",
+                    title: "shave my back",
                     posted_by_id: 2,
                     assigned_to_id: 1,
-                    due_date: "friday",
+                    due_date_type: 'day',
+                    due_date: 1,
                     message: "get shaving cream and shave back",
                     karma_value: 5
                 })
@@ -158,7 +159,7 @@ describe("Database Insert Queries: ==============", () => {
                 .post("/insertRoutes/insertExpense")
                 .send({
                     apt_id: 1,
-                    expense_name: "dog food",
+                    title: "dog food",
                     message: "only Acana brand",
                     amount: 49.99,
                     payer_id: 1,
@@ -201,12 +202,13 @@ describe("Database Insert Queries: ==============", () => {
                 .post("/insertRoutes/insertRecurringExpense")
                 .send({
                     apt_id: 1,
-                    expense_name: "rent",
+                    title: "rent",
                     message: "rent is due",
                     amount: 500,
                     payer_id: 1,
                     payee_id: 2,
-                    due_date: "EOM",
+                    due_date_type: 'month',
+                    due_date: 2,
                     karma_value: 10
                 })
                 .end((err, res) => {
