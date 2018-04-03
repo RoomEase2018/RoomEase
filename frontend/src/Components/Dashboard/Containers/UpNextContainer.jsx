@@ -12,6 +12,7 @@ import {
 const mapStateToProps = state => {
   return {
     allActiveTasks: state.Dashboard.allActiveTasks,
+    allActiveExpenses: state.Dashboard.allActiveExpenses,
     goals: state.Dashboard.goals
   };
 };
