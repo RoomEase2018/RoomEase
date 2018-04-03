@@ -8,7 +8,7 @@ const defaultState = {
   pic: "https://demos.subinsb.com/isl-profile-pic/image/person.png",
   roomKarma: 3,
   task: [{
-    desc: "Take A Poo And Wipe Your Butt",
+    desc: "Take out the trash",
     date: "04/12/18"
   }],
 }
