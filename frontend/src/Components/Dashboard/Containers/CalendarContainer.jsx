@@ -5,8 +5,10 @@ import { fetchAllActiveTasks, fetchAllActiveRecurringTasks, fetchAllActiveExpens
 
 const mapStateToProps = state => {
   return {
-    allActiveTasks: state.Dashboard.allActiveTasks,
-    allActiveExpenses: state.Dashboard.allActiveExpenses
+    tasks: state.Dashboard.tasks,
+    recurringTasks: state.Dashboard.recurringTasks,
+    expenses: state.Dashboard.expenses,
+    recurringExpenses: state.Dashboard.recurringExpenses
   };
 };
 

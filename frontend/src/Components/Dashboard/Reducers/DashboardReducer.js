@@ -4,51 +4,41 @@ import {
   SET_ALL_ACTIVE_EXPENSES,
   SET_ALL_ACTIVE_RECURRING_EXPENSES,
   SET_ALL_VISIBLE_NOTES,
-  SET_ALL_ACTIVE_GOALS
+  SET_ALL_ACTIVE_GOALS,
+  PUSH_SUCCESS_QUERY_ARRAY
+
 } from "../Actions/DashboardActions";
 
 const defaultState = {
-  allActiveTasks: {
-    tasks: [],
-    recurringTasks: []
-  },
-  allActiveExpenses: {
-    expenses: [],
-    recurringExpenses: []
-  },
+  tasks: [],
+  recurringTasks: [],
+  expenses: [],
+  recurringExpenses: [],
   notes: [],
-  goals: []
+  goals: [],
+  successQueries: {}
 };
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-
     case SET_ALL_ACTIVE_TASKS:
       return {...state,
-        allActiveTasks: {...state.allActiveTasks,
-          tasks: action.tasks
-        }
+        tasks: action.tasks
       }
 
     case SET_ALL_ACTIVE_RECURRING_TASKS:
       return {...state,
-        allActiveTasks: {...state.allActiveTasks, 
-          recurringTasks: action.tasks
-        }
+        recurringTasks: action.tasks
       }
 
     case SET_ALL_ACTIVE_EXPENSES:
       return {...state,
-        allActiveExpenses: {...state.allActiveExpenses,
-          expenses: action.expenses
-        }
+        expenses: action.expenses
       }
 
     case SET_ALL_ACTIVE_RECURRING_EXPENSES:
       return {...state,
-        allActiveExpenses: {...state.allActiveExpenses,
-          recurringExpenses: action.expenses
-        }
+        recurringExpenses: action.expenses
       }
 
     case SET_ALL_VISIBLE_NOTES:
@@ -59,6 +49,13 @@ export default (state = defaultState, action) => {
     case SET_ALL_ACTIVE_GOALS:
       return {...state,
         goals: action.goals
+      }
+
+    case PUSH_SUCCESS_QUERY_ARRAY:
+      return {...state,
+        successQueries: {...state.successQueries,
+          [action.query]: 'success'
+        }
       }
 
     default:
