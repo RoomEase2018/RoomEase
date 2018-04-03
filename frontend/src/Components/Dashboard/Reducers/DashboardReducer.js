@@ -6,7 +6,7 @@ import {
   SET_ALL_VISIBLE_NOTES,
   SET_ALL_ACTIVE_GOALS,
   PUSH_SUCCESS_QUERY_ARRAY
-
+  
 } from "../Actions/DashboardActions";
 
 const defaultState = {

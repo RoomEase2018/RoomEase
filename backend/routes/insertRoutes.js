@@ -18,16 +18,6 @@ router.post("/insertRecurringTaskCompleted", db.insertRecurringTaskCompleted)
 
 router.post("/updateRecurringTaskActive", db.updateRecurringTaskActive)
 
-router.post("/insertExpense", db.insertExpense)
-
-router.post("/insertPayment", db.insertPayment)
-
-router.post("/insertRecurringExpense", db.insertRecurringExpense)
-
-router.post("/updateRecurringExpenseActive", db.updateRecurringExpenseActive)
-
-router.post("/insertRecurringPayment", db.insertRecurringPayment)
-
 router.post("/insertBulletinNote", db.insertBulletinNote)
 
 router.post("/insertGoal", db.insertGoal)

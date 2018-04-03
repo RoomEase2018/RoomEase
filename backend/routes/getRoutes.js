@@ -20,6 +20,8 @@ router.get("/getApartmentInfo/:apt_id", db.getApartmentInfo)
 
 router.get("/getUserInfo/:username", db.getUserInfo)
 
+router.get("/getUsersInfoInApartment/:apt_id", db.getUsersInfoInApartment)
+
 module.exports = router;
 
 // loginRequired,
