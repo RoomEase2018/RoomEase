@@ -3,7 +3,7 @@ import HomepageComponent from "./Components/HomepageComponent";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import axios from "axios";
-import "./Styles/Homepage.css";
+import "./Styles/Homepage.scss";
 
 class Homepage extends Component {
     constructor() {
@@ -34,7 +34,7 @@ class Homepage extends Component {
         e.preventDefault();
         const { loginUsername, loginPassword} = this.state;
         axios
-            .post(`/users/login`, {
+            .post(`/user/login`, {
                 username: loginUsername,
                 password: loginPassword
             })
