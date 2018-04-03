@@ -68,8 +68,7 @@ class UpNextContainer extends Component {
         }
       }
     })
-
-    return nextRecurring;
+    return {...nextRecurring.next, due_date: nextRecurring.due_date};
   }
 
   findUpNext = () => {
@@ -135,12 +134,13 @@ class UpNextContainer extends Component {
       return (<div className="up_next"><p>loading</p></div>)
     } 
     else {
-      console.log(this.findUpNext());
+      const next = this.findUpNext();
+      console.log(next);
       return (
         <div className="up_next">
-          <Progressbar karma={this.state.karma} />
+          <Progressbar karma={next.karma_value} />
           <div className="next_task" id="next-task">
-            <NextTask nextTask={this.state.nextTask} />
+            <NextTask title={next.title} />
           </div>
           <Checkbox handleCheckbox={this.handleCheckbox} />
         </div>

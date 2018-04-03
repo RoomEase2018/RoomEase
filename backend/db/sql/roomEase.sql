@@ -31,7 +31,7 @@ CREATE TABLE users_apt (
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL, 
-  task_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   posted_by_id INTEGER REFERENCES users (id) NOT NULL,
   assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
   due_date DATE NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE tasks_completed (
 CREATE TABLE tasks_recurring (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL, 
-  task_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   posted_by_id INTEGER REFERENCES users (id) NOT NULL,
   assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
   -- gender CHAR(1) CHECK (gender='M' OR gender='F') NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE tasks_recurring_completed (
 CREATE TABLE expenses (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  expense_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   message VARCHAR,
   amount DECIMAL NOT NULL,
   payer_id INTEGER REFERENCES users (id),
@@ -102,7 +102,7 @@ CREATE TABLE payments_expenses (
 CREATE TABLE expenses_recurring (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  expense_name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   message VARCHAR,
   amount DECIMAL NOT NULL,
   payer_id INTEGER REFERENCES users (id),
