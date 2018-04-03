@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, Dropdown, Icon } from "semantic-ui-react";
 import Paper from 'material-ui/Paper';
-import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
@@ -24,7 +23,7 @@ const styles = {
     },
 };
 
-class AddTaskModal extends React.Component {
+class AddRoommateModal extends React.Component {
     render() {
         const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate } = this.props;
         return (
@@ -63,4 +62,4 @@ class AddTaskModal extends React.Component {
     }
 }
 
-export default AddTaskModal;
+export default AddRoommateModal;

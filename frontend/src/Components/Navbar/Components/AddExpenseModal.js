@@ -24,7 +24,7 @@ const styles = {
     },
 };
 
-class AddTaskModal extends React.Component {
+class AddExpenseModal extends React.Component {
     render() {
         const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate } = this.props;
         return (
@@ -32,30 +32,30 @@ class AddTaskModal extends React.Component {
                 <Paper className="form" zDepth={2}>
                     <TextField
                       name="title"
-                      hintText="Enter task"
-                      floatingLabelText="Task"
+                      hintText="Add Expense"
+                      floatingLabelText="Expense"
                     />
                     <TextField
                       name="description"
-                      hintText="Enter task description"
+                      hintText="Enter expense description"
                       floatingLabelText="Description"
                     />
                     <br />
                     <DatePicker 
-                        hintText="Select a due date"
-                        value={selectedDate}
-                        onChange={handleDate} />
+                      hintText="Select a due date"
+                      value={selectedDate}
+                      onChange={handleDate} />
                     <br />
                     <Dropdown 
-                        placeholder='Select Roommate' 
-                        options={roommates}
-                        multiple  
+                      placeholder='Select Roommate' 
+                      options={roommates}
+                      multiple  
                     />
                     <br />
                     <RaisedButton
-                        label="Submit"
-                        primary={true}
-                        icon={<ActionDone />}
+                      label="Submit"
+                      primary={true}
+                      icon={<ActionDone />}
                     />
                 </Paper>
             </div>
@@ -63,4 +63,4 @@ class AddTaskModal extends React.Component {
     }
 }
 
-export default AddTaskModal;
+export default AddExpenseModal;
