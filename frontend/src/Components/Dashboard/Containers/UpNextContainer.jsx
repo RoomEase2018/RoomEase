@@ -21,22 +21,39 @@ class UpNextContainer extends Component {
   constructor() {
     super();
 
-    this.state = {
+    this.sortedTasks = []
 
+    this.state = {
+      index: 0,
+      isSorted: false,
+      completed: false
     }
   }
 
-  handleCompletedCheckbox = e => {
-    let link = 'is recurring or not?'
+  handleCompletedCheckbox = () => {
+    const taskCompleted = this.sortedTasks[this.state.index];
+    let link;
+    if (taskCompleted.is_recurring) {
+      link = `/insertRoutes/insertRecurringTaskCompleted`;
+    }
+    else {
+      link = `/insertRoutes/insertTaskCompleted`
+    }
+
     axios
       .post(link, {
-        task_id: 'req.body.task_id',
-        apt_id: 'req.body.apt_id',
-        to_user_id: 'req.body.to_user_id',
-        karma: 'req.body.karma'
+        task_id: taskCompleted.id,
+        apt_id: taskCompleted.apt_id,
+        to_user_id: taskCompleted.to_user_id,
+        karma: taskCompleted.karma
       })
       .then(res => {
-        //get next task
+        // console.log(this.sortedTasks)
+        this.sortedTasks.splice(this.state.index, 1);
+        // console.log(this.sortedTasks)
+        this.setState({
+          isSorted: false,
+        })
       })
       .catch(err => {
         //some err message
@@ -78,29 +95,63 @@ class UpNextContainer extends Component {
     return array;
   }
 
-  findUpNext = () => {
-    const { tasks, recurringTasks, goals } = this.props;
+  sortTasks = () => {
+    let tasks, recurringTasks, goals;
     let tasksArray = [];
 
-    if (tasks.length) {
-      tasksArray = [...tasksArray, ...tasks];
+    if (this.state.completed) {
+      tasksArray = this.sortedTasks;
     }
-    if (recurringTasks.length) {
-      tasksArray = [...tasksArray, ...this.addDueDateToRecurring(recurringTasks)];
+    else {
+      const { tasks, recurringTasks, goals } = this.props;
+
+      if (tasks.length) {
+        tasksArray = [...tasksArray, ...tasks];
+      }
+      if (recurringTasks.length) {
+        tasksArray = [...tasksArray, ...this.addDueDateToRecurring(recurringTasks)];
+      }
+    
+
+      tasksArray.sort((a, b) => {
+        return new Date(a.due_date) - new Date(b.due_date);
+      })
+
+      this.sortedTasks = tasksArray
     }
 
-    tasksArray.sort((a, b) => {
-      return new Date(a.due_date) - new Date(b.due_date);
+    this.setState({
+      isSorted: true,
+      completed: true
     })
-
-    return tasksArray;
   }
 
+  handleIndexButton = e => {
+    let newIndex;
+    const len = this.sortedTasks.length;
+    const { index } = this.state;
+    if (len > 5) {
+      if (e.target.value === 'next') {
+        newIndex = (5 + index + 1) % 5;
+      } else {
+        newIndex = (5 + index - 1) % 5;
+      }
+    } else {
+      if (e.target.value === 'next') {
+        newIndex = index + (len - index + 1) % len;
+      } else {
+        newIndex = index + (len - index - 1) % len;
+      }
+    }
+
+    this.setState({
+      index: newIndex
+    })
+  }
 
   render() {
     const { tasks, recurringTasks, expenses, recurringExpenses, goals, successQueries } = this.props;
-    // console.log(tasks, recurringTasks, expenses, recurringExpenses, goals, counter, successQueries );
-    // console.log(successQueries)
+    // console.log('rerender', this.state);
 
     if ( !successQueries.fetchAllActiveTasks ||
       !successQueries.fetchAllActiveRecurringTasks ||
@@ -108,17 +159,20 @@ class UpNextContainer extends Component {
       ) {
       return (<div className="up_next"><p>loading</p></div>)
     } 
+    else if (this.state.isSorted === false) {
+      this.sortTasks();
+      return (
+        <div>loading</div>
+      )
+    }
     else {
-      const sortedTasks = this.findUpNext();
-      sortedTasks.forEach(el => {
-        // console.log('due_date: ', el.due_date);
-      })
-
+      const { index } = this.state;
+      // console.log(this.state, this.sortedTasks)
       return (
         <div className="up_next">
-          <Progressbar karma={sortedTasks[0].karma} />
+          <Progressbar karma={this.sortedTasks[index].karma} />
           <div className="next_task" id="next-task">
-            <NextTask title={sortedTasks[0].title} />
+            <NextTask task={this.sortedTasks[index].title} handleIndexButton={this.handleIndexButton} />
           </div>
           <Checkbox handleCompletedCheckbox={this.handleCompletedCheckbox} />
         </div>
