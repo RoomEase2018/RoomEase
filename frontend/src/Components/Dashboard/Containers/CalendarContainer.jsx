@@ -7,17 +7,16 @@ const mapStateToProps = state => {
   return {
     tasks: state.Dashboard.tasks,
     recurringTasks: state.Dashboard.recurringTasks,
-    expenses: state.Dashboard.expenses,
-    recurringExpenses: state.Dashboard.recurringExpenses
   };
 };
 
 class CalendarContainer extends Component {
  
   render() {
+    const tasks = [...this.props.tasks, ...this.props.recurringTasks]
     return (
       <div className="up_next">
-        <Calendar events />
+        <Calendar tasks={this.props.tasks} />
       </div>
     );
   }

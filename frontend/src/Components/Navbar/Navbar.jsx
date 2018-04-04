@@ -6,6 +6,7 @@ import AddTaskModal from "./Components/AddTaskModal";
 import AddExpenseModal from "./Components/AddExpenseModal";
 import AddRoommateModal from "./Components/AddRoommateModal";
 import NavbarComponent from "./Components/NavbarComponent";
+import api from "../../API/roomeaseAPI";
 
 class Navbar extends React.Component {
   constructor() {
@@ -92,56 +93,17 @@ class Navbar extends React.Component {
       : "";
   };
 
-  // handleSubmit = e => {
-  //   const { assignedRoommates, selectedDate, isChecked } = this.state;
+  handleSubmit = e => {
+    const { assignedRoommates, selectedDate, isChecked } = this.state;
 
-  //   if (!isChecked || e.target.name === "addTask") {
-  //     axios.post(`/insertRoutes/insertTask`, {
-  //       apt_id: this.props.UserProfile.apt_id,
-  //       title: ,
-  //       message: ,
-  //       from_user_id: this.props.UserProfile.user_id,
-  //       to_user_id: ,
-  //       due_date: selectedDate,
-  //       karma: ,
-  //       cost: 
-  //     })
-  //     .then(res => {})
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  //   } else if(e.target.name === "addRoommate") {
-  //     axios.post(`/insertRoutes/insertRoommate`, {
-  //       apt_id: this.props.UserProfile.apt_id,
-  //       title: ,
-  //       message: ,
-  //       from_user_id: this.props.UserProfile.user_id,
-  //       to_user_id: ,
-  //       due_date: selectedDate,
-  //       karma: ,
-  //       cost: 
-  //     })
-  //     .then(res => {})
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  //   } else if (!isChecked) {
-  //     axios.post(`/insertRoutes/insertRecurringTask`, {
-  //       apt_id: this.props.UserProfile.apt_id,
-  //       title: ,
-  //       message: ,
-  //       from_user_id: this.props.UserProfile.user_id,
-  //       to_user_id: ,
-  //       due_date: selectedDate,
-  //       karma: ,
-  //       cost: 
-  //     })
-  //     .then(res => {})
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  //   };
-  // };
+    if (!isChecked || e.target.name === "addTask") {
+      api.addTask(`apt_id, title`, `from_user_id`, `to_user_id`, `due_date`, `message`, `karma`, `cost`); 
+    } else if(e.target.name === "addRoommate") {
+      api.addUserToApartment(`user_id`, `apt_id`);
+    } else if (isChecked) {
+      api.addRecurringTask(`apt_id, title`, `from_user_id`, `to_user_id`, `due_date`, `message`, `karma`, `cost`);
+    };
+  };
 
   render() {
     const { active, task, assignedRoommates, isChecked, roommates, selectedDate, handleDate } = this.state;
@@ -161,8 +123,9 @@ class Navbar extends React.Component {
               selectedDate={selectedDate}
               handleDate={this.handleDate}
               handleChange={this.handleChange}
-              assignedRoommates={assignedRoommates}
-              handleClose={this.handleClose} /> 
+              handleSubmit={this.handleSubmit}
+              handleClose={this.handleClose}
+              assignedRoommates={assignedRoommates} /> 
           : ""}
         {active === "expense" 
           ? <AddExpenseModal 
@@ -172,6 +135,7 @@ class Navbar extends React.Component {
               selectedDate={selectedDate}
               handleDate={this.handleDate}
               handleClose={this.handleClose}
+              handleSubmit={this.handleSubmit}
               toggleCheckbox={this.toggleCheckbox}
             /> 
           : ""}
@@ -179,6 +143,7 @@ class Navbar extends React.Component {
             ? <AddRoommateModal 
                 active={active} 
                 handleClose={this.handleClose} 
+                handleSubmit={this.handleSubmit}
               /> 
             : ""}
           {/* {active === "apartment" ? <EditApartmentModal active={active} handleClose={this.handleClose} /> : ""}
