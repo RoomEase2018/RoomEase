@@ -164,4 +164,4 @@ export const redeemGoal = (apt_id, goal_id, redeemed_by_id, karma) => {
     redeemed_by_id: redeemed_by_id,
     karma: karma
   });
-};
+}; 

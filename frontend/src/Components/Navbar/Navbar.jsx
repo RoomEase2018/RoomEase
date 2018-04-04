@@ -6,7 +6,7 @@ import AddTaskModal from "./Components/AddTaskModal";
 import AddExpenseModal from "./Components/AddExpenseModal";
 import AddRoommateModal from "./Components/AddRoommateModal";
 import NavbarComponent from "./Components/NavbarComponent";
-import api from "../../API/roomeaseAPI";
+import * as api from "../../API/roomeaseAPI";
 
 class Navbar extends React.Component {
   constructor() {
