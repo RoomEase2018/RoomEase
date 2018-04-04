@@ -38,10 +38,8 @@ class Calendar extends Component {
     else {
       console.log(this.props.tasks);
       if (events.length !== this.props.tasks.length) {
-        console.log('lens dont match');
         let newEvents = [];
         this.props.tasks.forEach(task => {
-          console.log(new Date(task.due_date))
           newEvents.push({
             title: task.title,
             allDay: true,

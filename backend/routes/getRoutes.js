@@ -8,9 +8,11 @@ router.get("/getActiveTasks/:apt_id", db.getActiveTasks)
 
 router.get("/getActiveRecurringTasks/:apt_id", db.getActiveRecurringTasks)
 
-router.get("/getActiveExpensesByUser/:user_id", db.getActiveExpensesByUser)
+// router.get("/getActiveExpensesByUser/:user_id", db.getActiveExpensesByUser)
 
-router.get("/getActiveRecurringExpensesByUser/:user_id", db.getActiveRecurringExpensesByUser)
+// router.get("/getActiveRecurringExpensesByUser/:user_id", db.getActiveRecurringExpensesByUser)
+
+router.get("/getAllCompletedTasksAndRecurring/:apt_id", db.getAllCompletedTasksAndRecurring)
 
 router.get("/getActiveApartmentGoals/:apt_id", db.getActiveApartmentGoals)
 

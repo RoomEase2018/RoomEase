@@ -8,6 +8,7 @@ const passport = require("../auth/local")
 // GETS ACTIVE TASKS AND EXPENSES
 // ----------------------------------------------
 
+
 function getActiveTasks(req, res, next) {
   db
   .any(
@@ -48,44 +49,24 @@ function getActiveRecurringTasks(req, res, next) {
   })
 }
 
-function getActiveExpensesByUser(req, res, next) {
+function getAllCompletedTasksAndRecurring(req, res, next) {
   db
-  .any(
-    "SELECT A.* FROM tasks A LEFT JOIN tasks_completed B ON A.id=B.task_id WHERE B.task_id IS NULL AND (A.from_user_id=${user_id}) ORDER BY DUE_DATE ASC",
-    {
-      user_id: req.params.user_id
-    }
+    .any(
+      "SELECT * FROM tasks_completed WHERE apt_id=${apt_id} UNION SELECT * FROM tasks_recurring_completed WHERE apt_id=${apt_id}",
+      {
+        apt_id: req.params.apt_id
+      }
     )
-  .then(data => {
-    res.status(200).json({
-      status: "sucess",
-      data: data,
-      message: "fetched all active expenses"
+    .then(data => {
+      res.status(200).json({
+        status: "success",
+        data: data,
+        message: "fetched all completed tasks plus recurring"
+      })
     })
-  })
-  .catch(err => {
-    next(err)
-  })
-}
-
-function getActiveRecurringExpensesByUser(req, res, next) {
-  db
-  .any(
-    "SELECT * FROM tasks_recurring WHERE is_recurring=TRUE AND from_user_id=${user_id} AND cost>0",
-    {
-      user_id: req.params.user_id
-    }
-    )
-  .then(data => {
-    res.status(200).json({
-      status: "sucess",
-      data: data,
-      message: "fetched all active recurring expenses"
+    .catch(err => {
+      next(err)
     })
-  })
-  .catch(err => {
-    next(err)
-  })
 }
 
 // GETS APARTMENT GOALS
@@ -455,9 +436,8 @@ function insertGoalRedeemed(req, res, next) {
 module.exports = {
   getActiveTasks,
   getActiveRecurringTasks,
-  getActiveExpensesByUser,
-  getActiveRecurringExpensesByUser,
   getActiveApartmentGoals,
+  getAllCompletedTasksAndRecurring,
   getVisibleBulletinNotes,
   getApartmentInfo,
   getUsersInfoInApartment,
