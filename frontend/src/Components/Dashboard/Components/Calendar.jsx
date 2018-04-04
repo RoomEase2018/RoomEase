@@ -12,35 +12,35 @@ class Calendar extends Component {
   events = [
     {
       id: 0,
-      title: "All Day 1",
+      title: "buy milk",
       allDay: true,
       start: new Date(2015, 3, 0),
       end: new Date(2015, 3, 0)
     },
     {
       id: 1,
-      title: "All Day 2",
+      title: "wash dishes",
       allDay: true,
       start: new Date(2015, 3, 1),
       end: new Date(2015, 3, 1)
     },
     {
       id: 1,
-      title: "All Day 2",
+      title: "pay bills",
       allDay: true,
-      start: new Date(2015, 3, 1),
-      end: new Date(2015, 3, 1)
+      start: new Date(2015, 3, 2),
+      end: new Date(2015, 3, 2)
     },
     {
       id: 2,
-      title: "All Day 3",
+      title: "parents coming",
       allDay: true,
-      start: new Date(2015, 3, 1),
-      end: new Date(2015, 3, 1)
+      start: new Date(2015, 3, 4),
+      end: new Date(2015, 3, 4)
     },
     {
       id: 3,
-      title: "Long Event",
+      title: "get a pet rooster",
       start: new Date(2015, 3, 7),
       end: new Date(2015, 3, 10)
     }

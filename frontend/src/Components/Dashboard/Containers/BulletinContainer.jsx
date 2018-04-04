@@ -29,18 +29,20 @@ class Bulletin extends Component {
 
   render() {
     const { notes } = this.props
+    console.log(notes);
     return (
       <div>
         <div
           style={{
             height: "600px",
             width: "900px",
-            border: "blue 1px solid"
+            border: "BLACK 10px solid",
+            backgroundColor: 'DARKGREEN'
           }}
         >
           {notes.map((note, i) => (
             <Note
-              message={note.note}
+              message={note.message}
               index={i}
               key={i}
               hideNote={this.hideNote}

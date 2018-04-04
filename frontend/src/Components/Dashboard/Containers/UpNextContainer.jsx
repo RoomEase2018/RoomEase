@@ -111,7 +111,7 @@ class UpNextContainer extends Component {
     else {
       const sortedTasks = this.findUpNext();
       sortedTasks.forEach(el => {
-        console.log('due_date: ', el.due_date);
+        // console.log('due_date: ', el.due_date);
       })
 
       return (

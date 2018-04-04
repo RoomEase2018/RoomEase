@@ -96,6 +96,7 @@ class Navbar extends React.Component {
               checked={checked}
               roommates={roommates}
               selectedDate={selectedDate}
+              handleDate={this.handleDate}
               handleClose={this.handleClose}
               toggleCheckbox={this.toggleCheckbox}
             /> 
