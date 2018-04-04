@@ -27,7 +27,7 @@ const styles = {
 
 class AddExpenseModal extends React.Component {
     render() {
-        const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate, checked, toggleCheckbox } = this.props;
+        const { active, roommates, assignedRoommates, handleClose, selectedDate, handleDate, checked, toggleCheckbox } = this.props;
         return (
             <div className="modal" onClick={handleClose}>
                 <Paper className="form" zDepth={2}>
@@ -50,6 +50,7 @@ class AddExpenseModal extends React.Component {
                     <Dropdown 
                       placeholder='Select Roommate' 
                       options={roommates}
+                      selection
                       multiple  
                     />
                     <br />
@@ -62,6 +63,7 @@ class AddExpenseModal extends React.Component {
                         />
                     </div>
                     <RaisedButton
+                        name="addExpense"
                     //   onClick={handleSubmit}
                       label="Submit"
                       primary={true}
