@@ -1,11 +1,39 @@
 import React, { Component } from "react";
 
-const NextTask = ({ title }) => {
-  return (
-    <div>
-      <p>{title}</p>
-    </div>
-  );
-};
+class NextTask extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			sortedTasks: props.sortedTasks,
+			currentIndex: 0
+		}
+	}
+
+	handlePrevButton = e => {
+		let index = (this.state.currentIndex - 1) % 5;
+		this.setState({
+			currentIndex: index
+		})
+	}
+
+	handleNextButton = e => {
+		let index = (this.state.currentIndex + 1) % 5;
+		this.setState({
+			currentIndex: index
+		})
+	}
+
+	render() {
+		const { handleIndexButton, task } = this.props;
+		return (
+			<div>
+				<p>{task}</p>
+				<button value='previous' onClick={handleIndexButton}>prev</button><button value='next' onClick={handleIndexButton}>next</button>
+			</div>
+		)
+	}
+
+}
 
 export default NextTask;
