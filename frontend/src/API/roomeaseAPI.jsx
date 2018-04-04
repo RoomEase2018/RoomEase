@@ -81,7 +81,7 @@ export const addTask = (apt_id, title, from_user_id, to_user_id, due_date, messa
       due_date: due_date,
       message: message,
       karma: karma,
-      cosst: cost
+      cost: cost
   });
 };
 
