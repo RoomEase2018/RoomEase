@@ -5,9 +5,11 @@ import "../Styles/Navbar.css";
 
 const styles = {
   display: "flex",
+  background: "linear-gradient(to bottom right, #76FF03, #00B0FF)",
   justifyContent: "space-between",
+  marginBottom: "2em",
   alignItems: "center",
-  backgroundColor: "lightcoral",
+  // backgroundColor: "lightcoral",
   width: "100%"
 };
 
@@ -27,7 +29,7 @@ const NavbarComponent = ({ logout, active, handleClick }) => {
              <img
               className="navbar_logo_icon"
               src="https://i.imgur.com/m6bz64S.png"
-              height="70px"
+              height="75px"
             />
           </Link>
         </Menu.Item>
@@ -36,7 +38,7 @@ const NavbarComponent = ({ logout, active, handleClick }) => {
             key={idx}
             name={`${button.name}`}
           >
-            <Link to={`/${button.name}`}>
+            <Link to={`/${button.name}`} style={{color: "#0097A7"}}>
               <Icon link size="large" name={`${button.icon}`} />
               {button.name}
             </Link>

@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import {
 		fetchAllActiveTasks, 
 		fetchAllActiveRecurringTasks, 
-		fetchAllActiveExpenses, 
-		fetchAllActiveRecurringExpenses,
 		fetchAllVisibleNotes,
 		fetchAllApartmentGoals
 	} from "./Actions/DashboardActions";
@@ -20,12 +18,6 @@ const mapDispatchToProps = dispatch => {
     },
     fetchAllActiveRecurringTasks: aptid => {
       dispatch(fetchAllActiveRecurringTasks(aptid));
-    },
-    fetchAllActiveExpenses: userid => {
-      dispatch(fetchAllActiveExpenses(userid))
-    },
-    fetchAllActiveRecurringExpenses: userid => {
-      dispatch(fetchAllActiveRecurringExpenses(userid));
     },
     fetchAllVisibleNotes: aptid => {
     	dispatch(fetchAllVisibleNotes(aptid));
@@ -51,8 +43,6 @@ class Dashboard extends Component {
 
 		props.fetchAllActiveTasks(1);
 		props.fetchAllActiveRecurringTasks(1)
-		props.fetchAllActiveExpenses(1)
-		props.fetchAllActiveRecurringExpenses(1)
 		props.fetchAllVisibleNotes(1)
 		props.fetchAllApartmentGoals(1)
 	}

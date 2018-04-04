@@ -1,14 +1,5 @@
 import axios from "axios";
 
-// fetch expenses
-export const fetchAllActiveUserExpenses = user_id => {
-  return axios.get(`/getRoutes/getActiveExpensesByUser/${user_id}`);
-};
-
-export const fetchAllUserActiveRecurringExpenses = user_id => {
-  return axios.get(`/getRoutes/getActiveRecurringExpensesByUser/${user_id}`);
-};
-
 // fetch tasks
 export const fetchAllActiveApartmentTasks = apt_id => {
   return axios.get(`/getRoutes/getActiveTasks/${apt_id}`);
@@ -21,10 +12,6 @@ export const fetchAllApartmentActiveRecurringTasks = apt_id => {
 // fetch goals
 export const fetchAllApartmentActiveGoals = apt_id => {
   return axios.get(`/getRoutes/getActiveApartmentGoals/${apt_id}`);
-};
-
-export const fetchAllApartmentActiveRecurringGoals = apt_id => {
-  return axios.get(`/getRoutes/goals/recurring/${apt_id}`);
 };
 
 // fetch notes
@@ -85,47 +72,49 @@ export const addUserToApartment = (user_id, apt_id) => {
 };
 
 // add task
-export const addTask = (apt_id, task_name, posted_by_id, assigned_to_id, due_date, message, karma_value) => {
+export const addTask = (apt_id, title, from_user_id, to_user_id, due_date, message, karma, cost) => {
   return axios.post(`/insertRoutes/insertTask`, {
       apt_id: apt_id,
-      task_name: task_name,
-      posted_by_id: posted_by_id,
-      assigned_to_id: assigned_to_id,
+      title: title,
+      from_user_id: from_user_id,
+      to_user_id: to_user_id,
       due_date: due_date,
       message: message,
-      karma_value: karma_value
+      karma: karma,
+      cosst: cost
   });
 };
 
 // mark task as completed
-export const markTaskCompleted = (task_id, apt_id, completed_by_id, karma) => {
+export const markTaskCompleted = (task_id, apt_id, to_user_id, karma) => {
   return axios.post(`/insertRoutes/insertTask`, {
       task_id: task_id,
       apt_id: apt_id,
-      completed_by_id: completed_by_id,
+      to_user_id: to_user_id,
       karma: karma
   });
 };
 
 // add recurring task
-export const addRecurringTask = (apt_id, task_name, posted_by_id, assigned_to_id, due_day, message, karma_value) => {
+export const addRecurringTask = (apt_id, title, from_user_id, to_user_id, due_date_type, due_date, message, karma) => {
   return axios.post(`/insertRoutes/insertRecurringTask`, {
       apt_id: apt_id,
-      task_name: task_name,
-      posted_by_id: posted_by_id,
-      assigned_to_id: assigned_to_id,
-      due_day: due_day,
+      title: title,
+      from_user_id: from_user_id,
+      to_user_id: to_user_id,
+      due_date_type: due_date_type,
+      due_date: due_date,
       message: message,
-      karma_value: karma_value
+      karma: karma
   });
 };
 
 // mark recurring task as completed
-export const markRecurringTaskCompleted = (task_id, apt_id, completed_by_id, karma) => {
+export const markRecurringTaskCompleted = (task_id, apt_id, to_user_id, karma) => {
   return axios.post(`/insertRoutes/insertRecurringTaskCompleted`, {
     task_id: task_id,
     apt_id: apt_id,
-    completed_by_id: completed_by_id,
+    to_user_id: to_user_id,
     karma: karma,
   });
 };
@@ -135,62 +124,6 @@ export const updateActiveRecurringTask = (is_recurring, task_id) => {
   return axios.post(`/insertRoutes/updateRecurringTaskActive`, {
     is_recurring: is_recurring,
     task_id: task_id
-  });
-};
-
-// add expense
-export const addExpense = (is_recurring, task_id) => {
-  return axios.post(`/insertRoutes/insertExpense`, {
-    is_recurring: is_recurring,
-    task_id: task_id
-  });
-};
-
-// add recurring expense
-export const addRecurringExpense = (apt_id, expense_name, message, amount, payer_id, payee_id, due_day, karma_value) => {
-  return axios.post(`/insertRoutes/insertRecurringExpense`, {
-    apt_id: apt_id,
-    expense_name: expense_name,
-    message: message,
-    amount: amount,
-    payer_id: payer_id,
-    payee_id: payee_id,
-    due_day: due_day,
-    karma_value: karma_value
-  });
-};
-
-// update recurring expense
-export const updateRecurringExpense = (is_recurring, expense_id) => {
-  return axios.post(`/insertRoutes/updateRecurringExpenseActive`, {
-    is_recurring: is_recurring,
-    expense_id: expense_id
-  });
-};
-
-// add payment
-export const addPayment = (amount, apt_id, payer_id, payee_id, expense_id, message, karma) => {
-  return axios.post(`/insertRoutes/insertPayment`, {
-    amount: amount,
-    apt_id: apt_id,
-    payer_id: payer_id,
-    payee_id: payee_id,
-    expense_id: expense_id,
-    message: message,
-    karma: karma
-  });
-};
-
-// add recurring payment
-export const addRecurringPayment = (amount, apt_id, payer_id, payee_id, expense_id, message, karma) => {
-  return axios.post(`/insertRoutes/insertRecurringPayment`, {
-    amount: amount, 
-    apt_id: apt_id,
-    payer_id: payer_id,
-    payee_id: payee_id,
-    expense_id: expense_id,
-    message: message,
-    karma: karma
   });
 };
 
