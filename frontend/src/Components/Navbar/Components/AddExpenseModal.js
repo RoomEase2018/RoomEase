@@ -38,8 +38,8 @@ class AddExpenseModal extends React.Component {
                     />
                     <TextField
                       name="description"
-                      hintText="Enter expense description"
-                      floatingLabelText="Description"
+                      hintText="Amount"
+                      floatingLabelText="Amount"
                     />
                     <br />
                     <DatePicker 
