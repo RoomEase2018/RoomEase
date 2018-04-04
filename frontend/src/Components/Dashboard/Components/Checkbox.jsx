@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Checkbox = ({ karma }) => {
-    return(
-        <div className="checkbox" id="checkbox" >
-            <input type="checkbox" name="completed" value="false"/>
-            Done
-        </div>
-    )
+class Checkbox extends Component {
+
+	render() {
+		return (
+			<div className="checkbox" id="checkbox" >
+          <input type="checkbox" name="completed" value="false" onClick={this.props.handleCompletedCheckbox} />
+          Completed
+      </div>
+		)
+	}
 }
+
 
 export default Checkbox;

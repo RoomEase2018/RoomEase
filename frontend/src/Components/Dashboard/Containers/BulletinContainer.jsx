@@ -29,7 +29,7 @@ class Bulletin extends Component {
 
   render() {
     const { notes } = this.props
-    console.log(notes);
+    // console.log(notes);
     return (
       <div>
         <div
