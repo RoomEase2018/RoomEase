@@ -42,9 +42,9 @@ class Dashboard extends Component {
 		super(props);
 
 		props.fetchAllActiveTasks(1);
-		props.fetchAllActiveRecurringTasks(1)
-		props.fetchAllVisibleNotes(1)
-		props.fetchAllApartmentGoals(1)
+		props.fetchAllActiveRecurringTasks(1);
+		props.fetchAllVisibleNotes(1);
+		props.fetchAllApartmentGoals(1);
 	}
 
   render() {
