@@ -27,25 +27,25 @@ const styles = {
 };
 
 const tasks = [
-    {title: "Take out trash", KP: 5},
-    {title: "Clean the dishes", KP: 5},
-    {title: "Sweep the house", KP: 10},
-    {title: "Clean the kitchen", KP: 15},
-    {title: "Mop the floor", KP: 15},
-    {title: "Clean the bathroom", KP: 25},
+    { key: 1, value: "Take out trash", text: "Take out trash", KP: 5 },
+    { key: 2, value: "Clean the dishes", text: "Clean the dishes", KP: 5 },
+    { key: 3, value: "Sweep the house", text: "Sweep the house", KP: 10 },
+    { key: 4, value: "Clean the kitchen", text: "Clean the kitchen", KP: 15 },
+    { key: 5, value: "Mop the floor", text: "Mop the floor", KP: 15 },
+    { key: 6, value: "Clean the bathroom", text: "Clean the bathroom", KP: 25 },
 ];
 
 class AddTaskModal extends React.Component {
     render() {
-        const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate } = this.props;
+        const { active, task, roommates, assignedRoommates, handleClose, handleChange, selectedDate, handleDate } = this.props;
         return (
             <div className="modal" onClick={handleClose}>
                 <Paper className="form" zDepth={2}>
-                    {/* <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-                        {tasks.map(task => (
-                            <MenuItem value="" primaryText={task.title} />
-                        ))}
-                    </DropDownMenu> */}
+                    <Dropdown 
+                        onChange={handleChange}
+                        placeholder='Select task' 
+                        fluid selection options={tasks} 
+                    />
                     <TextField
                       name="title"
                       hintText="Enter task"
@@ -53,6 +53,8 @@ class AddTaskModal extends React.Component {
                     />
                     <TextField
                       name="description"
+                      value={task.description}
+                      onChange={handleChange}
                       hintText="Enter task description"
                       floatingLabelText="Description"
                     />
@@ -65,10 +67,12 @@ class AddTaskModal extends React.Component {
                     <Dropdown 
                         placeholder='Select Roommate' 
                         options={roommates}
+                        selection
                         multiple  
                     />
                     <br />
                     <RaisedButton
+                        name="addTask"
                         label="Submit"
                         primary={true}
                         icon={<ActionDone />}

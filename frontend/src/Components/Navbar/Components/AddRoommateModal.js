@@ -25,33 +25,24 @@ const styles = {
 
 class AddRoommateModal extends React.Component {
     render() {
-        const { active, roommates, assignedRoommate, handleClose, selectedDate, handleDate } = this.props;
+        const { active, handleClose, handleSubmit } = this.props;
         return (
             <div className="modal" onClick={handleClose}>
                 <Paper className="form" zDepth={2}>
-                    <TextField
-                      name="title"
-                      hintText="Enter task"
-                      floatingLabelText="Task"
+                    <Dropdown 
+                        placeholder='Search Roommate' 
+                        search
+                        fluid
                     />
+                    <br />
                     <TextField
                       name="description"
-                      hintText="Enter task description"
-                      floatingLabelText="Description"
-                    />
-                    <br />
-                    <DatePicker 
-                        hintText="Select a due date"
-                        value={selectedDate}
-                        onChange={handleDate} />
-                    <br />
-                    <Dropdown 
-                        placeholder='Select Roommate' 
-                        options={roommates}
-                        multiple  
+                      hintText="Send a message"
+                      floatingLabelText="Message"
                     />
                     <br />
                     <RaisedButton
+                        name="addRoommate"
                         label="Submit"
                         primary={true}
                         icon={<ActionDone />}
