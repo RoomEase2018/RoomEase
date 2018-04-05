@@ -1,23 +1,26 @@
-@import "../../sassStyles";
+@import "../../sassStyles.scss";
 
 .dashboard {
     display: grid;
     justify-items: center;
     grid-row-gap: 20px;
+
     .up_next {
         background-color: white;
-        border: 1px black solid;
+        border: $all-borders;
         height: 200px;
-        width: 900px;
+        width: 1000px;
         display: grid;
         align-items: center;
         justify-items: center;
-        grid-template-columns: auto 100px 650px 150px auto;
+        grid-template-columns: auto 100px 750px 150px auto;
         grid-template-areas: ". progress_bar next_task checkbox .";
+        box-shadow: $all-box-shadow;
         .progress_bar {
             grid-area: progress_bar;
             height: 100px;
             width: 100px;
+            padding-left: 10px;
         }
         .next_task {
             grid-area: next_task;
@@ -25,6 +28,17 @@
             text-align: center;
             line-height: 1em;
             width: 600px;
+            p {
+                margin: 0;
+                text-shadow: 1px 1px 3px #888;
+            }
+            button {
+                border: none;
+                margin: 0 10px;
+            }
+            button:focus {
+                outline: none;
+            }
         }
         .checkbox {
             grid-area: checkbox;
@@ -39,33 +53,63 @@
             }
         }
     }
-    .rbc-calendar {
-        width: 900px;
-        .rbc-time-view {
-            border: none;
-            .rbc-time-content {
-                display: none;
+
+    .calendar {
+        .rbc-calendar {
+            width: 900px;
+            .rbc-toolbar {
+                .rbc-btn-group {
+                    background-color: white;
+                    background-clip: padding-box;
+                }
             }
-            .rbc-time-header {
-                border: 1px solid grey;
+            .rbc-time-view {
+                .rbc-time-header {
+                    border: $all-borders;
+                    box-shadow: $all-box-shadow;
+                    background-color: white;
+                    .rbc-label {
+                        padding: 0;
+                    }
+                    .rbc-time-header-content {
+                        .rbc-row {
+                            .rbc-today {
+                            }
+                        }
+                    }
+                }
+                .rbc-time-content {
+                    display: none;
+                }
+            }
+            .rbc-month-view {
+                height: 500px;
+                background-color: white;
+                box-shadow: $all-box-shadow;
+            }
+            .rbc-agenda-view {
+                background-color: white;
+                box-shadow: $all-box-shadow;
             }
         }
     }
-    .rbc-month-view {
-        height: 500px;
+    .bulletin {
+        height: 650px;
+        width: 900px;
+        border: $bulletin-border;
+        background-image: url('https://i.imgur.com/j3tBLzp.jpg');
+        box-shadow: $all-box-shadow;
+        .note {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            border: 1px black solid;
+        }
     }
 }
 
 
-.note {
-	position: relative;
-	width: 150px;
-	height: 150px;
-	background-color: yellow;
-	border: 1px black solid;
-}
-
 .invisible {
-	opacity: 0;
+    opacity: 0;
 }
-

@@ -1,8 +1,10 @@
-@import '../../sassStyles'; 
+@import '../../sassStyles.scss'; 
 
 .footer {
     text-align: center;
-    background-color: $banner-color;
+    background-color: $header-footer-banner-color;
     line-height: 5em;
-    width: 100%;
+    width: 100%;   
+    color: $header-footer-text-color;
+    margin-top: 30px;
 }

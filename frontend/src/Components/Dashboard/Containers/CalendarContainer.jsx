@@ -15,7 +15,7 @@ class CalendarContainer extends Component {
   render() {
     const tasks = [...this.props.tasks, ...this.props.recurringTasks]
     return (
-      <div className="up_next">
+      <div className="calendar">
         <Calendar tasks={this.props.tasks} />
       </div>
     );

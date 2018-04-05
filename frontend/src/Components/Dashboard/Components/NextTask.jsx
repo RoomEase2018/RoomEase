@@ -1,39 +1,43 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 class NextTask extends Component {
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props)
 
-		this.state = {
-			sortedTasks: props.sortedTasks,
-			currentIndex: 0
-		}
-	}
+        this.state = {
+            sortedTasks: props.sortedTasks,
+            currentIndex: 0
+        }
+    }
 
-	handlePrevButton = e => {
-		let index = (this.state.currentIndex - 1) % 5;
-		this.setState({
-			currentIndex: index
-		})
-	}
+    handlePrevButton = e => {
+        let index = (this.state.currentIndex - 1) % 5
+        this.setState({
+            currentIndex: index
+        })
+    }
 
-	handleNextButton = e => {
-		let index = (this.state.currentIndex + 1) % 5;
-		this.setState({
-			currentIndex: index
-		})
-	}
+    handleNextButton = e => {
+        let index = (this.state.currentIndex + 1) % 5
+        this.setState({
+            currentIndex: index
+        })
+    }
 
-	render() {
-		const { handleIndexButton, task } = this.props;
-		return (
-			<div>
-				<p>{task}</p>
-				<button value='previous' onClick={handleIndexButton}>prev</button><button value='next' onClick={handleIndexButton}>next</button>
-			</div>
-		)
-	}
-
+    render() {
+        const { handleIndexButton, task } = this.props
+        return (
+            <div className="next_task" id="next-task">
+                <p>{task}</p>
+                <button value="previous" onClick={handleIndexButton}>
+				←
+                </button>
+                <button value="next" onClick={handleIndexButton}>
+				→
+                </button>
+            </div>
+        )
+    }
 }
 
-export default NextTask;
+export default NextTask

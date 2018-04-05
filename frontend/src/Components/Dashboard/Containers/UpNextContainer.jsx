@@ -171,9 +171,7 @@ class UpNextContainer extends Component {
       return (
         <div className="up_next">
           <Progressbar karma={this.sortedTasks[index].karma} />
-          <div className="next_task" id="next-task">
-            <NextTask task={this.sortedTasks[index].title} handleIndexButton={this.handleIndexButton} />
-          </div>
+          <NextTask task={this.sortedTasks[index].title} handleIndexButton={this.handleIndexButton} />
           <Checkbox handleCompletedCheckbox={this.handleCompletedCheckbox} />
         </div>
       ); 
