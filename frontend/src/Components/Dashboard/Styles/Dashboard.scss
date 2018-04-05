@@ -9,12 +9,13 @@
         background-color: white;
         border: $all-borders;
         height: 200px;
-        width: 900px;
+        width: 1000px;
         display: grid;
         align-items: center;
         justify-items: center;
-        grid-template-columns: auto 100px 650px 150px auto;
+        grid-template-columns: auto 100px 750px 150px auto;
         grid-template-areas: ". progress_bar next_task checkbox .";
+        box-shadow: $all-box-shadow;
         .progress_bar {
             grid-area: progress_bar;
             height: 100px;
@@ -29,6 +30,7 @@
             width: 600px;
             p {
                 margin: 0;
+                text-shadow: 1px 1px 3px #888;
             }
             button {
                 border: none;
@@ -55,9 +57,17 @@
     .calendar {
         .rbc-calendar {
             width: 900px;
+            .rbc-toolbar {
+                .rbc-btn-group {
+                    background-color: white;
+                    background-clip: padding-box;
+                }
+            }
             .rbc-time-view {
                 .rbc-time-header {
                     border: $all-borders;
+                    box-shadow: $all-box-shadow;
+                    background-color: white;
                     .rbc-label {
                         padding: 0;
                     }
@@ -74,10 +84,12 @@
             }
             .rbc-month-view {
                 height: 500px;
-
+                background-color: white;
+                box-shadow: $all-box-shadow;
             }
             .rbc-agenda-view {
-
+                background-color: white;
+                box-shadow: $all-box-shadow;
             }
         }
     }
@@ -86,6 +98,7 @@
         width: 900px;
         border: $bulletin-border;
         background-image: url('https://i.imgur.com/j3tBLzp.jpg');
+        box-shadow: $all-box-shadow;
         .note {
             position: relative;
             width: 150px;

@@ -5,14 +5,15 @@
 
 .dashboard .up_next {
   background-color: white;
-  border: 2px solid #ccc;
+  border: 1px solid #283F3B;
   height: 200px;
-  width: 900px;
+  width: 1000px;
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: auto 100px 650px 150px auto;
-  grid-template-areas: ". progress_bar next_task checkbox ."; }
+  grid-template-columns: auto 100px 750px 150px auto;
+  grid-template-areas: ". progress_bar next_task checkbox .";
+  box-shadow: 2px 2px 10px black; }
 
 .dashboard .up_next .progress_bar {
   grid-area: progress_bar;
@@ -28,7 +29,8 @@
   width: 600px; }
 
 .dashboard .up_next .next_task p {
-  margin: 0; }
+  margin: 0;
+  text-shadow: 1px 1px 3px #888; }
 
 .dashboard .up_next .next_task button {
   border: none;
@@ -52,8 +54,14 @@
 .dashboard .calendar .rbc-calendar {
   width: 900px; }
 
+.dashboard .calendar .rbc-calendar .rbc-toolbar .rbc-btn-group {
+  background-color: white;
+  background-clip: padding-box; }
+
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header {
-  border: 2px solid #ccc; }
+  border: 1px solid #283F3B;
+  box-shadow: 2px 2px 10px black;
+  background-color: white; }
 
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header .rbc-label {
   padding: 0; }
@@ -62,13 +70,20 @@
   display: none; }
 
 .dashboard .calendar .rbc-calendar .rbc-month-view {
-  height: 500px; }
+  height: 500px;
+  background-color: white;
+  box-shadow: 2px 2px 10px black; }
+
+.dashboard .calendar .rbc-calendar .rbc-agenda-view {
+  background-color: white;
+  box-shadow: 2px 2px 10px black; }
 
 .dashboard .bulletin {
   height: 650px;
   width: 900px;
   border: #c97e14 10px solid;
-  background-image: url("https://i.imgur.com/j3tBLzp.jpg"); }
+  background-image: url("https://i.imgur.com/j3tBLzp.jpg");
+  box-shadow: 2px 2px 10px black; }
 
 .dashboard .bulletin .note {
   position: relative;
