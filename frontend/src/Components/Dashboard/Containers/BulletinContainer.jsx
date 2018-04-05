@@ -31,7 +31,6 @@ class Bulletin extends Component {
     const { notes } = this.props
     // console.log(notes);
     return (
-      <div>
         <div
           style={{
             height: "600px",
@@ -49,7 +48,6 @@ class Bulletin extends Component {
             />
           ))}
         </div>
-      </div>
     );
   }
 }

@@ -1,9 +1,10 @@
-@import "../../sassStyles";
+@import "../../sassStyles.scss";
 
 .dashboard {
     display: grid;
     justify-items: center;
     grid-row-gap: 20px;
+
     .up_next {
         background-color: white;
         border: 1px black solid;
@@ -39,33 +40,36 @@
             }
         }
     }
-    .rbc-calendar {
-        width: 900px;
-        .rbc-time-view {
-            border: none;
-            .rbc-time-content {
-                display: none;
+
+    .calendar {
+        .rbc-calendar {
+            width: 900px;
+            .rbc-time-view {
+                border: none;
+                .rbc-time-header {
+                    border: 1px solid grey;
+                }
+                .rbc-time-content {
+                    display: none;
+                }
             }
-            .rbc-time-header {
-                border: 1px solid grey;
+            .rbc-month-view {
+                height: 500px;
+            }
+            .rbc-agenda-view {
             }
         }
     }
-    .rbc-month-view {
-        height: 500px;
-    }
 }
 
-
 .note {
-	position: relative;
-	width: 150px;
-	height: 150px;
-	background-color: yellow;
-	border: 1px black solid;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+    border: 1px black solid;
 }
 
 .invisible {
-	opacity: 0;
+    opacity: 0;
 }
-
