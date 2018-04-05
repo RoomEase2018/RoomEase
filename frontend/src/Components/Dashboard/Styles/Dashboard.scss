@@ -44,10 +44,23 @@
     .calendar {
         .rbc-calendar {
             width: 900px;
+            -moz-transition: height .5s;
+            -ms-transition: height .5s;
+            -o-transition: height .5s;
+            -webkit-transition: height .5s;
+            transition: height .5s;
             .rbc-time-view {
-                border: none;
                 .rbc-time-header {
                     border: 1px solid grey;
+                    .rbc-label {
+                        padding: 0;
+                    }
+                    .rbc-time-header-content {
+                        .rbc-row {
+                            .rbc-today {
+                            }
+                        }
+                    }
                 }
                 .rbc-time-content {
                     display: none;
@@ -55,20 +68,29 @@
             }
             .rbc-month-view {
                 height: 500px;
+
             }
             .rbc-agenda-view {
+
             }
+        }
+    }
+    .bulletin {
+        height: 650px;
+        width: 900px;
+        border: rgb(201, 126, 20) 10px solid;
+        // background-color: rgb(219, 197, 100);
+        background-image: url('https://i.imgur.com/j3tBLzp.jpg');
+        .note {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            border: 1px black solid;
         }
     }
 }
 
-.note {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    background-color: yellow;
-    border: 1px black solid;
-}
 
 .invisible {
     opacity: 0;

@@ -39,13 +39,18 @@
   margin-right: 5px; }
 
 .dashboard .calendar .rbc-calendar {
-  width: 900px; }
-
-.dashboard .calendar .rbc-calendar .rbc-time-view {
-  border: none; }
+  width: 900px;
+  -moz-transition: height .5s;
+  -ms-transition: height .5s;
+  -o-transition: height .5s;
+  -webkit-transition: height .5s;
+  transition: height .5s; }
 
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header {
   border: 1px solid grey; }
+
+.dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header .rbc-label {
+  padding: 0; }
 
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-content {
   display: none; }
@@ -53,7 +58,13 @@
 .dashboard .calendar .rbc-calendar .rbc-month-view {
   height: 500px; }
 
-.note {
+.dashboard .bulletin {
+  height: 650px;
+  width: 900px;
+  border: #c97e14 10px solid;
+  background-image: url("https://i.imgur.com/j3tBLzp.jpg"); }
+
+.dashboard .bulletin .note {
   position: relative;
   width: 150px;
   height: 150px;
