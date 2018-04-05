@@ -13,9 +13,6 @@ class Note extends Component {
 
 	render() {
 		const { message, index } = this.props;
-		// return (
-		// 	<div>hello world</div>
-		// )
 
 		if (message === null) {
 			return (

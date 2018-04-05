@@ -5,9 +5,11 @@ import "../Styles/Navbar.css";
 
 const styles = {
   display: "flex",
+  // background: "linear-gradient(to bottom right, #76FF03, #00B0FF)",
   justifyContent: "space-between",
+  marginBottom: "2em",
   alignItems: "center",
-  backgroundColor: "lightcoral",
+  backgroundColor: "#283F3B", // 310A31 // 0B5D1E // 053B06
   width: "100%"
 };
 
@@ -27,7 +29,7 @@ const NavbarComponent = ({ logout, active, handleClick }) => {
              <img
               className="navbar_logo_icon"
               src="https://i.imgur.com/m6bz64S.png"
-              height="70px"
+              height="75px"
             />
           </Link>
         </Menu.Item>
@@ -36,7 +38,7 @@ const NavbarComponent = ({ logout, active, handleClick }) => {
             key={idx}
             name={`${button.name}`}
           >
-            <Link to={`/${button.name}`}>
+            <Link to={`/${button.name}`} style={{color: "#F0EFF4"}}>
               <Icon link size="large" name={`${button.icon}`} />
               {button.name}
             </Link>
@@ -45,7 +47,7 @@ const NavbarComponent = ({ logout, active, handleClick }) => {
         </Menu>
 
         <div style={{marginRight: "2em"}}>
-          <Dropdown icon="plus" size="large" direction="left" style={{marginRight: "1em"}} floating>
+          <Dropdown icon="plus" size="large" direction="left" style={{marginRight: "1em", color: "#F0EFF4"}} floating>
             <Dropdown.Menu>
               <Dropdown.Item
                 label={<Icon name="add to calendar" color="red" />}
@@ -77,7 +79,7 @@ const NavbarComponent = ({ logout, active, handleClick }) => {
           </Dropdown.Menu>
         </Dropdown>
 
-        <Dropdown icon="setting" size="large" floating direction="left">
+        <Dropdown icon="setting" size="large" style={{color: "#F0EFF4"}} floating direction="left">
           <Dropdown.Menu>
             <Dropdown.Item
               label={<Icon name="setting" color="blue" />}

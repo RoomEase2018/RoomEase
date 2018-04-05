@@ -3,61 +3,65 @@ import moment from "moment";
 import BigCalendar from "react-big-calendar";
 import styles from "react-big-calendar/lib/css/react-big-calendar.css";
 
+// BigCalendar.momentLocalizer(moment);
+
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
 
-// let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
+let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k]);
 
 class Calendar extends Component {
-  //faux events for render
-  events = [
-    {
-      id: 0,
-      title: "All Day 1",
-      allDay: true,
-      start: new Date(2015, 3, 0),
-      end: new Date(2015, 3, 0)
-    },
-    {
-      id: 1,
-      title: "All Day 2",
-      allDay: true,
-      start: new Date(2015, 3, 1),
-      end: new Date(2015, 3, 1)
-    },
-    {
-      id: 1,
-      title: "All Day 2",
-      allDay: true,
-      start: new Date(2015, 3, 1),
-      end: new Date(2015, 3, 1)
-    },
-    {
-      id: 2,
-      title: "All Day 3",
-      allDay: true,
-      start: new Date(2015, 3, 1),
-      end: new Date(2015, 3, 1)
-    },
-    {
-      id: 3,
-      title: "Long Event",
-      start: new Date(2015, 3, 7),
-      end: new Date(2015, 3, 10)
+  constructor() {
+    super();
+
+    this.state = {
+      events: [{
+        id: 1,
+        title: 'test',
+        allDay: true,
+        start: new Date(2018, 3, 4),
+        end: new Date(2018, 3, 5)
+      }]
     }
-  ];
+  }
+
+  ComponentWillMount() {
+  }
 
   render() {
-    const { tasks } = this.props;
-    return (
-      <BigCalendar
-        events={this.events}
-        views={["week", "month", "agenda"]}
-        defaultView={"week"}
-        step={60}
-        showMultiDayTimes
-        defaultDate={new Date(2015, 3, 1)}
-      />
-    );
+    const { events } = this.state;
+    if (!this.props.tasks) {
+      console.log('loading');
+      return (
+        <div>loading</div>
+      )
+    } 
+    else {
+      console.log(this.props.tasks);
+      if (events.length !== this.props.tasks.length) {
+        let newEvents = [];
+        this.props.tasks.forEach(task => {
+          newEvents.push({
+            title: task.title,
+            allDay: true,
+            start: new Date(task.due_date),
+            end: new Date(task.due_date)
+          })
+        })
+        this.setState({
+          events: newEvents
+        })
+      }
+      return (
+        <BigCalendar
+          events={this.state.events}
+          views={["week", "month", "agenda"]}
+          defaultView={"week"}
+          step={60}
+          showMultiDayTimes
+          defaultDate={new Date()}
+        />
+      );
+    }
   }
 }
 

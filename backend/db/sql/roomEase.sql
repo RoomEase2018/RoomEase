@@ -1,4 +1,4 @@
-aDROP DATABASE IF EXISTS roomease;
+DROP DATABASE IF EXISTS roomease;
 CREATE DATABASE roomease;
 
 \c roomease;
@@ -32,11 +32,12 @@ CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL, 
   title VARCHAR NOT NULL,
-  posted_by_id INTEGER REFERENCES users (id) NOT NULL,
-  assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
-  due_date DATE NOT NULL,
   message VARCHAR,
-  karma_value INTEGER NOT NULL,
+  from_user_id INTEGER REFERENCES users (id) NOT NULL,
+  to_user_id INTEGER REFERENCES users (id) NOT NULL,
+  due_date DATE NOT NULL,
+  karma INTEGER NOT NULL,
+  cost INTEGER DEFAULT 0,
   created_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -44,7 +45,7 @@ CREATE TABLE tasks_completed (
   id SERIAL PRIMARY KEY,
   task_id INTEGER REFERENCES tasks (id) NOT NULL,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  completed_by_id INTEGER REFERENCES users (id) NOT NULL,
+  to_user_id INTEGER REFERENCES users (id) NOT NULL,
   karma INTEGER NOT NULL,
   completed_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
 );
@@ -53,15 +54,14 @@ CREATE TABLE tasks_recurring (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL, 
   title VARCHAR NOT NULL,
-  posted_by_id INTEGER REFERENCES users (id) NOT NULL,
-  assigned_to_id INTEGER REFERENCES users (id) NOT NULL,
-  -- gender CHAR(1) CHECK (gender='M' OR gender='F') NOT NULL,
-
+  message VARCHAR,
+  from_user_id INTEGER REFERENCES users (id) NOT NULL,
+  to_user_id INTEGER REFERENCES users (id) NOT NULL,
   due_date_type TEXT CHECK(due_date_type='day' OR due_date_type='week' OR due_date_type='month') NOT NULL,
   due_date INTEGER NOT NULL,
-  message VARCHAR,
   is_recurring BOOLEAN DEFAULT TRUE,
-  karma_value INTEGER NOT NULL,
+  karma INTEGER NOT NULL,
+  cost INTEGER DEFAULT 0,
   created_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -69,68 +69,16 @@ CREATE TABLE tasks_recurring_completed (
   id SERIAL PRIMARY KEY,
   task_id INTEGER REFERENCES tasks_recurring (id) NOT NULL,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  completed_by_id INTEGER REFERENCES users (id) NOT NULL,
+  to_user_id INTEGER REFERENCES users (id) NOT NULL,
   karma INTEGER NOT NULL,
   completed_timestamp timestamp DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE expenses (
-  id SERIAL PRIMARY KEY,
-  apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  title VARCHAR NOT NULL,
-  message VARCHAR,
-  amount DECIMAL NOT NULL,
-  payer_id INTEGER REFERENCES users (id),
-  payee_id INTEGER REFERENCES users (id),
-  due_date DATE NOT NULL,
-  karma_value INTEGER NOT NULL,
-  created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE payments_expenses (
-  id SERIAL PRIMARY KEY,
-  amount DECIMAL NOT NULL,
-  apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  payer_id INTEGER REFERENCES users (id) NOT NULL,
-  payee_id INTEGER REFERENCES users (id) NOT NULL,
-  expense_id INTEGER REFERENCES expenses (id) NOT NULL,
-  message VARCHAR,
-  karma INTEGER NOT NULL,
-  created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE expenses_recurring (
-  id SERIAL PRIMARY KEY,
-  apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  title VARCHAR NOT NULL,
-  message VARCHAR,
-  amount DECIMAL NOT NULL,
-  payer_id INTEGER REFERENCES users (id),
-  payee_id INTEGER REFERENCES users (id),
-  due_date_type TEXT CHECK(due_date_type='day' OR due_date_type='week' OR due_date_type='month') NOT NULL,
-  due_date INTEGER NOT NULL,
-  is_recurring BOOLEAN DEFAULT TRUE,
-  karma_value INTEGER NOT NULL,
-  created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE payments_recurring_expenses (
-  id SERIAL PRIMARY KEY,
-  amount DECIMAL NOT NULL,
-  apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  payer_id INTEGER REFERENCES users (id) NOT NULL,
-  payee_id INTEGER REFERENCES users (id) NOT NULL,
-  expense_id INTEGER REFERENCES expenses_recurring (id) NOT NULL,
-  message VARCHAR,
-  karma INTEGER NOT NULL,
-  created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE bulletin_notes (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  posted_by INTEGER REFERENCES users (id) NOT NULL,
-  note VARCHAR NOT NULL,
+  from_user_id INTEGER REFERENCES users (id) NOT NULL,
+  message VARCHAR NOT NULL,
   is_visible BOOLEAN DEFAULT TRUE,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -138,11 +86,11 @@ CREATE TABLE bulletin_notes (
 CREATE TABLE goals_apartment (
   id SERIAL PRIMARY KEY,
   apt_id INTEGER REFERENCES apartments (id) NOT NULL,
-  posted_by INTEGER REFERENCES users (id) NOT NULL,
+  from_user_id INTEGER REFERENCES users (id) NOT NULL,
   title VARCHAR NOT NULL,
-  note VARCHAR,
+  message VARCHAR,
   is_recurring BOOLEAN DEFAULT FALSE,
-  karma_cost INTEGER NOT NULL,
+  karma INTEGER NOT NULL,
   created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

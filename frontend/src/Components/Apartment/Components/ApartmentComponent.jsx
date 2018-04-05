@@ -1,7 +1,7 @@
 import React from "react";
 
 const ApartmentComponent = ({ info }) => {
-    console.log(info)
+    // console.log(info)
   return (
     <div>
       {info ? (

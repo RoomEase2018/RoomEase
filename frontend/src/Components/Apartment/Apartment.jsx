@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
+import GoalsContainer from "./Containers/GoalsContainer";
+
 import ApartmentComponent from "./Components/ApartmentComponent";
 import Banner from "./Components/Banner";
 import { fetchAllApartmentInfo } from "./Actions/ApartmentActions";
@@ -27,6 +30,7 @@ class Apartment extends Component {
     return (
       <div>
         <Banner info={this.props.apartmentInfo} />
+        <GoalsContainer />
         <ApartmentComponent info={this.props.apartmentInfo}/>
       </div>
     );

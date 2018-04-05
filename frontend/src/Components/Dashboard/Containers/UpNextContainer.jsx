@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Progressbar from "../Components/Progressbar";
 import Checkbox from "../Components/Checkbox";
 import NextTask from "../Components/NextTask";
+import axios from "axios";
+
 
 const mapStateToProps = state => {
   return {
@@ -19,14 +21,43 @@ class UpNextContainer extends Component {
   constructor() {
     super();
 
+    this.sortedTasks = []
+
     this.state = {
-      nextTask: 'eat some chocolate',
-      karma: 100
+      index: 0,
+      isSorted: false,
+      completed: false
     }
   }
 
-  handleCheckbox = () => {
+  handleCompletedCheckbox = () => {
+    const taskCompleted = this.sortedTasks[this.state.index];
+    let link;
+    if (taskCompleted.is_recurring) {
+      link = `/insertRoutes/insertRecurringTaskCompleted`;
+    }
+    else {
+      link = `/insertRoutes/insertTaskCompleted`
+    }
 
+    axios
+      .post(link, {
+        task_id: taskCompleted.id,
+        apt_id: taskCompleted.apt_id,
+        to_user_id: taskCompleted.to_user_id,
+        karma: taskCompleted.karma
+      })
+      .then(res => {
+        // console.log(this.sortedTasks)
+        this.sortedTasks.splice(this.state.index, 1);
+        // console.log(this.sortedTasks)
+        this.setState({
+          isSorted: false,
+        })
+      })
+      .catch(err => {
+        //some err message
+      })
   }
 
   getRecurringDate = (type, day) => {
@@ -56,93 +87,94 @@ class UpNextContainer extends Component {
     }
   }
 
-  findNextRecurring = arr => {
-    let nextRecurring;
-
+  addDueDateToRecurring = arr => {
+    let array = [];
     arr.forEach(el => {
-      let due_date = this.getRecurringDate(el.due_date_type, el.due_date);
-      if (!nextRecurring || due_date < nextRecurring.due_date) {
-        nextRecurring = {
-          next: el,
-          due_date
-        }
-      }
+      array.push({...el, due_date: this.getRecurringDate(el.due_date_type, el.due_date)});
     })
-    return {...nextRecurring.next, due_date: nextRecurring.due_date};
+    return array;
   }
 
-  findUpNext = () => {
-    const { tasks, recurringTasks, expenses, recurringExpenses, goals } = this.props;
+  sortTasks = () => {
+    let tasks, recurringTasks, goals;
+    let tasksArray = [];
 
-    let dueDateArr = [];
-    let dueDateRecurringArr = [];
+    if (this.state.completed) {
+      tasksArray = this.sortedTasks;
+    }
+    else {
+      const { tasks, recurringTasks, goals } = this.props;
 
-    if (tasks.length > 0) {
-      dueDateArr.push(tasks[0].due_date);
-    }
-    if (expenses[0]) {
-      dueDateArr.push(expenses[0].due_date)
-    }
-    if (recurringTasks.length > 0) {
-      recurringTasks.forEach(task => {
-        dueDateRecurringArr.push(task);
-      })
-    }
-    if (recurringExpenses.length > 0) {
-      recurringExpenses.forEach(expenses => {
-        dueDateRecurringArr.push(expenses);
-      }) 
-    }
-
-    if (dueDateArr.length === 0 && dueDateRecurringArr.length === 0) {
-      return null;
-    }
-
-    let next;
-    let nextRecurring;
-
-    if (dueDateArr.length > 0) {
-      next = dueDateArr.reduce((acc, el) => {
-        return el.due_date < acc.due_date ? el : acc;
-      })
-    } 
-
-    if (dueDateRecurringArr.length > 0) {
-      nextRecurring = this.findNextRecurring(dueDateRecurringArr);
-    }
-
-    if (next && nextRecurring) {
-      return next.due_date < nextRecurring.due_date ? next : nextRecurring;
-    }
+      if (tasks.length) {
+        tasksArray = [...tasksArray, ...tasks];
+      }
+      if (recurringTasks.length) {
+        tasksArray = [...tasksArray, ...this.addDueDateToRecurring(recurringTasks)];
+      }
     
-    return next ? next : nextRecurring;
 
+      tasksArray.sort((a, b) => {
+        return new Date(a.due_date) - new Date(b.due_date);
+      })
+
+      this.sortedTasks = tasksArray
+    }
+
+    this.setState({
+      isSorted: true,
+      completed: true
+    })
   }
 
+  handleIndexButton = e => {
+    let newIndex;
+    const len = this.sortedTasks.length;
+    const { index } = this.state;
+    if (len > 5) {
+      if (e.target.value === 'next') {
+        newIndex = (5 + index + 1) % 5;
+      } else {
+        newIndex = (5 + index - 1) % 5;
+      }
+    } else {
+      if (e.target.value === 'next') {
+        newIndex = index + (len - index + 1) % len;
+      } else {
+        newIndex = index + (len - index - 1) % len;
+      }
+    }
+
+    this.setState({
+      index: newIndex
+    })
+  }
 
   render() {
     const { tasks, recurringTasks, expenses, recurringExpenses, goals, successQueries } = this.props;
-    // console.log(tasks, recurringTasks, expenses, recurringExpenses, goals, counter, successQueries );
-    console.log(successQueries)
+    // console.log('rerender', this.state);
 
-    if (!successQueries.fetchAllActiveExpenses || 
-      !successQueries.fetchAllActiveTasks ||
-      !successQueries.fetchAllActiveRecurringExpenses || 
+    if ( !successQueries.fetchAllActiveTasks ||
       !successQueries.fetchAllActiveRecurringTasks ||
       !successQueries.fetchAllApartmentGoals 
       ) {
       return (<div className="up_next"><p>loading</p></div>)
     } 
+    else if (this.state.isSorted === false) {
+      this.sortTasks();
+      return (
+        <div>loading</div>
+      )
+    }
     else {
-      const next = this.findUpNext();
-      console.log(next);
+      const { index } = this.state;
+      // console.log(this.state, this.sortedTasks)
       return (
         <div className="up_next">
-          <Progressbar karma={next.karma_value} />
+          <Progressbar karma={this.sortedTasks[index].karma} />
           <div className="next_task" id="next-task">
-            <NextTask title={next.title} />
+            <NextTask task={this.sortedTasks[index].title} handleIndexButton={this.handleIndexButton} />
           </div>
-          <Checkbox handleCheckbox={this.handleCheckbox} />
+          <Checkbox handleCompletedCheckbox={this.handleCompletedCheckbox} />
         </div>
       ); 
     }

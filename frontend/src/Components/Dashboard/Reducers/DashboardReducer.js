@@ -6,14 +6,12 @@ import {
   SET_ALL_VISIBLE_NOTES,
   SET_ALL_ACTIVE_GOALS,
   PUSH_SUCCESS_QUERY_ARRAY
-
+  
 } from "../Actions/DashboardActions";
 
 const defaultState = {
   tasks: [],
   recurringTasks: [],
-  expenses: [],
-  recurringExpenses: [],
   notes: [],
   goals: [],
   successQueries: {}
@@ -29,16 +27,6 @@ export default (state = defaultState, action) => {
     case SET_ALL_ACTIVE_RECURRING_TASKS:
       return {...state,
         recurringTasks: action.tasks
-      }
-
-    case SET_ALL_ACTIVE_EXPENSES:
-      return {...state,
-        expenses: action.expenses
-      }
-
-    case SET_ALL_ACTIVE_RECURRING_EXPENSES:
-      return {...state,
-        recurringExpenses: action.expenses
       }
 
     case SET_ALL_VISIBLE_NOTES:
