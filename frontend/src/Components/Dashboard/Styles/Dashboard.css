@@ -5,7 +5,7 @@
 
 .dashboard .up_next {
   background-color: white;
-  border: 1px black solid;
+  border: 2px solid black;
   height: 200px;
   width: 900px;
   display: grid;
@@ -39,15 +39,10 @@
   margin-right: 5px; }
 
 .dashboard .calendar .rbc-calendar {
-  width: 900px;
-  -moz-transition: height .5s;
-  -ms-transition: height .5s;
-  -o-transition: height .5s;
-  -webkit-transition: height .5s;
-  transition: height .5s; }
+  width: 900px; }
 
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header {
-  border: 1px solid grey; }
+  border: 2px solid black; }
 
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header .rbc-label {
   padding: 0; }

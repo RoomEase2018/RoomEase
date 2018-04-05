@@ -7,7 +7,7 @@
 
     .up_next {
         background-color: white;
-        border: 1px black solid;
+        border: $border-all;
         height: 200px;
         width: 900px;
         display: grid;
@@ -44,14 +44,9 @@
     .calendar {
         .rbc-calendar {
             width: 900px;
-            -moz-transition: height .5s;
-            -ms-transition: height .5s;
-            -o-transition: height .5s;
-            -webkit-transition: height .5s;
-            transition: height .5s;
             .rbc-time-view {
                 .rbc-time-header {
-                    border: 1px solid grey;
+                    border: $border-all;
                     .rbc-label {
                         padding: 0;
                     }
@@ -78,8 +73,7 @@
     .bulletin {
         height: 650px;
         width: 900px;
-        border: rgb(201, 126, 20) 10px solid;
-        // background-color: rgb(219, 197, 100);
+        border: $border-bulletin;
         background-image: url('https://i.imgur.com/j3tBLzp.jpg');
         .note {
             position: relative;
