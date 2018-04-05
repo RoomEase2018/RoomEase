@@ -7,7 +7,7 @@
 
     .up_next {
         background-color: white;
-        border: $border-all;
+        border: $all-borders;
         height: 200px;
         width: 900px;
         display: grid;
@@ -19,6 +19,7 @@
             grid-area: progress_bar;
             height: 100px;
             width: 100px;
+            padding-left: 10px;
         }
         .next_task {
             grid-area: next_task;
@@ -26,6 +27,16 @@
             text-align: center;
             line-height: 1em;
             width: 600px;
+            p {
+                margin: 0;
+            }
+            button {
+                border: none;
+                margin: 0 10px;
+            }
+            button:focus {
+                outline: none;
+            }
         }
         .checkbox {
             grid-area: checkbox;
@@ -46,7 +57,7 @@
             width: 900px;
             .rbc-time-view {
                 .rbc-time-header {
-                    border: $border-all;
+                    border: $all-borders;
                     .rbc-label {
                         padding: 0;
                     }
@@ -73,7 +84,7 @@
     .bulletin {
         height: 650px;
         width: 900px;
-        border: $border-bulletin;
+        border: $bulletin-border;
         background-image: url('https://i.imgur.com/j3tBLzp.jpg');
         .note {
             position: relative;

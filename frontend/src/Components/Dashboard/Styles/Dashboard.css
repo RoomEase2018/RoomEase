@@ -5,7 +5,7 @@
 
 .dashboard .up_next {
   background-color: white;
-  border: 2px solid black;
+  border: 2px solid #ccc;
   height: 200px;
   width: 900px;
   display: grid;
@@ -17,7 +17,8 @@
 .dashboard .up_next .progress_bar {
   grid-area: progress_bar;
   height: 100px;
-  width: 100px; }
+  width: 100px;
+  padding-left: 10px; }
 
 .dashboard .up_next .next_task {
   grid-area: next_task;
@@ -25,6 +26,16 @@
   text-align: center;
   line-height: 1em;
   width: 600px; }
+
+.dashboard .up_next .next_task p {
+  margin: 0; }
+
+.dashboard .up_next .next_task button {
+  border: none;
+  margin: 0 10px; }
+
+.dashboard .up_next .next_task button:focus {
+  outline: none; }
 
 .dashboard .up_next .checkbox {
   grid-area: checkbox;
@@ -42,7 +53,7 @@
   width: 900px; }
 
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header {
-  border: 2px solid black; }
+  border: 2px solid #ccc; }
 
 .dashboard .calendar .rbc-calendar .rbc-time-view .rbc-time-header .rbc-label {
   padding: 0; }
