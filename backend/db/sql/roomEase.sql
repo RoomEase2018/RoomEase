@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS roomease;
-CREATE DATABASE roomease;
+-- DROP DATABASE IF EXISTS roomease;
+-- CREATE DATABASE roomease;
 
-\c roomease;
+-- \c roomease;
 
 CREATE TABLE apartments (
   id SERIAL PRIMARY KEY,

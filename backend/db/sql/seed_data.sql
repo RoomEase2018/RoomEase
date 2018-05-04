@@ -6,7 +6,7 @@
 -- INSERTING NEW users
 -- ################################################
 
-\c roomease;
+-- \c roomease;
 
 INSERT INTO users (first_name, last_name, username, gender, password_digest, email, phone) VALUES ('Eric', 'Liu', 'a', 'M', '$2a$10$q8//j/bkolUGfnNCMl66ge0xTOZiYTX4PQiAkVnwY4A6tk1WXdEVa', 'ericliu@ac.c4q.nyc', '123456789');
 

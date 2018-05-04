@@ -34,8 +34,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 
 app.use('/', index);
@@ -43,6 +42,9 @@ app.use('/getRoutes', getRoutes);
 app.use('/insertRoutes', insertRoutes);
 app.use('/user', user);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '../frontend/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
