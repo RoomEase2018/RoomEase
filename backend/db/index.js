@@ -4,7 +4,7 @@ const { execSync } = require("child_process")
 
 
 const initConnection = () => {
-    let connectionString = "postgres://localhost/roomease"
+    let connectionString = process.env.DATABASE_URL
     if (process.env.npm_lifecycle_event === "test") {
         connectionString += "_test"
     }
